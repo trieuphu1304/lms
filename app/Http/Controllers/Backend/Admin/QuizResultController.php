@@ -22,7 +22,7 @@ class QuizResultController extends Controller
     public function show($id)
     {
         $result = QuizResult::with(['student', 'quiz'])->findOrFail($id);
-        $template = 'backend.admin.quiz_result.show';
+        $template = 'backend.admin.quiz_result.detail';
         return view('backend.master', compact('template', 'result'));
     }
 

@@ -82,8 +82,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Quản lí kết quả
     Route::get('/admin/quiz_result/{quizId}', [QuizResultController::class, 'index'])
         ->name('admin.quiz_result');
-    Route::get('/admin/quiz_result/{id}', [QuizResultController::class, 'show'])
-        ->name('admin.quiz_result.show');
+    Route::get('/admin/quiz_result/detail/{id}', [QuizResultController::class, 'show'])
+        ->name('admin.quiz_result.detail');
 
 });
 // Route teacher

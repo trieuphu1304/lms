@@ -6,7 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class QuizResult extends Model
 {
-    protected $fillable = ['quiz_id', 'student_id', 'score'];
+    protected $fillable = [
+        'quiz_id',
+        'student_id',
+        'score',
+        'total_questions',
+        'correct_answers',
+        'submitted_at'
+    ];
 
     public function quiz()
     {

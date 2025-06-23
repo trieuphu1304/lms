@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('quiz_results', function (Blueprint $table) {
-            //
+            $table->integer('total_questions')->default(0);
+            $table->integer('correct_answers')->default(0);
+            $table->dateTime('submitted_at')->useCurrent();
         });
     }
 
@@ -22,7 +24,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('quiz_results', function (Blueprint $table) {
-            //
+            $table->dropColumn(['total_questions', 'correct_answers', 'submitted_at']);
+
         });
     }
 };
