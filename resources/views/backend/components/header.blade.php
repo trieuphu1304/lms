@@ -10,13 +10,14 @@
                     </li>
 
                     <li class="nav-item dropdown dropdown-large">
-                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" data-bs-toggle="dropdown"><span class="alert-count">7</span>
+                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#"
+                            data-bs-toggle="dropdown"><span class="alert-count">7</span>
                             <i class='bx bx-bell'></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <a href="javascript:;">
                                 <div class="msg-header">
-                                    <p class="msg-header-title">Notifications</p>
+                                    <p class="msg-header-title">Thông báo</p>
                                     <p class="msg-header-badge">8 New</p>
                                 </div>
                             </a>
@@ -24,10 +25,12 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="{{ asset('backend/assets/images/avatars/avatar-1.png') }}" class="msg-avatar" alt="user avatar">
+                                            <img src="{{ asset('backend/assets/images/avatars/avatar-1.png') }}"
+                                                class="msg-avatar" alt="user avatar">
                                         </div>
                                         <div class="flex-grow-1">
-                                            <h6 class="msg-name">Daisy Anderson<span class="msg-time float-end">5 sec ago</span></h6>
+                                            <h6 class="msg-name">Daisy Anderson<span class="msg-time float-end">5 sec
+                                                    ago</span></h6>
                                             <p class="msg-info">The standard chunk of lorem</p>
                                         </div>
                                     </div>
@@ -36,12 +39,13 @@
                                     <div class="d-flex align-items-center">
                                         <div class="notify bg-light-danger text-danger">dc</div>
                                         <div class="flex-grow-1">
-                                            <h6 class="msg-name">New Orders <span class="msg-time float-end">2 min ago</span></h6>
+                                            <h6 class="msg-name">New Orders <span class="msg-time float-end">2 min
+                                                    ago</span></h6>
                                             <p class="msg-info">You have recived new orders</p>
                                         </div>
                                     </div>
                                 </a>
-                                
+
                             </div>
                             <a href="javascript:;">
                                 <div class="text-center msg-footer">
@@ -50,21 +54,28 @@
                             </a>
                         </div>
                     </li>
-                    
+
                 </ul>
             </div>
             <div class="user-box dropdown px-3">
-                <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ asset('backend/assets/images/avatars/avatar-2.png') }}" class="user-img" alt="user avatar">
+                <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret"
+                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{ asset('backend/assets/images/avatars/avatar-2.png') }}" class="user-img"
+                        alt="user avatar">
                     <div class="user-info">
                         <p class="user-name mb-0">Pauline Seitz</p>
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-user fs-5"></i><span>Profile</span></a></li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-cog fs-5"></i><span>Settings</span></a></li>
-                    <li><div class="dropdown-divider mb-0"></div></li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-log-out-circle"></i><span>Logout</span></a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
+                                class="bx bx-user fs-5"></i><span>Profile</span></a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
+                                class="bx bx-cog fs-5"></i><span>Settings</span></a></li>
+                    <li>
+                        <div class="dropdown-divider mb-0"></div>
+                    </li>
+                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
+                                class="bx bx-log-out-circle"></i><span>Logout</span></a></li>
                 </ul>
             </div>
         </nav>

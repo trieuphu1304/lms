@@ -45,6 +45,13 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="{{ route('admin.feedback') }}">
+                <div class="parent-icon"><i class="fadeIn animated bx bx-message-error"></i>
+                </div>
+                <div class="menu-title">Phản hồi</div>
+            </a>
+        </li>
 
     </ul>
     <!--end navigation-->

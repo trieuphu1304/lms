@@ -22,4 +22,9 @@ class Quiz extends Model
     {
         return $this->hasMany(QuizResult::class);
     }
+
+    public function course()
+    {
+        return $this->lesson ? $this->lesson->course() : null;
+    }
 }

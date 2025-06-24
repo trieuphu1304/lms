@@ -13,7 +13,8 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($results as $index => $result)
+                {{-- Học viên đã làm bài --}}
+                @foreach ($results as $index => $result)
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>
@@ -33,11 +34,32 @@
                             </a>
                         </td>
                     </tr>
-                @empty
+                @endforeach
+
+                {{-- Học viên chưa làm bài --}}
+                @foreach ($notDoneStudents as $student)
                     <tr>
-                        <td colspan="8" class="text-center text-muted">Chưa có học viên nào làm bài kiểm tra này.</td>
+                        <td>--</td>
+                        <td>
+                            {{ $student->name }}<br>
+                            <small class="text-muted">{{ $student->email }}</small>
+                        </td>
+                        <td>
+                            <span class="badge bg-secondary">Chưa làm</span>
+                        </td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td class="text-center">
+                            <span class="text-muted">---</span>
+                        </td>
                     </tr>
-                @endforelse
+                @endforeach
+
+                @if ($results->isEmpty() && $notDoneStudents->isEmpty())
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">Chưa có học viên nào trong lớp này.</td>
+                    </tr>
+                @endif
             </tbody>
         </table>
         <a href="{{ route('admin.quiz') }}" class="btn btn-secondary mt-3">

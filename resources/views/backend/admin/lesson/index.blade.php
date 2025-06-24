@@ -40,6 +40,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <a href="{{ route('admin.course') }}" class="btn btn-secondary mt-3">
+                <i class="bx bx-arrow-back"></i> Quay lại danh sách khóa học
+            </a>
         @else
             <div class="alert alert-info">Khóa học này chưa có bài giảng nào.</div>
         @endif

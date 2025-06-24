@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Backend\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Quiz;
 use App\Models\QuizResult;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+
 
 class QuizResultController extends Controller
 {
@@ -14,10 +16,38 @@ class QuizResultController extends Controller
     {
         $quiz = Quiz::findOrFail($quizId);
         $results = QuizResult::with('student')->where('quiz_id', $quizId)->get();
-        $template = 'backend.admin.quiz_result.index';
-        return view('backend.master', compact('template', 'quiz', 'results'));
-    }
 
+        // Lấy danh sách học viên của khóa học này
+        $courseId = $quiz->lesson ? $quiz->lesson->course_id : null;
+
+        $studentIds = [];
+        if ($courseId) {
+            $studentIds = DB::table('course_student')
+                ->where('course_id', $courseId)
+                ->pluck('student_id');
+        }
+
+        $students = User::whereIn('id', $studentIds)->get();
+
+        // Lấy id học viên đã làm bài
+        $doneStudentIds = $results->pluck('student_id')->toArray();
+
+        // Học viên chưa làm bài
+        $notDoneStudents = $students->whereNotIn('id', $doneStudentIds);
+
+        // dd($quiz->course_id, $studentIds, $students, $doneStudentIds, $notDoneStudents);
+
+        $template = 'backend.admin.quiz_result.index';
+        return view('backend.master', compact(
+            'template', 
+            'quiz', 
+            'results',
+            'students',
+            'doneStudentIds',
+            'notDoneStudents'
+        ));
+    }
+    
     // Xem chi tiết 1 kết quả
     public function show($id)
     {

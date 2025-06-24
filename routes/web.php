@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\Admin\LessonController;
 use App\Http\Controllers\Backend\Admin\QuizController;
 use App\Http\Controllers\Backend\Admin\QuestionController;
 use App\Http\Controllers\Backend\Admin\QuizResultController;
+use App\Http\Controllers\Backend\Admin\FeedbackController;
 
 // Teacher Controllers
 use App\Http\Controllers\Backend\Teacher\TeacherController;
@@ -84,6 +85,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         ->name('admin.quiz_result');
     Route::get('/admin/quiz_result/detail/{id}', [QuizResultController::class, 'show'])
         ->name('admin.quiz_result.detail');
+
+    // Quản lí phản hồi
+    Route::get('/admin/feedback', [FeedbackController::class, 'index'])
+        ->name('admin.feedback');
+    Route::delete('/admin/feedback/delete/{id}', [FeedbackController::class, 'delete'])
+        ->name('admin.feedback.delete');
 
 });
 // Route teacher
