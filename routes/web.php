@@ -60,7 +60,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         ->name('admin.course.delete');
 
     // Quản lý bài học
-    Route::get('/admin/lesson', [LessonController::class, 'index'])
+    Route::get('/admin/lesson/{course}', [LessonController::class, 'index'])
         ->name('admin.lesson');
     Route::delete('/admin/lesson/delete/{id}', [LessonController::class, 'delete'])
         ->name('admin.lesson.delete');

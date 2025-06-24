@@ -22,8 +22,9 @@ class QuizResultController extends Controller
     public function show($id)
     {
         $result = QuizResult::with(['student', 'quiz'])->findOrFail($id);
+        $classAvgScore = QuizResult::where('quiz_id', $result->quiz_id)->avg('score');
         $template = 'backend.admin.quiz_result.detail';
-        return view('backend.master', compact('template', 'result'));
+        return view('backend.master', compact('template', 'result', 'classAvgScore'));
     }
 
     // Xuất kết quả (Excel - optional)

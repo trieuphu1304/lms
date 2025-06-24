@@ -11,8 +11,14 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::all();
+
+        // Lấy danh sách giáo viên và số lượng khóa học mỗi giáo viên phụ trách
+        $teachers = \App\Models\User::where('role', 'teacher')->withCount('courses')->get();
+        $teacherNames = $teachers->pluck('name');
+        $courseCounts = $teachers->pluck('courses_count');
+
         $template = 'backend.admin.course.index';
-        return view('backend.master', compact('template', 'courses'));
+        return view('backend.master', compact('template', 'courses', 'teacherNames', 'courseCounts'));
     }
 
     public function create()
