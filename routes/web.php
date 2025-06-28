@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\Admin\QuizController;
 use App\Http\Controllers\Backend\Admin\QuestionController;
 use App\Http\Controllers\Backend\Admin\QuizResultController;
 use App\Http\Controllers\Backend\Admin\FeedbackController;
+use App\Http\Controllers\Backend\Admin\ProfileController;
 
 // Teacher Controllers
 use App\Http\Controllers\Backend\Teacher\TeacherController;
@@ -91,6 +92,19 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         ->name('admin.feedback');
     Route::delete('/admin/feedback/delete/{id}', [FeedbackController::class, 'delete'])
         ->name('admin.feedback.delete');
+    
+    // Quản lí thông tin
+    Route::get('/admin/profile', [ProfileController::class, 'index'])
+        ->name('admin.profile');
+    Route::get('/admin/profile/edit', [ProfileController::class, 'edit'])
+        ->name('admin.profile.edit');
+    Route::put('/admin/profile/update', [ProfileController::class, 'update'])
+        ->name('admin.profile.update');
+    Route::get('/admin/profile/password', [ProfileController::class, 'changePassword'])
+        ->name('admin.profile.password.change');
+    Route::post('/admin/profile/password', [ProfileController::class, 'updatePassword'])
+        ->name('admin.profile.password');  
+
 
 });
 // Route teacher

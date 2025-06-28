@@ -27,7 +27,7 @@ class AuthSessionController extends Controller
                     case 3:
                         return redirect()->route('student.dashboard');
                     default:
-                        return redirect()->route('dashboard.layout');
+                        return redirect()->route('login')->withErrors(['email' => 'Tài khoản không hợp lệ']);
                 }
             } else {
                 // Nếu không có role, đăng xuất và chuyển hướng về trang đăng nhập
@@ -67,6 +67,6 @@ class AuthSessionController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('auth.admin');
+        return redirect()->route('login')->with('success', 'Đăng xuất thành công');
     }
 }

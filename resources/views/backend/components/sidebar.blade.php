@@ -4,7 +4,7 @@
             <img src="{{ asset('backend/assets/images/logo-icon.png') }}" class="logo-icon" alt="logo icon">
         </div>
         <div>
-            <h4 class="logo-text">Rocker</h4>
+            <h4 class="logo-text">Quản trị viên</h4>
         </div>
         <div class="toggle-icon ms-auto">
         </div>
@@ -52,7 +52,6 @@
                 <div class="menu-title">Phản hồi</div>
             </a>
         </li>
-
     </ul>
     <!--end navigation-->
 </div>

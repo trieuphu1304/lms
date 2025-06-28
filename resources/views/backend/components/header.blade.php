@@ -60,22 +60,33 @@
             <div class="user-box dropdown px-3">
                 <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret"
                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ asset('backend/assets/images/avatars/avatar-2.png') }}" class="user-img"
-                        alt="user avatar">
+
+                    <img src="{{ asset('storage/' . $user->avatar) }}" class="user-img" alt="user avatar">
                     <div class="user-info">
-                        <p class="user-name mb-0">Pauline Seitz</p>
+                        <p class="user-name mb-0">
+                            {{ auth()->user()->name }}
+                        </p>
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                class="bx bx-user fs-5"></i><span>Profile</span></a></li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                class="bx bx-cog fs-5"></i><span>Settings</span></a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" href="{{ route('admin.profile') }}"><i
+                                class="bx bx-user fs-5"></i><span>Thông tin</span></a></li>
+                    <li><a class="dropdown-item d-flex align-items-center"
+                            href="{{ route('admin.profile.password.change') }}"><i class="bx bx-cog fs-5"></i><span>Cài
+                                đặt mật khẩu</span></a></li>
                     <li>
                         <div class="dropdown-divider mb-0"></div>
                     </li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                class="bx bx-log-out-circle"></i><span>Logout</span></a></li>
+                    <li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
+                        <a class="dropdown-item d-flex align-items-center" href="#"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="bx bx-log-out-circle"></i><span>Đăng xuất</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
