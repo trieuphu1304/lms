@@ -13,7 +13,7 @@ class LessonController extends Controller
         $course = Course::findOrFail($courseId);
         $lessons = $course->lessons()->get();
         $template = 'backend.admin.lesson.index';
-        return view('backend.master', compact('template', 'lessons', 'course'));
+        return view('backend.admin.master', compact('template', 'lessons', 'course'));
     }
 
     public function delete($id)

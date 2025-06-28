@@ -16,7 +16,7 @@ class QuestionController extends Controller
         $quiz = Quiz::with('questions')->findOrFail($quizId);
         $questions = $quiz->questions;
         $template = 'backend.admin.question.index';
-        return view('backend.master', compact('template', 'quiz', 'questions'));
+        return view('backend.admin.master', compact('template', 'quiz', 'questions'));
     }
 
     // Xóa câu hỏi
@@ -53,6 +53,6 @@ class QuestionController extends Controller
         }
 
         $template = 'backend.admin.question.student_status';
-        return view('backend.master', compact('template', 'quiz', 'studentsDone', 'studentsNotDone'));
+        return view('backend.admin.master', compact('template', 'quiz', 'studentsDone', 'studentsNotDone'));
     }
 }

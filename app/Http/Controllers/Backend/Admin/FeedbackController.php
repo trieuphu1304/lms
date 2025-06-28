@@ -12,7 +12,7 @@ class FeedbackController extends Controller
     {
         $feedbacks = Feedback::with(['user', 'course'])->latest()->paginate(20);
         $template = 'backend.admin.feedback.index';
-        return view('backend.master', compact('template', 'feedbacks'));
+        return view('backend.admin.master', compact('template', 'feedbacks'));
     }
 
     // Xóa feedback

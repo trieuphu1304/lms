@@ -18,7 +18,7 @@ class CourseController extends Controller
         $courseCounts = $teachers->pluck('courses_count');
 
         $template = 'backend.admin.course.index';
-        return view('backend.master', compact('template', 'courses', 'teacherNames', 'courseCounts'));
+        return view('backend.admin.master', compact('template', 'courses', 'teacherNames', 'courseCounts'));
     }
 
     public function create()
@@ -26,7 +26,7 @@ class CourseController extends Controller
         $template = 'backend.admin.course.create';
         // Lấy danh sách giáo viên để chọn
         $teachers = \App\Models\User::where('role', 'teacher')->get();
-        return view('backend.master', compact('template', 'teachers'));
+        return view('backend.admin.master', compact('template', 'teachers'));
     }
 
     public function store(Request $request)
@@ -54,7 +54,7 @@ class CourseController extends Controller
         $teachers = \App\Models\User::where('role', 'teacher')->get();
 
         $template = 'backend.admin.course.edit';
-        return view('backend.master', compact('template', 'course', 'teachers'));
+        return view('backend.admin.master', compact('template', 'course', 'teachers'));
     }
 
     public function update(Request $request, $id)

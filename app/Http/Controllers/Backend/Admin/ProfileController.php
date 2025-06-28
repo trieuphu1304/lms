@@ -59,7 +59,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $template = 'backend.admin.profile.change_password';
-        return view('backend.master', compact('template', 'user'));
+        return view('backend.admin.master', compact('template', 'user'));
     }
 
     // Xử lý đổi mật khẩu

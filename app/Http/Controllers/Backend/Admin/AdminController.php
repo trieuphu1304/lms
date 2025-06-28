@@ -13,7 +13,7 @@ class AdminController extends Controller
     public function dashboard()
     {   $user = Auth::user();
         $template = 'backend.admin.dashboard.index';
-        return view('backend.master', compact('template', 'user'));
+        return view('backend.admin.master', compact('template', 'user'));
     }
 
     public function logout(Request $request): RedirectResponse

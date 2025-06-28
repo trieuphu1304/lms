@@ -35,7 +35,7 @@ class AuthSessionController extends Controller
                 return redirect()->route('login')->withErrors(['email' => 'Tài khoản không hợp lệ']);
             }
         }
-        return view('backend.login');
+        return view('backend.admin.login');
     }
 
     public function login(AuthRequest $request)

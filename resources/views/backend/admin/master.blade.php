@@ -2,17 +2,17 @@
 <html lang="en">
 
 <head>
-    @include('backend.components.head')
+    @include('backend.admin.components.head')
 </head>
 
 <body>
     <!--wrapper-->
     <div class="wrapper">
         <!--sidebar wrapper -->
-        @include('backend.components.sidebar')
+        @include('backend.admin.components.sidebar')
         <!--end sidebar wrapper -->
         <!--start header -->
-        @include('backend.components.header')
+        @include('backend.admin.components.header')
         <!--end header -->
         <!--start page wrapper -->
         <div class="page-wrapper">
@@ -25,12 +25,12 @@
         <!--Start Back To Top Button-->
         <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
         <!--End Back To Top Button-->
-        @include('backend.components.footer')
+        @include('backend.admin.components.footer')
     </div>
     <!--end wrapper-->
 
     <!-- Bootstrap JS -->
-    @include('backend.components.script')
+    @include('backend.admin.components.script')
 </body>
 
 </html>

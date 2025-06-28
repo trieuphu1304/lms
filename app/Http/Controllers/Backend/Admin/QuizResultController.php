@@ -38,7 +38,7 @@ class QuizResultController extends Controller
         // dd($quiz->course_id, $studentIds, $students, $doneStudentIds, $notDoneStudents);
 
         $template = 'backend.admin.quiz_result.index';
-        return view('backend.master', compact(
+        return view('backend.admin.master', compact(
             'template', 
             'quiz', 
             'results',
@@ -54,7 +54,7 @@ class QuizResultController extends Controller
         $result = QuizResult::with(['student', 'quiz'])->findOrFail($id);
         $classAvgScore = QuizResult::where('quiz_id', $result->quiz_id)->avg('score');
         $template = 'backend.admin.quiz_result.detail';
-        return view('backend.master', compact('template', 'result', 'classAvgScore'));
+        return view('backend.admin.master', compact('template', 'result', 'classAvgScore'));
     }
 
     // Xuất kết quả (Excel - optional)

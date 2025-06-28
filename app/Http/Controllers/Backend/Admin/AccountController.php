@@ -11,16 +11,16 @@ class AccountController extends Controller
 {
     public function index()
     {
-        $user = User::all();
+        $users = User::all();
 
         $template = 'backend.admin.account.index';
-        return view('backend.master', compact('template', 'user'));
+        return view('backend.admin.master', compact('template', 'users'));
     }
 
     public function create() {
 
         $template = 'backend.admin.account.create';
-        return view('backend.master', compact(
+        return view('backend.admin.master', compact(
             'template'
         ));
     }
@@ -45,7 +45,7 @@ class AccountController extends Controller
     public function edit($id) {
         $user = User::find($id);
         $template = 'backend.admin.account.edit';
-        return view('backend.master', compact(
+        return view('backend.admin.master', compact(
             'template',
             'user'
         ));

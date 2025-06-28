@@ -14,7 +14,7 @@ class QuizController extends Controller
     {
         $quizzes = Quiz::with('lesson')->get();
         $template = 'backend.admin.quiz.index';
-        return view('backend.master', compact('template', 'quizzes'));
+        return view('backend.admin.master', compact('template', 'quizzes'));
     }
 
     // Xóa bài kiểm tra
@@ -31,6 +31,6 @@ class QuizController extends Controller
         $quiz = Quiz::with(['lesson', 'questions'])->findOrFail($id);
         $template = 'backend.admin.question.index';
         $questions = $quiz->questions;
-        return view('backend.master', compact('template', 'quiz', 'questions'));
+        return view('backend.admin.master', compact('template', 'quiz', 'questions'));
     }
 }

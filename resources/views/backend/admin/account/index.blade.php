@@ -18,28 +18,29 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($user as $index => $user)
+                @foreach ($users as $index => $acc)
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
+                        <td>{{ $acc->name }}</td>
+                        <td>{{ $acc->email }}</td>
                         <td>
-                            <span class="badge 
-                                @if($user->role == 'admin') bg-danger
-                                @elseif($user->role == 'teacher') bg-info
-                                @else bg-secondary
-                                @endif
+                            <span
+                                class="badge 
+                                @if ($acc->role == 'admin') bg-danger
+                                @elseif($acc->role == 'teacher') bg-info
+                                @else bg-secondary @endif
                             ">
-                                {{ ucfirst($user->role) }}
+                                {{ ucfirst($acc->role) }}
                             </span>
                         </td>
-                        <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
-                        
+                        <td>{{ $acc->created_at->format('d/m/Y H:i') }}</td>
                         <td class="text-center">
-                            <a href="{{ route('admin.account.edit', $user->id) }}" class="btn btn-sm btn-warning me-1">
+                            <a href="{{ route('admin.account.edit', $acc->id) }}" class="btn btn-sm btn-warning me-1">
                                 <i class="bx bx-edit"></i> Sửa
                             </a>
-                            <form action="{{ route('admin.account.delete', $user->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Bạn có chắc muốn xóa tài khoản này?');">
+                            <form action="{{ route('admin.account.delete', $acc->id) }}" method="POST"
+                                style="display:inline-block;"
+                                onsubmit="return confirm('Bạn có chắc muốn xóa tài khoản này?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">
@@ -49,6 +50,7 @@
                         </td>
                     </tr>
                 @endforeach
+
             </tbody>
         </table>
     </div>
