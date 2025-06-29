@@ -20,18 +20,22 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
         if (!Auth::check()) {
-            // Xác định đường dẫn để chuyển hướng
             $path = $request->is('teacher/*') ? route('teacher.login') : route('admin.login');
-            return redirect($path)->with('error', 'Bạn cần đăng nhập để truy cập chức năng này.');
+            return redirect($path)->with('error', 'Bạn cần đăng nhập để truy cập.');
         }
 
         $user = Auth::user();
 
-        // Nếu role trong $roles (hỗ trợ dạng số hoặc chuỗi)
         if (!in_array($user->role, $roles)) {
-            abort(403, 'Bạn không có quyền truy cập.');
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            $path = $request->is('teacher/*') ? route('teacher.login') : route('admin.login');
+            return redirect($path)->with('error', 'Bạn không có quyền với tài khoản này, vui lòng đăng nhập lại.');
         }
 
         return $next($request);
     }
+
 }
