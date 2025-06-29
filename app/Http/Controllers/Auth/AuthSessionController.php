@@ -48,7 +48,7 @@ class AuthSessionController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('admin.login.form')->with('success', 'Đăng xuất thành công (Admin)');
+        return redirect()->route('admin.login')->with('success', 'Đăng xuất thành công (Admin)');
     }
 
     // Logout dành riêng cho teacher
@@ -57,6 +57,6 @@ class AuthSessionController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('teacher.login.form')->with('success', 'Đăng xuất thành công (Teacher)');
+        return redirect()->route('teacher.login')->with('success', 'Đăng xuất thành công (Teacher)');
     }
 }

@@ -89,7 +89,13 @@
                     </div>
                 </div>
                 <a class="dropdown-item" href="{{ url('teacher/profile') }}">Thông tin</a>
-                <a class="dropdown-item" href="{{ url('logout') }}">Đăng xuất</a>
+                <form action="{{ route('teacher.logout') }}" method="POST" class="d-inline">
+                    @csrf
+                    <button type="submit" class="dropdown-item bg-transparent border-0 text-start w-100">
+                        <i class="bx bx-log-out"></i> Đăng xuất
+                    </button>
+                </form>
+
             </div>
         </li>
     </ul>

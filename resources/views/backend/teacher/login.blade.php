@@ -34,7 +34,7 @@
                             <h1>Chào mừng bạn</h1>
                             <h2>Đăng nhập</h2>
 
-                            <form action="{{ route('login') }}" method="POST">
+                            <form action="{{ route('login.submit') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label>Email <span class="login-danger">*</span></label>

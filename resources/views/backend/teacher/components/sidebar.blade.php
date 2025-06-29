@@ -18,7 +18,7 @@
                     <a href="#"><i class="fas fa-clipboard-list"></i><span>Quản lí khóa học</span> <span
                             class="menu-arrow"></a>
                     <ul>
-                        <li><a href="{{ url('teachers') }}">Khóa học</a></li>
+                        <li><a href="{{ route('teacher.course') }}">Khóa học</a></li>
                         <li><a href="{{ url('teachers/view') }}">Bài giảng</a></li>
                         <li><a href="{{ url('teachers/create') }}">Bài kiểm tra</a></li>
                     </ul>

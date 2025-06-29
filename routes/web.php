@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\Admin\ProfileController;
 
 // Teacher Controllers
 use App\Http\Controllers\Backend\Teacher\TeacherController;
+use App\Http\Controllers\Backend\Teacher\CourseController as TeacherCourseController;
 
 // Student Controllers
 use App\Http\Controllers\Backend\StudentController;
@@ -25,7 +26,7 @@ use App\Models\QuizResult;
 // ------------ Login Routes ------------
 Route::get('/admin/login', [AuthSessionController::class, 'showAdminLogin'])->name('admin.login');
 Route::get('/teacher/login', [AuthSessionController::class, 'showTeacherLogin'])->name('teacher.login');
-Route::post('/login', [AuthSessionController::class, 'login'])->name('login');
+Route::post('/login', [AuthSessionController::class, 'login'])->name('login.submit');
 
 Route::post('/admin/logout', [AuthSessionController::class, 'adminLogout'])->name('admin.logout');
 Route::post('/teacher/logout', [AuthSessionController::class, 'teacherLogout'])->name('teacher.logout');
@@ -36,7 +37,6 @@ Route::get('/login', function () {
     }
     return redirect()->route('admin.login');
 })->name('login');
-
 
 // Route admin 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -123,5 +123,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 // Route teacher
 Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('/teacher/dashboard', [TeacherController::class, 'dashboard'])
-        ->name('teacher.dashboard');
+    ->name('teacher.dashboard');
+
+    // Quản lí khóa học
+    Route::get('/course', [TeacherCourseController::class, 'index'])->name('teacher.course');
+    Route::get('/course/create', [TeacherCourseController::class, 'create'])->name('teacher.course.create');
+    Route::post('/course/store', [TeacherCourseController::class, 'store'])->name('teacher.course.store');
+    Route::get('/course/edit/{id}', [TeacherCourseController::class, 'edit'])->name('teacher.course.edit');
+    Route::put('/course/update/{id}', [TeacherCourseController::class, 'update'])->name('teacher.course.update');
+    Route::delete('/course/delete/{id}', [TeacherCourseController::class, 'delete'])->name('teacher.course.delete');
 });
