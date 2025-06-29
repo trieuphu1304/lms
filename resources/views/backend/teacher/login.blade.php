@@ -63,7 +63,7 @@
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
-                                    <a href="#">Quên mật khẩu ?</a> {{-- Cập nhật route forgot password nếu có --}}
+                                    <a href="#">Quên mật khẩu ?</a>
                                 </div>
 
                                 <div class="form-group">
