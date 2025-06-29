@@ -24,6 +24,6 @@ class AdminController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login');
+        return redirect()->route('admin.login.form')->with('success', 'Đăng xuất thành công');
     }
 }

@@ -10,7 +10,7 @@ class TeacherController extends Controller
     public function dashboard()
     {   
         $template = 'backend.teacher.dashboard.index';
-        return view('backend.master', compact('template'));
+        return view('backend.teacher.master', compact('template'));
     }
 
     // Bạn có thể thêm các phương thức khác cho giáo viên ở đây

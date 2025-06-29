@@ -14,21 +14,22 @@ class RoleMiddleware
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     * @param  string  $role
+     * @param  mixed ...$roles
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function handle(Request $request, Closure $next, string $role): Response
-    { 
+    public function handle(Request $request, Closure $next, ...$roles): Response
+    {
         if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'Bạn cần đăng nhập để truy cập chức năng này.');
+            // Xác định đường dẫn để chuyển hướng
+            $path = $request->is('teacher/*') ? route('teacher.login') : route('admin.login');
+            return redirect($path)->with('error', 'Bạn cần đăng nhập để truy cập chức năng này.');
         }
 
-        // Lấy user hiện tại
         $user = Auth::user();
 
-        // Kiểm tra quyền
-        if ($user->role !== $role) {
-             return redirect()->route('login')->with('error', 'Bạn cần đăng nhập để truy cập chức năng này.');       
+        // Nếu role trong $roles (hỗ trợ dạng số hoặc chuỗi)
+        if (!in_array($user->role, $roles)) {
+            abort(403, 'Bạn không có quyền truy cập.');
         }
 
         return $next($request);

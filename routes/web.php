@@ -22,10 +22,21 @@ use App\Models\Course;
 use App\Models\Quiz;
 use App\Models\QuizResult;
 
-// Trang login dùng chung cho admin + teacher 
-Route::get('/login', [AuthSessionController::class, 'index'])->name('login');
-Route::post('/login', [AuthSessionController::class, 'login']);
-Route::post('/logout', [AuthSessionController::class, 'logout'])->name('logout');
+// ------------ Login Routes ------------
+Route::get('/admin/login', [AuthSessionController::class, 'showAdminLogin'])->name('admin.login');
+Route::get('/teacher/login', [AuthSessionController::class, 'showTeacherLogin'])->name('teacher.login');
+Route::post('/login', [AuthSessionController::class, 'login'])->name('login');
+
+Route::post('/admin/logout', [AuthSessionController::class, 'adminLogout'])->name('admin.logout');
+Route::post('/teacher/logout', [AuthSessionController::class, 'teacherLogout'])->name('teacher.logout');
+
+Route::get('/login', function () {
+    if (request()->is('teacher/*') || str_contains(url()->previous(), 'teacher')) {
+        return redirect()->route('teacher.login');
+    }
+    return redirect()->route('admin.login');
+})->name('login');
+
 
 // Route admin 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -107,6 +118,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 });
+
+
 // Route teacher
 Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('/teacher/dashboard', [TeacherController::class, 'dashboard'])
