@@ -8,7 +8,6 @@
             <div class="card-body">
                 <form action="{{ route('admin.account.update', $user->id) }}" method="POST">
                     @csrf
-                    @method('PUT')
                     <div class="mb-3">
                         <label class="form-label"><i class="bx bx-user"></i> Tên</label>
                         <input type="text" name="name" class="form-control" value="{{ $user->name }}" required>
@@ -18,15 +17,19 @@
                         <input type="email" name="email" class="form-control" value="{{ $user->email }}" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label"><i class="bx bx-lock"></i> Mật khẩu mới (bỏ trống nếu không đổi)</label>
+                        <label class="form-label"><i class="bx bx-lock"></i> Mật khẩu mới (bỏ trống nếu không
+                            đổi)</label>
                         <input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu mới">
                     </div>
                     <div class="mb-3">
                         <label class="form-label"><i class="bx bx-shield"></i> Vai trò</label>
                         <select name="role" class="form-select" required>
-                            <option value="admin" @if($user->role == 'admin') selected @endif class="text-danger">Quản trị viên</option>
-                            <option value="teacher" @if($user->role == 'teacher') selected @endif class="text-info">Giáo viên</option>
-                            <option value="student" @if($user->role == 'student') selected @endif class="text-success">Học sinh</option>
+                            <option value="admin" @if ($user->role == 'admin') selected @endif
+                                class="text-danger">Quản trị viên</option>
+                            <option value="teacher" @if ($user->role == 'teacher') selected @endif class="text-info">
+                                Giáo viên</option>
+                            <option value="student" @if ($user->role == 'student') selected @endif
+                                class="text-success">Học sinh</option>
                         </select>
                     </div>
                     <div class="d-flex justify-content-end">

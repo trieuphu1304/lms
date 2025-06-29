@@ -43,7 +43,7 @@ class AccountController extends Controller
     }
 
     public function edit($id) {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $template = 'backend.admin.account.edit';
         return view('backend.admin.master', compact(
             'template',

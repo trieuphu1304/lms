@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>Preskool - Login</title>
+    <title>Đăng nhập - Giáo viên</title>
 
     <link rel="shortcut icon" href="{{ asset('backend/teacher/assets/img/favicon.png') }}">
 
@@ -31,39 +31,50 @@
                     </div>
                     <div class="login-right">
                         <div class="login-right-wrap">
-                            <h1>Welcome to Preskool</h1>
-                            <p class="account-subtitle">Need an account? <a href="register.html">Sign Up</a></p>
-                            <h2>Sign in</h2>
+                            <h1>Chào mừng bạn</h1>
+                            <h2>Đăng nhập</h2>
 
-                            <form action="index.html">
+                            <form action="{{ route('login') }}" method="POST">
+                                @csrf
                                 <div class="form-group">
-                                    <label>Username <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text">
+                                    <label>Email <span class="login-danger">*</span></label>
+                                    <input class="form-control" type="email" name="email"
+                                        value="{{ old('email') }}" required>
                                     <span class="profile-views"><i class="fas fa-user-circle"></i></span>
+                                    @error('email')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
+
                                 <div class="form-group">
-                                    <label>Password <span class="login-danger">*</span></label>
-                                    <input class="form-control pass-input" type="text">
+                                    <label>Mật khẩu <span class="login-danger">*</span></label>
+                                    <input class="form-control pass-input" type="password" name="password" required>
                                     <span class="profile-views feather-eye toggle-password"></span>
+                                    @error('password')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
+
                                 <div class="forgotpass">
                                     <div class="remember-me">
                                         <label class="custom_check mr-2 mb-0 d-inline-flex remember-me">
-                                            Remember me
-                                            <input type="checkbox" name="radio">
+                                            Ghi nhớ đăng nhập
+                                            <input type="checkbox" name="remember">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
-                                    <a href="forgot-password.html">Forgot Password?</a>
+                                    <a href="#">Quên mật khẩu ?</a> {{-- Cập nhật route forgot password nếu có --}}
                                 </div>
+
                                 <div class="form-group">
-                                    <button class="btn btn-primary btn-block" type="submit">Login</button>
+                                    <button class="btn btn-primary btn-block" type="submit">Đăng nhập</button>
                                 </div>
                             </form>
 
+
                             <div class="login-or">
                                 <span class="or-line"></span>
-                                <span class="span-or">or</span>
+                                <span class="span-or">hoặc</span>
                             </div>
 
                             <div class="social-login">
