@@ -38,6 +38,10 @@
                             <td>{{ $course->level }}</td>
                             <td>{{ $course->teacher->name ?? 'Chưa gán' }}</td>
                             <td>
+                                <a href="{{ route('teacher.lesson', $course->id) }}"
+                                    class="btn btn-sm btn-outline-success">
+                                    <i class="bx bx-edit"></i> Xem bài giảng
+                                </a>
                                 <a href="{{ route('teacher.course.edit', $course->id) }}"
                                     class="btn btn-sm btn-outline-primary">
                                     <i class="bx bx-edit"></i> Sửa

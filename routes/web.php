@@ -16,6 +16,9 @@ use App\Http\Controllers\Backend\Admin\ProfileController;
 // Teacher Controllers
 use App\Http\Controllers\Backend\Teacher\TeacherController;
 use App\Http\Controllers\Backend\Teacher\CourseController as TeacherCourseController;
+use App\Http\Controllers\Backend\Teacher\LessonController as TeacherLessonController;
+use App\Http\Controllers\Backend\Teacher\StudentController as TeacherStudentController;
+
 
 // Student Controllers
 use App\Http\Controllers\Backend\StudentController;
@@ -132,4 +135,15 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('/course/edit/{id}', [TeacherCourseController::class, 'edit'])->name('teacher.course.edit');
     Route::put('/course/update/{id}', [TeacherCourseController::class, 'update'])->name('teacher.course.update');
     Route::delete('/course/delete/{id}', [TeacherCourseController::class, 'delete'])->name('teacher.course.delete');
+
+    // Quản lí bài giảng
+    Route::get('/teacher/lesson/{course}', [TeacherLessonController::class, 'index'])->name('teacher.lesson');
+    Route::get('/lesson/create', [TeacherLessonController::class, 'create'])->name('teacher.lesson.create');
+    Route::post('/lesson/store', [TeacherLessonController::class, 'store'])->name('teacher.lesson.store');
+    Route::get('/lesson/edit/{id}', [TeacherLessonController::class, 'edit'])->name('teacher.lesson.edit');
+    Route::put('/lesson/update/{id}', [TeacherLessonController::class, 'update'])->name('teacher.lesson.update');
+    Route::delete('/lesson/delete/{id}', [TeacherLessonController::class, 'delete'])->name('teacher.lesson.delete');
+
+    // Quản lý học viên
+    Route::get('/students', [TeacherStudentController::class, 'index'])->name('teacher.students');
 });

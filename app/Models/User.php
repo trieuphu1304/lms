@@ -49,4 +49,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Certificate::class);
     }
+
+    public function completedLessons()
+    {
+        return $this->belongsToMany(Lesson::class, 'lesson_student', 'student_id', 'lesson_id')
+            ->withPivot('is_completed')
+            ->wherePivot('is_completed', true);
+    }
+
 }

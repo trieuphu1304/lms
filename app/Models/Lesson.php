@@ -17,4 +17,11 @@ class Lesson extends Model
     {
         return $this->hasMany(Quiz::class);
     }
+
+    public function students()
+    {
+        return $this->belongsToMany(User::class, 'lesson_student', 'lesson_id', 'student_id')
+            ->withPivot('is_completed')
+            ->withTimestamps();
+    }
 }
