@@ -36,6 +36,8 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $quiz->title }}</td>
                     <td>
+                        <a href="{{ route('teacher.question', $quiz->id) }}" class="btn btn-sm btn-outline-success">Xem
+                            câu hỏi</a>
                         <a href="{{ route('teacher.quiz.edit', $quiz->id) }}"
                             class="btn btn-sm btn-outline-warning">Sửa</a>
                         <form action="{{ route('teacher.quiz.delete', $quiz->id) }}" method="POST" class="d-inline"
