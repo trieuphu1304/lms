@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\Teacher\TeacherController;
 use App\Http\Controllers\Backend\Teacher\CourseController as TeacherCourseController;
 use App\Http\Controllers\Backend\Teacher\LessonController as TeacherLessonController;
 use App\Http\Controllers\Backend\Teacher\StudentController as TeacherStudentController;
+use App\Http\Controllers\Backend\Teacher\QuizController as TeacherQuizController;
 
 
 // Student Controllers
@@ -146,4 +147,12 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
 
     // Quản lý học viên
     Route::get('/students', [TeacherStudentController::class, 'index'])->name('teacher.students');
+
+    // Quản lí
+    Route::get('/quiz/{lesson}', [TeacherQuizController::class, 'index'])->name('teacher.quiz');
+    Route::get('/quiz/create/{lesson}', [TeacherQuizController::class, 'create'])->name('teacher.quiz.create');
+    Route::post('/quiz/store', [TeacherQuizController::class, 'store'])->name('teacher.quiz.store');
+    Route::get('/quiz/edit/{id}', [TeacherQuizController::class, 'edit'])->name('teacher.quiz.edit');
+    Route::put('/quiz/update/{id}', [TeacherQuizController::class, 'update'])->name('teacher.quiz.update');
+    Route::delete('/quiz/delete/{id}', [TeacherQuizController::class, 'delete'])->name('teacher.quiz.delete');
 });

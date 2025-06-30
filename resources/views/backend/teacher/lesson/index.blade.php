@@ -1,7 +1,12 @@
 <div class="content container-fluid">
 
     <div class="page-header d-flex justify-content-between align-items-center mb-3">
-        <h3 class="page-title text-primary mb-0">Danh sách bài giảng</h3>
+        <h3 class="page-title text-primary mb-0">
+            Danh sách bài giảng của khóa học
+            <span class="text-secondary fw-semibold">{{ $course->title }}</span>
+        </h3>
+
+
 
         <div class="d-flex gap-2">
             <a href="{{ route('teacher.course') }}" class="btn btn-outline-secondary">
@@ -50,12 +55,16 @@
                         @endif
                     </td>
                     <td>
-                        <a href="{{ route('teacher.lesson.edit', $lesson->id) }}" class="btn btn-sm btn-warning">Sửa</a>
+                        <a href="{{ route('teacher.quiz', $lesson->id) }}" class="btn btn-sm btn-outline-success">Xem
+                            bài kiểm
+                            tra</a>
+                        <a href="{{ route('teacher.lesson.edit', $lesson->id) }}"
+                            class="btn btn-sm btn-outline-warning">Sửa</a>
                         <form action="{{ route('teacher.lesson.delete', $lesson->id) }}" method="POST" class="d-inline"
                             onsubmit="return confirm('Bạn muốn xóa bài giảng này?')">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-sm btn-danger">Xóa</button>
+                            <button class="btn btn-sm btn-outline-danger">Xóa</button>
                         </form>
                     </td>
                 </tr>

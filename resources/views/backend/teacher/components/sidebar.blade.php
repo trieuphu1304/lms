@@ -22,7 +22,7 @@
                             class="menu-arrow"></a>
                     <ul>
                         <li><a href="{{ route('teacher.course') }}">Khóa học</a></li>
-                        <li><a href="{{ url('teachers/create') }}">Bài kiểm tra</a></li>
+
                     </ul>
                 </li>
 
