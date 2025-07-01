@@ -1,9 +1,22 @@
 <div class="content container-fluid">
     <div class="page-header d-flex justify-content-between align-items-center mb-3">
-        <h3 class="page-title text-primary mb-0">Danh sách câu hỏi - {{ $quiz->title }}</h3>
-        <a href="{{ route('teacher.question.create', $quiz->id) }}" class="btn btn-primary">
-            <i class="bx bx-plus"></i> Thêm câu hỏi
-        </a>
+        <h3 class="page-title text-primary mb-0">
+            Danh sách câu hỏi của bài kiểm tra
+            <span class="text-secondary fw-semibold">{{ $quiz->title }}</span>
+        </h3>
+
+
+
+        <div class="d-flex gap-2">
+            <a href="{{ route('teacher.lesson.quizzes', ['lesson' => $quiz->lesson_id]) }}"
+                class="btn btn-outline-secondary">
+                <i class="bx bx-arrow-back"></i> Quay lại bài kiểm tra
+            </a>
+
+            <a href="{{ route('teacher.question.create', $quiz->id) }}" class="btn btn-primary">
+                <i class="bx bx-plus"></i> Thêm câu hỏi
+            </a>
+        </div>
     </div>
 
     @if (session('success'))
@@ -28,6 +41,10 @@
                             <td>{{ $question->question_text }}</td>
                             <td>{{ $question->correct_option }}</td>
                             <td>
+                                <a href="{{ route('teacher.quiz_results.by_quiz', $quiz->id) }}"
+                                    class="btn btn-sm btn-outline-success">
+                                    <i class="bx bx-edit"></i> Xem điểm học viên
+                                </a>
                                 <a href="{{ route('teacher.question.edit', $question->id) }}"
                                     class="btn btn-sm btn-outline-warning">
                                     <i class="bx bx-edit"></i> Sửa

@@ -55,9 +55,9 @@
                         @endif
                     </td>
                     <td>
-                        <a href="{{ route('teacher.quiz', $lesson->id) }}" class="btn btn-sm btn-outline-success">Xem
-                            bài kiểm
-                            tra</a>
+                        <a href="{{ route('teacher.lesson.quizzes', ['lesson' => $lesson->id]) }}"
+                            class="btn btn-sm btn-outline-success">Xem bài kiểm tra</a>
+
                         <a href="{{ route('teacher.lesson.edit', $lesson->id) }}"
                             class="btn btn-sm btn-outline-warning">Sửa</a>
                         <form action="{{ route('teacher.lesson.delete', $lesson->id) }}" method="POST" class="d-inline"

@@ -22,7 +22,7 @@
                             class="menu-arrow"></a>
                     <ul>
                         <li><a href="{{ route('teacher.course') }}">Khóa học</a></li>
-
+                        <li><a href="{{ route('teacher.quiz_results.index') }}">Quản lí điểm học</a></li>
                     </ul>
                 </li>
 

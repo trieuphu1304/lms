@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\Teacher\LessonController as TeacherLessonContro
 use App\Http\Controllers\Backend\Teacher\StudentController as TeacherStudentController;
 use App\Http\Controllers\Backend\Teacher\QuizController as TeacherQuizController;
 use App\Http\Controllers\Backend\Teacher\QuestionController as TeacherQuestionController;
+use App\Http\Controllers\Backend\Teacher\ResultController as TeacherResultController;
 
 
 // Student Controllers
@@ -150,7 +151,7 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('/students', [TeacherStudentController::class, 'index'])->name('teacher.students');
 
     // Quản lí bài kiểm tra
-    Route::get('/quiz/{lesson}', [TeacherQuizController::class, 'index'])->name('teacher.quiz');
+    Route::get('/lesson/{lesson}/quizzes', [TeacherQuizController::class, 'index'])->name('teacher.lesson.quizzes');
     Route::get('/quiz/create/{lesson}', [TeacherQuizController::class, 'create'])->name('teacher.quiz.create');
     Route::post('/quiz/store', [TeacherQuizController::class, 'store'])->name('teacher.quiz.store');
     Route::get('/quiz/edit/{id}', [TeacherQuizController::class, 'edit'])->name('teacher.quiz.edit');
@@ -158,10 +159,15 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::delete('/quiz/delete/{id}', [TeacherQuizController::class, 'delete'])->name('teacher.quiz.delete');
 
     //Quản lí câu hỏi
-    Route::get('/{quiz}', [TeacherQuestionController::class, 'index'])->name('teacher.question');
+    Route::get('/quiz/{quiz}/questions', [TeacherQuestionController::class, 'index'])->name('teacher.question');
     Route::get('/{quiz}/create', [TeacherQuestionController::class, 'create'])->name('teacher.question.create');
     Route::post('/store', [TeacherQuestionController::class, 'store'])->name('teacher.question.store');
     Route::get('/edit/{id}', [TeacherQuestionController::class, 'edit'])->name('teacher.question.edit');
     Route::put('/update/{id}', [TeacherQuestionController::class, 'update'])->name('teacher.question.update');
     Route::delete('/delete/{id}', [TeacherQuestionController::class, 'delete'])->name('teacher.question.delete');
+
+    //Quản lí điểm
+    Route::get('/teacher/quiz-results', [TeacherResultController::class, 'allResults'])->name('teacher.quiz_results.index');
+    Route::get('/quiz/{quiz}/results', [TeacherResultController::class, 'quizResults'])->name('teacher.quiz_results.by_quiz');
+
 });
