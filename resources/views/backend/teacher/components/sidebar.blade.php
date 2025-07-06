@@ -26,11 +26,6 @@
                     </ul>
                 </li>
 
-                <li class="submenu">
-                    <a href="#"><i class="fas fa-book-reader"></i><span> Quản lí bài nộp</span> </a>
-
-                </li>
-
                 <li>
                     <a href="{{ route('teacher.feedback') }}">
                         <i class="fas fa-clipboard"></i>

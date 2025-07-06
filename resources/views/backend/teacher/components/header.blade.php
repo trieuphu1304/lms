@@ -30,34 +30,54 @@
             <div class="dropdown-menu notifications">
                 <div class="topnav-dropdown-header">
                     <span class="notification-title">Thông báo</span>
-                    <a href="javascript:void(0)" class="clear-noti">Xóa tất cả</a>
+                    <form method="POST" action="{{ route('teacher.notifications.delete_all') }}"
+                        id="clearAllNotificationsForm" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <a href="javascript:void(0);" class="clear-noti"
+                            onclick="document.getElementById('clearAllNotificationsForm').submit();">
+                            Xóa tất cả
+                        </a>
+                    </form>
+
                 </div>
+
                 <div class="noti-content">
                     <ul class="notification-list">
-                        @foreach ([['avatar' => 'avatar-02.jpg', 'name' => 'Carlson Tech', 'content' => 'has approved your estimate', 'time' => '4 mins ago'], ['avatar' => 'avatar-11.jpg', 'name' => 'International Software Inc', 'content' => 'has sent you a invoice in the amount of $218', 'time' => '6 mins ago'], ['avatar' => 'avatar-17.jpg', 'name' => 'John Hendry', 'content' => 'sent a cancellation request Apple iPhone XR', 'time' => '8 mins ago'], ['avatar' => 'avatar-13.jpg', 'name' => 'Mercury Software Inc', 'content' => 'added a new product Apple MacBook Pro', 'time' => '12 mins ago']] as $noti)
+                        @forelse ($notifications as $noti)
                             <li class="notification-message">
                                 <a href="#">
                                     <div class="media d-flex">
                                         <span class="avatar avatar-sm flex-shrink-0">
                                             <img class="avatar-img rounded-circle" alt="User Image"
-                                                src="{{ asset('backend/teacher/assets/img/profiles/' . $noti['avatar']) }}">
+                                                src="{{ asset('storage/' . ($noti->user->avatar ?? 'default.jpg')) }}">
                                         </span>
                                         <div class="media-body flex-grow-1">
-                                            <p class="noti-details"><span class="noti-title">{{ $noti['name'] }}</span>
-                                                {{ $noti['content'] }}</p>
-                                            <p class="noti-time"><span
-                                                    class="notification-time">{{ $noti['time'] }}</span></p>
+                                            <p class="noti-details">
+                                                <span class="noti-title">{{ $noti->user->name ?? 'Người dùng' }}</span>
+                                                {{ $noti->title }}
+                                            </p>
+                                            <p class="noti-time">
+                                                <span
+                                                    class="notification-time">{{ $noti->created_at->diffForHumans() }}</span>
+                                            </p>
                                         </div>
                                     </div>
                                 </a>
                             </li>
-                        @endforeach
+                        @empty
+                            <li class="notification-message text-center text-muted">
+                                Không có thông báo nào.
+                            </li>
+                        @endforelse
                     </ul>
                 </div>
+
                 <div class="topnav-dropdown-footer">
-                    <a href="#">Xem tất cả</a>
+                    <a href="#"></a>
                 </div>
             </div>
+
         </li>
 
         <li class="nav-item zoom-screen me-2">

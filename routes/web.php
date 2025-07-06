@@ -23,6 +23,7 @@ use App\Http\Controllers\Backend\Teacher\QuestionController as TeacherQuestionCo
 use App\Http\Controllers\Backend\Teacher\ResultController as TeacherResultController;
 use App\Http\Controllers\Backend\Teacher\ProfileController as TeacherProfileController;
 use App\Http\Controllers\Backend\Teacher\FeedbackController as TeacherFeedbackController;
+use App\Http\Controllers\Backend\Teacher\NotificationController as TeacherNotificationController;
 
 
 // Student Controllers
@@ -183,5 +184,7 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('/teacher/feedback', [TeacherFeedbackController::class, 'index'])->name('teacher.feedback');
     Route::get('/teacher/feedback/{id}', [TeacherFeedbackController::class, 'show'])->name('teacher.feedback.show');
     Route::delete('/teacher/feedback/delete/{id}', [TeacherFeedbackController::class, 'delete'])->name('teacher.feedback.delete');
-
+    //Quản lí thông báo
+    Route::get('/teacher/notifications', [TeacherNotificationController::class, 'index'])->name('teacher.notifications.index');
+    Route::delete('/teacher/notifications', [TeacherNotificationController::class, 'destroyAll'])->name('teacher.notifications.delete_all');
 });
