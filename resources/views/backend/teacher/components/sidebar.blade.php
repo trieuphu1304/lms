@@ -4,8 +4,8 @@
             <ul>
                 <li class="menu-title"><span>Menu chính</span></li>
 
-                <li class="submenu active">
-                    <a href="{{ route('teacher.dashboard')}}"><i class="feather-grid"></i> <span>Trang chủ</span> </a>
+                <li>
+                    <a href="{{ route('teacher.dashboard') }}"><i class="feather-grid"></i> <span>Trang chủ</span> </a>
 
                 </li>
 
@@ -31,9 +31,11 @@
 
                 </li>
 
-                <li class="submenu">
-                    <a href="#"><i class="fas fa-clipboard"></i><span> Phản hồi</span> </a>
-
+                <li>
+                    <a href="{{ route('teacher.feedback') }}">
+                        <i class="fas fa-clipboard"></i>
+                        <span> Quản lí đánh giá</span>
+                    </a>
                 </li>
             </ul>
 

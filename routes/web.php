@@ -22,6 +22,7 @@ use App\Http\Controllers\Backend\Teacher\QuizController as TeacherQuizController
 use App\Http\Controllers\Backend\Teacher\QuestionController as TeacherQuestionController;
 use App\Http\Controllers\Backend\Teacher\ResultController as TeacherResultController;
 use App\Http\Controllers\Backend\Teacher\ProfileController as TeacherProfileController;
+use App\Http\Controllers\Backend\Teacher\FeedbackController as TeacherFeedbackController;
 
 
 // Student Controllers
@@ -177,4 +178,10 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::post('/profile/update', [TeacherProfileController::class, 'update'])->name('teacher.profile.update');
     Route::get('/change-password', [TeacherProfileController::class, 'changePassword'])->name('teacher.change_password');
     Route::post('/change-password', [TeacherProfileController::class, 'updatePassword'])->name('teacher.update_password');
+
+    //Quản lí phản hồi
+    Route::get('/teacher/feedback', [TeacherFeedbackController::class, 'index'])->name('teacher.feedback');
+    Route::get('/teacher/feedback/{id}', [TeacherFeedbackController::class, 'show'])->name('teacher.feedback.show');
+    Route::delete('/teacher/feedback/delete/{id}', [TeacherFeedbackController::class, 'delete'])->name('teacher.feedback.delete');
+
 });
