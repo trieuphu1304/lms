@@ -21,6 +21,7 @@ use App\Http\Controllers\Backend\Teacher\StudentController as TeacherStudentCont
 use App\Http\Controllers\Backend\Teacher\QuizController as TeacherQuizController;
 use App\Http\Controllers\Backend\Teacher\QuestionController as TeacherQuestionController;
 use App\Http\Controllers\Backend\Teacher\ResultController as TeacherResultController;
+use App\Http\Controllers\Backend\Teacher\ProfileController as TeacherProfileController;
 
 
 // Student Controllers
@@ -170,4 +171,10 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('/teacher/quiz-results', [TeacherResultController::class, 'allResults'])->name('teacher.quiz_results.index');
     Route::get('/quiz/{quiz}/results', [TeacherResultController::class, 'quizResults'])->name('teacher.quiz_results.by_quiz');
 
+    //Quản lí thông tin
+    Route::get('/profile', [TeacherProfileController::class, 'index'])->name('teacher.profile');
+    Route::get('/profile/edit', [TeacherProfileController::class, 'edit'])->name('teacher.profile.edit');
+    Route::post('/profile/update', [TeacherProfileController::class, 'update'])->name('teacher.profile.update');
+    Route::get('/change-password', [TeacherProfileController::class, 'changePassword'])->name('teacher.change_password');
+    Route::post('/change-password', [TeacherProfileController::class, 'updatePassword'])->name('teacher.update_password');
 });

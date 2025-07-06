@@ -1,7 +1,13 @@
 <div class="content container-fluid">
     <div class="page-header d-flex justify-content-between align-items-center mb-3">
         <h3 class="page-title text-primary mb-0">Kết quả bài kiểm tra</h3>
+
+        <a href="{{ route('teacher.question', ['quiz' => $quiz->id]) }}" class="btn btn-outline-secondary">
+            <i class="bx bx-arrow-back"></i> Quay lại danh sách câu hỏi
+        </a>
+
     </div>
+
 
     <div class="card shadow border-primary">
         <div class="card-body table-responsive">

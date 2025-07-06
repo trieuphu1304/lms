@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\QuizResult;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Quiz;
 
 class ResultController extends Controller
 {
@@ -42,7 +43,7 @@ class ResultController extends Controller
     {
         $template = 'backend.teacher.quiz_results.by_quiz';
         $teacherId = Auth::id();
-
+        $quiz = Quiz::findOrFail($quizId);
         $results = QuizResult::where('quiz_id', $quizId)
             ->whereHas('quiz.lesson.course', function ($query) use ($teacherId) {
                 $query->where('teacher_id', $teacherId);
@@ -51,7 +52,7 @@ class ResultController extends Controller
             ->orderByDesc('submitted_at')
             ->get();
 
-        return view('backend.teacher.master', compact('template', 'results'));
+        return view('backend.teacher.master', compact('template', 'results', 'quiz'));
     }
 
 }

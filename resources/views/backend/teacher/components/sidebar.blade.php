@@ -5,7 +5,7 @@
                 <li class="menu-title"><span>Menu chính</span></li>
 
                 <li class="submenu active">
-                    <a href="#"><i class="feather-grid"></i> <span>Trang chủ</span> </a>
+                    <a href="{{ route('teacher.dashboard')}}"><i class="feather-grid"></i> <span>Trang chủ</span> </a>
 
                 </li>
 
