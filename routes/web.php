@@ -24,6 +24,7 @@ use App\Http\Controllers\Backend\Teacher\ResultController as TeacherResultContro
 use App\Http\Controllers\Backend\Teacher\ProfileController as TeacherProfileController;
 use App\Http\Controllers\Backend\Teacher\FeedbackController as TeacherFeedbackController;
 use App\Http\Controllers\Backend\Teacher\NotificationController as TeacherNotificationController;
+use App\Http\Controllers\Backend\Teacher\ScheduleController as TeacherScheduleController;
 
 
 // Student Controllers
@@ -187,4 +188,12 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     //Quản lí thông báo
     Route::get('/teacher/notifications', [TeacherNotificationController::class, 'index'])->name('teacher.notifications.index');
     Route::delete('/teacher/notifications', [TeacherNotificationController::class, 'destroyAll'])->name('teacher.notifications.delete_all');
+
+    //Quản lí lịch học
+    Route::get('/teacher/schedules', [TeacherScheduleController::class, 'index'])->name('teacher.schedule');
+    Route::get('/teacher/schedules/create', [TeacherScheduleController::class, 'create'])->name('teacher.schedule.create');
+    Route::post('/schedules/store', [TeacherScheduleController::class, 'store'])->name('teacher.schedule.store');
+    Route::get('/schedules/edit/{id}', [TeacherScheduleController::class, 'edit'])->name('teacher.schedule.edit');
+    Route::put('/schedules/update/{id}', [TeacherScheduleController::class, 'update'])->name('teacher.schedule.update');
+    Route::delete('/schedules/delete/{id}', [TeacherScheduleController::class, 'destroy'])->name('teacher.schedule.delete');
 });

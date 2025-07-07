@@ -32,6 +32,13 @@
                         <span> Quản lí đánh giá</span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('teacher.schedule') }}">
+                        <i class="fas fa-clipboard"></i>
+                        <span> Quản lí lịch trình</span>
+                    </a>
+                </li>
             </ul>
 
         </div>
