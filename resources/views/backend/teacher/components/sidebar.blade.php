@@ -35,7 +35,7 @@
 
                 <li>
                     <a href="{{ route('teacher.schedule') }}">
-                        <i class="fas fa-clipboard"></i>
+                        <i class="fas fa-calendar-day"></i>
                         <span> Quản lí lịch trình</span>
                     </a>
                 </li>
