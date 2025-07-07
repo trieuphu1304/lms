@@ -21,7 +21,14 @@
             <a href="{{ route('admin.account') }}">
                 <div class="parent-icon"><i class="bx bx-user"></i>
                 </div>
-                <div class="menu-title">Tài khoản</div>
+                <div class="menu-title"> Quản lí tài khoản</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('admin.categories') }}">
+                <div class="parent-icon"><i class="fadeIn animated bx bx-message-error"></i>
+                </div>
+                <div class="menu-title">Quản lí danh mục</div>
             </a>
         </li>
         <li>
@@ -49,7 +56,7 @@
             <a href="{{ route('admin.feedback') }}">
                 <div class="parent-icon"><i class="fadeIn animated bx bx-message-error"></i>
                 </div>
-                <div class="menu-title">Phản hồi</div>
+                <div class="menu-title">Quản lí phản hồi</div>
             </a>
         </li>
     </ul>

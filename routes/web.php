@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\Admin\QuestionController;
 use App\Http\Controllers\Backend\Admin\QuizResultController;
 use App\Http\Controllers\Backend\Admin\FeedbackController;
 use App\Http\Controllers\Backend\Admin\ProfileController;
+use App\Http\Controllers\Backend\Admin\CategoryController;
 
 // Teacher Controllers
 use App\Http\Controllers\Backend\Teacher\TeacherController;
@@ -67,7 +68,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         ->name('admin.account.update');
     Route::delete('/admin/account/delete/{id}', [AccountController::class, 'delete'])
         ->name('admin.account.delete');
-        
+
+    // Quản lý danh mục
+    Route::get('/admin/categories', [CategoryController::class, 'index'])->name('admin.categories');
+    Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');
+    Route::post('/admin/categories', [CategoryController::class, 'store'])->name('admin.categories.store');
+    Route::get('/admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
+    Route::put('/admin/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
+    Route::delete('/admin/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
+    
     // Quản lý khóa học
     Route::get('/admin/course', [CourseController::class, 'index'])
         ->name('admin.course');
