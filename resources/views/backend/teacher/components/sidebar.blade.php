@@ -16,6 +16,13 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{ route('teacher.categories.index') }}">
+                        <i class="fas fa-book-reader"></i>
+                        <span> Quản lí danh mục</span>
+                    </a>
+                </li>
+
 
                 <li class="submenu">
                     <a href="#"><i class="fas fa-clipboard-list"></i><span>Quản lí khóa học</span> <span

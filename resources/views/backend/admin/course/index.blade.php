@@ -12,6 +12,7 @@
                     <th>#</th>
                     <th>Tên khóa học</th>
                     <th>Mô tả</th>
+                    <th>Danh mục</th> <!-- thêm -->
                     <th>Cấp độ</th>
                     <th>Giáo viên</th>
                     <th>Ngày tạo</th>
@@ -24,38 +25,34 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $course->title }}</td>
                         <td>{{ Str::limit($course->description, 50) }}</td>
+                        <td>{{ $course->category->name ?? 'Chưa phân loại' }}</td>
                         <td>
                             <span
                                 class="badge 
-                                @if ($course->level == 'beginner') bg-success
-                                @elseif($course->level == 'intermediate') bg-info
-                                @else bg-warning @endif
-                            ">
+                    @if ($course->level == 'beginner') bg-success 
+                    @elseif ($course->level == 'intermediate') bg-info 
+                    @else bg-warning @endif">
                                 {{ ucfirst($course->level) }}
                             </span>
                         </td>
-                        <td>
-                            {{ optional($course->teacher)->name ?? 'Chưa gán' }}
-                        </td>
+                        <td>{{ $course->teacher->name ?? 'Chưa gán' }}</td>
                         <td>{{ $course->created_at->format('d/m/Y H:i') }}</td>
                         <td class="text-center">
-                            <a href="{{ route('admin.lesson', $course->id) }}" class="btn btn-info">
-                                <i class="bx bx-bar-chart"></i> Xem bài giảng
-                            </a>
-                            <a href="{{ route('admin.course.edit', $course->id) }}" class="btn btn-sm btn-warning me-1">
-                                <i class="bx bx-edit"></i> Sửa
-                            </a>
+                            <a href="{{ route('admin.lesson', $course->id) }}" class="btn btn-info btn-sm me-1"><i
+                                    class="bx bx-bar-chart"></i></a>
+                            <a href="{{ route('admin.course.edit', $course->id) }}"
+                                class="btn btn-warning btn-sm me-1"><i class="bx bx-edit"></i></a>
                             <form action="{{ route('admin.course.delete', $course->id) }}" method="POST"
-                                style="display:inline-block;"
+                                style="display:inline;"
                                 onsubmit="return confirm('Bạn có chắc muốn xóa khóa học này?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">
-                                    <i class="bx bx-trash"></i> Xóa
-                                </button>
+                                <button type="submit" class="btn btn-danger btn-sm"><i
+                                        class="bx bx-trash"></i></button>
                             </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
+
         </table>

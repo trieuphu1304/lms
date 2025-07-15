@@ -42,7 +42,7 @@ class QuizController extends Controller
 
         Quiz::create($request->only(['lesson_id', 'title']));
 
-        return redirect()->route('teacher.quiz', $request->lesson_id)->with('success', 'Đã tạo bài kiểm tra.');
+        return redirect()->route('teacher.lesson.quizzes', $request->lesson_id)->with('success', 'Đã tạo bài kiểm tra.');
     }
 
     public function edit($id)
@@ -65,7 +65,7 @@ class QuizController extends Controller
 
         $quiz->update($request->only(['title']));
 
-        return redirect()->route('teacher.quiz', $quiz->lesson_id)->with('success', 'Đã cập nhật.');
+        return redirect()->route('teacher.lesson.quizzes', $quiz->lesson_id)->with('success', 'Đã cập nhật.');
     }
 
     public function delete($id)
@@ -76,6 +76,6 @@ class QuizController extends Controller
         $lessonId = $quiz->lesson_id;
         $quiz->delete();
 
-        return redirect()->route('teacher.quiz', $lessonId)->with('success', 'Đã xóa bài kiểm tra.');
+        return redirect()->route('teacher.lesson.quizzes', $lessonId)->with('success', 'Đã xóa bài kiểm tra.');
     }
 }

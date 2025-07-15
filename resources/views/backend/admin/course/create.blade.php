@@ -10,8 +10,19 @@
                     @csrf
                     <div class="mb-3">
                         <label class="form-label"><i class="bx bx-book"></i> Tên khóa học</label>
-                        <input type="text" name="title" class="form-control" placeholder="Nhập tên khóa học" required>
+                        <input type="text" name="title" class="form-control" placeholder="Nhập tên khóa học"
+                            required>
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label"><i class="bx bx-category"></i> Danh mục</label>
+                        <select name="category_id" class="form-select" required>
+                            <option value="">-- Chọn danh mục --</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="mb-3">
                         <label class="form-label"><i class="bx bx-detail"></i> Mô tả</label>
                         <textarea name="description" class="form-control" rows="3" placeholder="Nhập mô tả" required></textarea>
@@ -20,17 +31,19 @@
                         <label class="form-label"><i class="bx bx-layer"></i> Cấp độ</label>
                         <select name="level" class="form-select" required>
                             <option value="">-- Chọn cấp độ --</option>
-                            <option value="beginner" class="text-success">Cơ bản</option>
-                            <option value="intermediate" class="text-info">Trung bình</option>
-                            <option value="advanced" class="text-warning">Nâng cao</option>
+                            <option value="Cơ bản">Cơ bản</option>
+                            <option value="Trung bình">Trung bình</option>
+                            <option value="Nâng cao">Nâng cao</option>
+
                         </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label"><i class="bx bx-user"></i> Giáo viên</label>
                         <select name="teacher_id" class="form-select" required>
                             <option value="">-- Chọn giáo viên --</option>
-                            @foreach($teachers as $teacher)
-                                <option value="{{ $teacher->id }}">{{ $teacher->name }} ({{ $teacher->email }})</option>
+                            @foreach ($teachers as $teacher)
+                                <option value="{{ $teacher->id }}">{{ $teacher->name }} ({{ $teacher->email }})
+                                </option>
                             @endforeach
                         </select>
                     </div>

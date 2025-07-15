@@ -22,10 +22,21 @@
             </div>
 
             <div class="card-body bg-white">
+
                 <div class="mb-3">
                     <label class="form-label text-muted">Tên khóa học</label>
                     <input type="text" name="title" class="form-control rounded-3"
                         placeholder="VD: Lập trình PHP cơ bản" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-muted">Danh mục</label>
+                    <select name="category_id" class="form-select rounded-3" required>
+                        <option value="">-- Chọn danh mục --</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="mb-3">
@@ -43,6 +54,7 @@
                         <option value="Nâng cao">Nâng cao</option>
                     </select>
                 </div>
+
             </div>
 
             <div class="card-footer bg-light-purple text-end rounded-bottom-4">

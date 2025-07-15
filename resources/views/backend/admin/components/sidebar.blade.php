@@ -45,9 +45,9 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('admin.quiz') }}">
+                    <a href="{{ route('admin.quiz_result.all') }}">
                         <div class="parent-icon"><i class="bx bx-task"></i></div>
-                        <div class="menu-title">Bài kiểm tra</div>
+                        <div class="menu-title">Kết quả kiểm tra</div>
                     </a>
                 </li>
             </ul>

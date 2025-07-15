@@ -14,22 +14,34 @@
                         <input type="text" name="title" class="form-control" value="{{ $course->title }}" required>
                     </div>
                     <div class="mb-3">
+                        <label class="form-label"><i class="bx bx-category"></i> Danh mục</label>
+                        <select name="category_id" class="form-select" required>
+                            <option value="">-- Chọn danh mục --</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label"><i class="bx bx-detail"></i> Mô tả</label>
                         <textarea name="description" class="form-control" rows="3" required>{{ $course->description }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label"><i class="bx bx-layer"></i> Cấp độ</label>
                         <select name="level" class="form-select" required>
-                            <option value="beginner" @if($course->level == 'beginner') selected @endif class="text-success">Cơ bản</option>
-                            <option value="intermediate" @if($course->level == 'intermediate') selected @endif class="text-info">Trung bình</option>
-                            <option value="advanced" @if($course->level == 'advanced') selected @endif class="text-warning">Nâng cao</option>
+                            <option value="beginner" @if ($course->level == 'beginner') selected @endif
+                                class="text-success">Cơ bản</option>
+                            <option value="intermediate" @if ($course->level == 'intermediate') selected @endif
+                                class="text-info">Trung bình</option>
+                            <option value="advanced" @if ($course->level == 'advanced') selected @endif
+                                class="text-warning">Nâng cao</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label"><i class="bx bx-user"></i> Giáo viên</label>
                         <select name="teacher_id" class="form-select" required>
-                            @foreach($teachers as $teacher)
-                                <option value="{{ $teacher->id }}" @if($course->teacher_id == $teacher->id) selected @endif>
+                            @foreach ($teachers as $teacher)
+                                <option value="{{ $teacher->id }}" @if ($course->teacher_id == $teacher->id) selected @endif>
                                     {{ $teacher->name }} ({{ $teacher->email }})
                                 </option>
                             @endforeach

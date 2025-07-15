@@ -10,6 +10,7 @@
                         <th>Nội dung</th>
                         <th>Video</th>
                         <th>Tài liệu</th>
+                        <th class="text-center">Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,12 +30,26 @@
                             </td>
                             <td>
                                 @if ($lesson->document_url)
-                                    <a href="{{ $lesson->document_url }}" target="_blank" class="btn btn-sm btn-primary">
+                                    <a href="{{ $lesson->document_url }}" target="_blank"
+                                        class="btn btn-sm btn-primary">
                                         <i class="bx bx-file"></i> Xem tài liệu
                                     </a>
                                 @else
                                     <span class="text-muted">Không có</span>
                                 @endif
+                            </td>
+                            <td class="text-center">
+                                <a href="{{ route('admin.quiz') }}" class="btn btn-info btn-sm me-1"><i
+                                        class="bx bx-bar-chart"></i></a>
+
+                                <form action="{{ route('admin.lesson.delete', $lesson->id) }}" method="POST"
+                                    style="display:inline;"
+                                    onsubmit="return confirm('Bạn có chắc muốn xóa khóa học này?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm"><i
+                                            class="bx bx-trash"></i></button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

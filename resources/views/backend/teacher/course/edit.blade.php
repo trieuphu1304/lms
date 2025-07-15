@@ -30,6 +30,16 @@
                 </div>
 
                 <div class="mb-3">
+                    <label class="form-label"><i class="bx bx-category"></i> Danh mục</label>
+                    <select name="category_id" class="form-select" required>
+                        <option value="">-- Chọn danh mục --</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-3">
                     <label class="form-label text-muted">Mô tả</label>
                     <textarea name="description" class="form-control rounded-3" rows="4" required>{{ old('description', $course->description) }}</textarea>
                 </div>

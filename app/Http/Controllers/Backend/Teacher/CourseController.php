@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Teacher;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
@@ -14,6 +15,7 @@ class CourseController extends Controller
     {
         $teacherId = Auth::id();
         $courses = Course::where('teacher_id', $teacherId)->get();
+        $courses = Course::with(['teacher', 'category'])->latest()->get();
 
         $template = 'backend.teacher.course.index';
         return view('backend.teacher.master', compact('template', 'courses'));
@@ -23,7 +25,8 @@ class CourseController extends Controller
     public function create()
     {
         $template = 'backend.teacher.course.create';
-        return view('backend.teacher.master', compact('template'));
+        $categories = Category::all();
+        return view('backend.teacher.master', compact('template','categories'));
     }
 
     // Lưu khóa học mới
@@ -33,13 +36,15 @@ class CourseController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'level' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         $course = new Course();
         $course->title = $request->input('title');
         $course->description = $request->input('description');
         $course->level = $request->input('level');
-        $course->teacher_id = Auth::id(); // Không lấy từ form
+        $course->teacher_id = Auth::id(); 
+        $course->category_id = $request->input('category_id');
         $course->save();
 
         return redirect()->route('teacher.course')->with('success', 'Khóa học đã được thêm thành công!');
@@ -51,9 +56,9 @@ class CourseController extends Controller
         $course = Course::where('id', $id)
                         ->where('teacher_id', Auth::id())
                         ->firstOrFail(); // đảm bảo giáo viên chỉ sửa khóa học của họ
-
+        $categories = Category::all();
         $template = 'backend.teacher.course.edit';
-        return view('backend.teacher.master', compact('template', 'course'));
+        return view('backend.teacher.master', compact('template', 'course','categories'));
     }
 
     // Cập nhật khóa học
@@ -63,6 +68,7 @@ class CourseController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'level' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         $course = Course::where('id', $id)
@@ -72,6 +78,7 @@ class CourseController extends Controller
         $course->title = $request->input('title');
         $course->description = $request->input('description');
         $course->level = $request->input('level');
+        $course->category_id = $request->input('category_id');
         $course->save();
 
         return redirect()->route('teacher.course')->with('success', 'Khóa học đã được cập nhật thành công!');

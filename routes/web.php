@@ -26,6 +26,7 @@ use App\Http\Controllers\Backend\Teacher\ProfileController as TeacherProfileCont
 use App\Http\Controllers\Backend\Teacher\FeedbackController as TeacherFeedbackController;
 use App\Http\Controllers\Backend\Teacher\NotificationController as TeacherNotificationController;
 use App\Http\Controllers\Backend\Teacher\ScheduleController as TeacherScheduleController;
+use App\Http\Controllers\Backend\Teacher\CategoryController as TeacherCategoryController;
 
 
 // Student Controllers
@@ -112,10 +113,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         ->name('admin.question.delete');
 
     // Quản lí kết quả
-    Route::get('/admin/quiz_result/{quizId}', [QuizResultController::class, 'index'])
-        ->name('admin.quiz_result');
-    Route::get('/admin/quiz_result/detail/{id}', [QuizResultController::class, 'show'])
-        ->name('admin.quiz_result.detail');
+    Route::get('/quiz-results', [QuizResultController::class, 'listAll'])->name('admin.quiz_result.all');
+    Route::get('/quiz-results/detail/{id}', [QuizResultController::class, 'show'])->name('admin.quiz_result.detail');
 
     // Quản lí phản hồi
     Route::get('/admin/feedback', [FeedbackController::class, 'index'])
@@ -151,7 +150,14 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('/course/edit/{id}', [TeacherCourseController::class, 'edit'])->name('teacher.course.edit');
     Route::put('/course/update/{id}', [TeacherCourseController::class, 'update'])->name('teacher.course.update');
     Route::delete('/course/delete/{id}', [TeacherCourseController::class, 'delete'])->name('teacher.course.delete');
-
+    
+    //Quản lí danh mục
+    Route::get('categories', [TeacherCategoryController::class, 'index'])->name('teacher.categories.index');
+    Route::get('categories/create', [TeacherCategoryController::class, 'create'])->name('teacher.categories.create');
+    Route::post('categories', [TeacherCategoryController::class, 'store'])->name('teacher.categories.store');
+    Route::get('categories/{category}/edit', [TeacherCategoryController::class, 'edit'])->name('teacher.categories.edit');
+    Route::put('categories/{category}', [TeacherCategoryController::class, 'update'])->name('teacher.categories.update');
+    Route::delete('categories/{category}', [TeacherCategoryController::class, 'destroy'])->name('teacher.categories.destroy');
     // Quản lí bài giảng
     Route::get('/teacher/lesson/{course}', [TeacherLessonController::class, 'index'])->name('teacher.lesson');
     Route::get('/lesson/create', [TeacherLessonController::class, 'create'])->name('teacher.lesson.create');
