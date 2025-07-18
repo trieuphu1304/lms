@@ -2,102 +2,34 @@
 <html lang="en">
 
 <head>
-
-    <title>Aduca - Learning Management System</title>
-
-    <!-- Google fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
-    <!-- Favicon -->
-    <link rel="icon" sizes="16x16" href="{{ asset('frontend/images/favicon.png') }}">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <!-- inject:css -->
-
-    @include('frontend.section.link')
-
-    <!-- end inject -->
-
+    @include('frontend.components.head')
 </head>
 
 <body>
+    <div class="preloader">
+        <div class="loader">
+            <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+            </svg>
+        </div>
+    </div>
 
-    <!-- start cssload-loader -->
-    @include('frontend.section.preloader')
+    @include('frontend.components.header')
 
-    <!--START HEADER AREA-->
-    @include('frontend.section.header')
-
-    @yield('content')
-
-
-    <!--START COURSE First AREA-->
-
-
-
-    <!--START COURSE AREA-->
+    @include($template)
 
 
-
-    <!--START FUNFACT AREA -->
-
-
-
-    <!--START CTA AREA-->
-
-    <!--START TESTIMONIAL AREA-->
-
-
-    <div class="section-block"></div>
-
-    <!--START ABOUT AREA-->
-
-
-
-    <div class="section-block"></div>
-
-    <!--START REGISTER AREA-->
-
-
-    <div class="section-block"></div>
-
-    <!--START CLIENT-LOGO AREA -->
-
-
-
-
-    <!--START BLOG AREA -->
-
-
-
-
-    <!----START GET STARTED AREA---->
-
-
-
-    <!---subscribe-area------->
-
-
-
-    <!---footer-area--->
-    @include('frontend.section.footer')
+    @include('frontend.components.footer')
 
 
     <!-- start scroll top -->
     <div id="scroll-top">
         <i class="la la-arrow-up" title="Go top"></i>
     </div>
+    <!-- end scroll top -->
 
 
-    <!---tooltip--->
-
-    @include('frontend.section.tooltip')
-
-
-    <!-- template js files -->
-    @include('frontend.section.script')
+    @include('frontend.components.scripts')
 </body>
 
 </html>

@@ -30,10 +30,7 @@ use App\Http\Controllers\Backend\Teacher\CategoryController as TeacherCategoryCo
 
 
 // Student Controllers
-use App\Http\Controllers\Backend\StudentController;
-use App\Models\Course;
-use App\Models\Quiz;
-use App\Models\QuizResult;
+use App\Http\Controllers\Backend\Student\StudentController;
 
 // ------------ Login Routes ------------
 Route::get('/admin/login', [AuthSessionController::class, 'showAdminLogin'])->name('admin.login');
@@ -212,3 +209,8 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::put('/schedules/update/{id}', [TeacherScheduleController::class, 'update'])->name('teacher.schedule.update');
     Route::delete('/schedules/delete/{id}', [TeacherScheduleController::class, 'destroy'])->name('teacher.schedule.delete');
 });
+
+
+// Route student
+Route::get('/student/index', [StudentController::class, 'index'])
+        ->name('student.index');
