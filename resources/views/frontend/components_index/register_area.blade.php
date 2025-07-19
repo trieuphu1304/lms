@@ -5,12 +5,13 @@
                 <div class="card-body">
                     <h3 class="fs-24 font-weight-semi-bold pb-2">Đăng kí ngay</h3>
                     <div class="divider"><span></span></div>
-                    <form method="post">
+                    <form method="post" action="{{ route('student.register.store') }}">
+                        @csrf
                         <div class="input-box">
                             <label class="label-text">Tên</label>
                             <div class="form-group">
                                 <input class="form-control form--control" type="text" name="name"
-                                    placeholder="Tên của bạn">
+                                    placeholder="Tên của bạn" required>
                                 <span class="la la-user input-icon"></span>
                             </div>
                         </div><!-- end input-box -->
@@ -18,11 +19,18 @@
                             <label class="label-text">Email</label>
                             <div class="form-group">
                                 <input class="form-control form--control" type="email" name="email"
-                                    placeholder="Địa chỉ email">
+                                    placeholder="Địa chỉ email" required>
                                 <span class="la la-envelope input-icon"></span>
                             </div>
                         </div><!-- end input-box -->
-
+                        <div class="input-box">
+                            <label class="label-text">Mật khẩu</label>
+                            <div class="form-group">
+                                <input class="form-control form--control" type="password" name="password"
+                                    placeholder="Mật khẩu của bạn" required>
+                                <span class="la la-lock input-icon"></span>
+                            </div>
+                        </div><!-- end input-box -->
 
                         <div class="btn-box pt-2">
                             <button class="btn theme-btn" type="submit">Đăng kí ngay <i

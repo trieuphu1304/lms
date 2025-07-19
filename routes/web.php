@@ -32,6 +32,7 @@ use App\Http\Controllers\Backend\Teacher\CategoryController as TeacherCategoryCo
 
 // Student Controllers
 use App\Http\Controllers\Frontend\Student\StudentController;
+use App\Http\Controllers\Frontend\Student\CourseStudentController;
 
 // ------------ Login Routes ------------
 Route::get('/admin/login', [AuthSessionController::class, 'showAdminLogin'])->name('admin.login');
@@ -222,6 +223,10 @@ Route::post('/student/logout', [AuthSessionController::class, 'studentLogout'])-
 Route::get('/student/register', [RegisteredController::class, 'create'])->name('student.register');
 Route::post('/student/register', [RegisteredController::class, 'store'])->name('student.register.store');
 //Trang chủ
-Route::get('/student/index', [StudentController::class, 'index'])
+Route::get('/index', [StudentController::class, 'index'])
         ->name('student.index');
 Route::get('/ajax/courses', [StudentController::class, 'ajaxCourses'])->name('ajax.courses');
+
+// Trang khóa học
+Route::get('/courses', [CourseStudentController::class, 'index'])->name('courses.index');
+Route::get('/student/courses/filter', [CourseStudentController::class, 'filter'])->name('student.course.filter');

@@ -132,3 +132,12 @@
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end contact-area -->
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li> {{-- ← sẽ hiển thị 'email đã tồn tại' nếu có --}}
+            @endforeach
+        </ul>
+    </div>
+@endif

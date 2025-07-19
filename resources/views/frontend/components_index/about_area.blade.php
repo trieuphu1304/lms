@@ -159,9 +159,7 @@
                 <img src="{{ asset('frontend/images/img-loading.png') }}"
                     data-src="{{ asset('frontend/images/img13.jpg') }}" class="lazy" alt="About image"
                     class="img__item img__item-1 lazy">
-                <img src="{{ asset('frontend/images/img-loading.png') }}"
-                    data-src="{{ asset('frontend/images/about-image.jpg') }}" alt="About image"
-                    class="img__item img__item-2 lazy">
+
 
             </div><!-- end generic-img-box -->
         </div><!-- end col-lg-5 -->

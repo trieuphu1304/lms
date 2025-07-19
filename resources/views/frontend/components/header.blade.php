@@ -94,7 +94,7 @@
 
                             <nav class="main-menu">
                                 <ul>
-                                    @auth
+                                    @auth('student')
                                         <li><a href="{{ route('student.index') }}">Trang chủ</a></li>
                                         <li><a href="#">Khóa học của tôi</a></li>
                                         <li><a href="#">Lộ trình học</a></li>
@@ -106,6 +106,7 @@
                                             <ul class="dropdown-menu">
                                                 <span class="dropdown-arrow"></span>
                                                 <li><a href="#">Thông tin tài khoản</a></li>
+                                                <li><a href="#">Khóa học yêu thích</a></li>
                                                 <li><a href="#">Đổi mật khẩu</a></li>
                                                 <li>
                                                     <form method="POST" action="{{ route('student.logout') }}"
@@ -121,8 +122,8 @@
 
                                         </li>
                                     @else
-                                        <li><a href="#">Trang chủ </a></li>
-                                        <li><a href="#">Khóa học </a></li>
+                                        <li><a href="{{ route('student.index') }}">Trang chủ </a></li>
+                                        <li><a href="{{ route('courses.index') }}">Khóa học </a></li>
                                         <li><a href="#">Giới thiệu </a></li>
                                         <li><a href="#">Liên hệ </a></li>
                                         <li>

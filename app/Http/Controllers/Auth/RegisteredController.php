@@ -45,8 +45,6 @@ class RegisteredController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
-
         return redirect()->route('student.login')->with('success', 'Đăng kí thành công!');
     }
 }

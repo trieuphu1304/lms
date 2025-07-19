@@ -12,3 +12,42 @@
 <script src="{{ asset('frontend/js/jquery.lazy.min.js') }}"></script>
 <script src="{{ asset('frontend/js/main.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        function fetchCourses() {
+            let selectedCategories = $('input[name="categories[]"]:checked').map(function() {
+                return $(this).val();
+            }).get();
+
+            let selectedLevels = $('input[name="levels[]"]:checked').map(function() {
+                return $(this).val();
+            }).get();
+
+            let selectedTeachers = $('input[name="teachers[]"]:checked').map(function() {
+                return $(this).val();
+            }).get();
+
+            $.ajax({
+                url: '{{ route('student.course.filter') }}', // Bạn cần tạo route này ở web.php
+                method: 'GET',
+                data: {
+                    categories: selectedCategories,
+                    levels: selectedLevels,
+                    teachers: selectedTeachers,
+                },
+                success: function(response) {
+                    $('#course-list').html(response.html);
+                },
+                error: function(err) {
+                    console.error("Lỗi khi load khóa học:", err);
+                }
+            });
+        }
+
+        // Bắt sự kiện khi checkbox thay đổi
+        $(document).on('change', '.filter-checkbox', function() {
+            fetchCourses();
+        });
+    });
+</script>
