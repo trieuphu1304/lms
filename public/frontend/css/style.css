@@ -8759,6 +8759,40 @@ div.datedropper .picker .pick-lg-b li {
   }
 }
 
+.card-img-top {
+  width: 350px;
+  height: 225px;
+}
+
+.level-basic {
+  background: #27ae60 !important;
+  /* xanh lá */
+  color: #fff !important;
+}
+
+.level-intermediate {
+  background: #f1c40f !important;
+  /* vàng */
+  color: #fff !important;
+}
+
+.level-advanced {
+  background: #2980ff !important;
+  /* xanh dương */
+  color: #fff !important;
+}
+
+.category-item {
+  width: 350px;
+  height: 235px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  margin: 10px;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 479px) {
   .breadcrumb-content .section__title {
     font-size: 30px !important;

@@ -27,7 +27,25 @@
         <i class="la la-arrow-up" title="Go top"></i>
     </div>
     <!-- end scroll top -->
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.category-tab').forEach(function(tab) {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Xóa active cũ
+                    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove(
+                        'active'));
+                    this.classList.add('active');
+                    let categoryId = this.getAttribute('data-category');
+                    fetch(`{{ route('ajax.courses') }}?category_id=${categoryId ? categoryId : ''}`)
+                        .then(response => response.text())
+                        .then(html => {
+                            document.getElementById('course-list').innerHTML = html;
+                        });
+                });
+            });
+        });
+    </script>
 
     @include('frontend.components.scripts')
 </body>

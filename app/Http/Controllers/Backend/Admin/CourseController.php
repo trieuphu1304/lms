@@ -25,7 +25,7 @@ class CourseController extends Controller
     }
 
     public function create()
-    {
+    {   
         $template = 'backend.admin.course.create';
         $categories = Category::all();
         $teachers = User::where('role', 'teacher')->get();

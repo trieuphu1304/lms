@@ -10,7 +10,7 @@
             <thead class="table-primary">
                 <tr>
                     <th>#</th>
-                    <th>Ảnh đại diện</th>
+                    <th style="width:120px">Ảnh đại diện</th>
                     <th>Tên khóa học</th>
                     <th>Mô tả</th>
                     <th>Danh mục</th>
@@ -42,7 +42,7 @@
                                 @if ($course->level == 'beginner')
                                     Cơ bản
                                 @elseif ($course->level == 'intermediate')
-                                    Trung cấp
+                                    Trung bình
                                 @elseif ($course->level == 'advanced')
                                     Nâng cao
                                 @else
@@ -52,7 +52,7 @@
                         </td>
                         <td>{{ $course->teacher->name ?? 'Chưa gán' }}</td>
                         <td>{{ $course->created_at->format('d/m/Y H:i') }}</td>
-                        <td class="text-center">
+                        <td class="text-center" style="display: flex; gap: 8px; flex-wrap: nowrap;">
                             <a href="{{ route('admin.lesson', $course->id) }}" class="btn btn-info btn-sm me-1"><i
                                     class="bx bx-bar-chart"></i></a>
                             <a href="{{ route('admin.course.edit', $course->id) }}"

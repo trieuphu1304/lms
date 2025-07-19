@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Notification;
 use Illuminate\Support\Facades\View;
+use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 
@@ -41,6 +42,14 @@ class AppServiceProvider extends ServiceProvider
             }
 
             $view->with('notifications', $notifications);
+        });
+
+        // Truyền $category vào header
+        View::composer('frontend.components.header', function ($view) {
+            $categories = Category::with(['courses' => function($q) {
+                $q->limit(4);
+            }])->get();
+            $view->with('category', $categories);
         });
 
         Carbon::setLocale(config('app.locale'));

@@ -31,9 +31,9 @@
                         <label class="form-label"><i class="bx bx-layer"></i> Cấp độ</label>
                         <select name="level" class="form-select" required>
                             <option value="">-- Chọn cấp độ --</option>
-                            <option value="Cơ bản">Cơ bản</option>
-                            <option value="Trung bình">Trung bình</option>
-                            <option value="Nâng cao">Nâng cao</option>
+                            <option value="beginner">Cơ bản</option>
+                            <option value="intermediate">Trung bình</option>
+                            <option value="advanced">Nâng cao</option>
 
                         </select>
                     </div>

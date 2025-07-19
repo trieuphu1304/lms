@@ -64,22 +64,22 @@
                                         <a style="margin-right:auto;" href="#">Danh mục <i
                                                 class="la la-angle-down fs-12 "></i></a>
                                         <ul class="cat-dropdown-menu">
-                                            <li>
-                                                <a href="course-grid.html">Lập trình <i
-                                                        class="la la-angle-right"></i></a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="#">Tất cả lập trình</a></li>
-                                                    <li><a href="#">Lập trình Web</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="course-grid.html">Kinh doanh <i
-                                                        class="la la-angle-right"></i></a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="#">Tất cả kinh doanh</a></li>
-                                                    <li><a href="#">Tài chính</a></li>
-                                                </ul>
-                                            </li>
+                                            @foreach ($category as $cat)
+                                                <li>
+                                                    <a href="course-grid.html">{{ $cat->name }} <i
+                                                            class="la la-angle-right"></i></a>
+                                                    <ul class="sub-menu">
+                                                        @foreach ($cat->courses as $course)
+                                                            <li>
+                                                                <a href="#">{{ $course->title }}</a>
+                                                            </li>
+                                                        @endforeach
+                                                        <li>
+                                                            <a href="#">Tất cả khóa học</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </li>
                                 </ul>

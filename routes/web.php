@@ -31,7 +31,7 @@ use App\Http\Controllers\Backend\Teacher\CategoryController as TeacherCategoryCo
 
 
 // Student Controllers
-use App\Http\Controllers\Backend\Student\StudentController;
+use App\Http\Controllers\Frontend\Student\StudentController;
 
 // ------------ Login Routes ------------
 Route::get('/admin/login', [AuthSessionController::class, 'showAdminLogin'])->name('admin.login');
@@ -224,3 +224,4 @@ Route::post('/student/register', [RegisteredController::class, 'store'])->name('
 //Trang chủ
 Route::get('/student/index', [StudentController::class, 'index'])
         ->name('student.index');
+Route::get('/ajax/courses', [StudentController::class, 'ajaxCourses'])->name('ajax.courses');
