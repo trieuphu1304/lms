@@ -10,9 +10,10 @@
             <thead class="table-primary">
                 <tr>
                     <th>#</th>
+                    <th>Ảnh đại diện</th>
                     <th>Tên khóa học</th>
                     <th>Mô tả</th>
-                    <th>Danh mục</th> <!-- thêm -->
+                    <th>Danh mục</th>
                     <th>Cấp độ</th>
                     <th>Giáo viên</th>
                     <th>Ngày tạo</th>
@@ -23,16 +24,30 @@
                 @foreach ($courses as $index => $course)
                     <tr>
                         <td>{{ $index + 1 }}</td>
+                        <td>
+                            @if ($course->avatar)
+                                <img src="{{ asset('storage/' . $course->avatar) }}" alt="avatar"
+                                    style="max-width:60px;">
+                            @endif
+                        </td>
                         <td>{{ $course->title }}</td>
                         <td>{{ Str::limit($course->description, 50) }}</td>
                         <td>{{ $course->category->name ?? 'Chưa phân loại' }}</td>
                         <td>
                             <span
                                 class="badge 
-                    @if ($course->level == 'beginner') bg-success 
-                    @elseif ($course->level == 'intermediate') bg-info 
-                    @else bg-warning @endif">
-                                {{ ucfirst($course->level) }}
+                                @if ($course->level == 'beginner') bg-success 
+                                @elseif ($course->level == 'intermediate') bg-info 
+                                @else bg-warning @endif">
+                                @if ($course->level == 'beginner')
+                                    Cơ bản
+                                @elseif ($course->level == 'intermediate')
+                                    Trung cấp
+                                @elseif ($course->level == 'advanced')
+                                    Nâng cao
+                                @else
+                                    {{ ucfirst($course->level) }}
+                                @endif
                             </span>
                         </td>
                         <td>{{ $course->teacher->name ?? 'Chưa gán' }}</td>
@@ -55,4 +70,4 @@
                 @endforeach
             </tbody>
 
-        </table>
+        </table

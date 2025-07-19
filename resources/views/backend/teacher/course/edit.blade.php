@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <form action="{{ route('teacher.course.update', $course->id) }}" method="POST">
+    <form action="{{ route('teacher.course.update', $course->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="card border-0 shadow-sm rounded-4">
@@ -53,6 +53,17 @@
                         </option>
                         <option value="Nâng cao" {{ $course->level === 'Nâng cao' ? 'selected' : '' }}>Nâng cao</option>
                     </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-muted">Ảnh đại diện khóa học</label>
+                    <input type="file" name="avatar" class="form-control" accept="image/*">
+                    @if (isset($course) && $course->avatar)
+                        <div class="mt-2">
+                            <img src="{{ asset('storage/' . $course->avatar) }}" alt="avatar"
+                                style="max-width:100px;">
+                        </div>
+                    @endif
                 </div>
             </div>
 

@@ -37,14 +37,20 @@ class CourseController extends Controller
             'description' => 'required|string',
             'level' => 'required|string',
             'category_id' => 'required|exists:categories,id',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $course = new Course();
         $course->title = $request->input('title');
         $course->description = $request->input('description');
         $course->level = $request->input('level');
-        $course->teacher_id = Auth::id(); 
+        $course->teacher_id = Auth::id();
         $course->category_id = $request->input('category_id');
+
+        if ($request->hasFile('avatar')) {
+            $course->avatar = $request->file('avatar')->store('courses', 'public');
+        }
+
         $course->save();
 
         return redirect()->route('teacher.course')->with('success', 'Khóa học đã được thêm thành công!');
@@ -69,6 +75,7 @@ class CourseController extends Controller
             'description' => 'required|string',
             'level' => 'required|string',
             'category_id' => 'required|exists:categories,id',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $course = Course::where('id', $id)
@@ -79,6 +86,11 @@ class CourseController extends Controller
         $course->description = $request->input('description');
         $course->level = $request->input('level');
         $course->category_id = $request->input('category_id');
+
+        if ($request->hasFile('avatar')) {
+            $course->avatar = $request->file('avatar')->store('courses', 'public');
+        }
+
         $course->save();
 
         return redirect()->route('teacher.course')->with('success', 'Khóa học đã được cập nhật thành công!');

@@ -6,9 +6,9 @@
                 <h4 class="mb-0">Chỉnh sửa khóa học</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.course.update', $course->id) }}" method="POST">
+                <form action="{{ route('admin.course.update', $course->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
                     <div class="mb-3">
                         <label class="form-label"><i class="bx bx-book"></i> Tên khóa học</label>
                         <input type="text" name="title" class="form-control" value="{{ $course->title }}" required>
@@ -46,6 +46,17 @@
                                 </option>
                             @endforeach
                         </select>
+                    </div>
+                    <!-- Thêm vào trước nút Lưu/Cập nhật -->
+                    <div class="mb-3">
+                        <label class="form-label"><i class="bx bx-image"></i> Ảnh đại diện khóa học</label>
+                        <input type="file" name="avatar" class="form-control" accept="image/*">
+                        @if (isset($course) && $course->avatar)
+                            <div class="mt-2">
+                                <img src="{{ asset('storage/' . $course->avatar) }}" alt="avatar"
+                                    style="max-width:100px;">
+                            </div>
+                        @endif
                     </div>
                     <div class="d-flex justify-content-end">
                         <a href="{{ route('admin.course') }}" class="btn btn-secondary me-2">

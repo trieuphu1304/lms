@@ -22,6 +22,7 @@
                 <thead class="table-primary">
                     <tr>
                         <th>#</th>
+                        <th>Ảnh đại diện</th>
                         <th>Tên khóa học</th>
                         <th>Danh mục</th>
                         <th>Mô tả</th>
@@ -34,6 +35,12 @@
                     @forelse($courses as $course)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td>
+                                @if ($course->avatar)
+                                    <img src="{{ asset('storage/' . $course->avatar) }}" alt="avatar"
+                                        style="max-width:60px;">
+                                @endif
+                            </td>
                             <td>{{ $course->title }}</td>
                             <td>{{ $course->category->name ?? 'Chưa phân loại' }}</td>
                             <td>{{ \Illuminate\Support\Str::limit($course->description, 50) }}</td>
@@ -60,7 +67,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center text-muted">Không có khóa học nào.</td>
+                            <td colspan="8" class="text-center text-muted">Không có khóa học nào.</td>
                         </tr>
                     @endforelse
                 </tbody>
