@@ -11,3 +11,4 @@
 <script src="{{ asset('frontend/js/tooltipster.bundle.min.js') }}"></script>
 <script src="{{ asset('frontend/js/jquery.lazy.min.js') }}"></script>
 <script src="{{ asset('frontend/js/main.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

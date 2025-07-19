@@ -19,6 +19,12 @@ class AuthSessionController extends Controller
         return view('backend.teacher.login');
     }
 
+    public function showStudentLogin()
+    {   
+        $template = 'frontend.student.login';
+        return view('frontend.master', compact('template'));
+    }
+
     public function login(AuthRequest $request)
     {
         $credentials = $request->only('email', 'password');
@@ -33,6 +39,9 @@ class AuthSessionController extends Controller
                 case 'teacher':
                 case 2:
                     return redirect()->route('teacher.dashboard');
+                case 'student':
+                case 3:
+                   return redirect()->route('student.index')->with('success', 'Đăng nhập thành công!');
                 default:
                     Auth::logout();
                     return redirect()->back()->withErrors(['email' => 'Tài khoản không hợp lệ']);
@@ -58,5 +67,14 @@ class AuthSessionController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('teacher.login')->with('success', 'Đăng xuất thành công (Teacher)');
+    }
+
+    // Logout dành riêng cho student
+    public function studentLogout(Request $request)     
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('student.login')->with('success', 'Đăng xuất thành công (Student)');
     }
 }

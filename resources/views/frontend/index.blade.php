@@ -1,6 +1,3 @@
-<!--================================
-         START HERO AREA
-=================================-->
 <section class="hero-area">
     <div class="hero-slider owl-action-styled">
         <div class="hero-slider-item hero-bg-1">

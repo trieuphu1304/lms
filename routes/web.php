@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthSessionController;
+use App\Http\Controllers\Auth\RegisteredController;
 // Admin Controllers
 use App\Http\Controllers\Backend\Admin\AdminController;
 use App\Http\Controllers\Backend\Admin\AccountController;
@@ -212,5 +213,14 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
 
 
 // Route student
+// Đăng nhập dành cho học sinh
+Route::get('/student/login', [AuthSessionController::class, 'showStudentLogin'])->name('student.login');
+Route::post('/login', [AuthSessionController::class, 'login'])->name('login.submit');
+// Đăng xuất dành cho học sinh
+Route::post('/student/logout', [AuthSessionController::class, 'studentLogout'])->name('student.logout');
+// Đăng ký dành cho học sinh
+Route::get('/student/register', [RegisteredController::class, 'create'])->name('student.register');
+Route::post('/student/register', [RegisteredController::class, 'store'])->name('student.register.store');
+//Trang chủ
 Route::get('/student/index', [StudentController::class, 'index'])
         ->name('student.index');

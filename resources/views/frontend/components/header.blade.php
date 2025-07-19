@@ -91,20 +91,49 @@
                                     <span class="la la-search search-icon"></span>
                                 </div>
                             </form>
+
                             <nav class="main-menu">
                                 <ul>
-                                    <li><a href="#">Trang chủ </a></li>
-                                    <li><a href="#">Khóa học </a></li>
-                                    <li><a href="#">Giới thiệu </a></li>
-                                    <li><a href="#">Liên hệ </a></li>
-                                    <li>
-                                        <i class="la la-sign-in mr-1"></i>
-                                        <a href="#"> Đăng nhập</a>
-                                    </li>
-                                    <li>
-                                        <i class="la la-user mr-1"></i>
-                                        <a href="#"> Đăng ký</a>
-                                    </li>
+                                    @auth
+                                        <li><a href="{{ route('student.index') }}">Trang chủ</a></li>
+                                        <li><a href="#">Khóa học của tôi</a></li>
+                                        <li><a href="#">Lộ trình học</a></li>
+
+                                        <li class="dropdown">
+                                            <a href="#">
+                                                Hồ sơ cá nhân <i class="la la-angle-down"></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <span class="dropdown-arrow"></span>
+                                                <li><a href="#">Thông tin tài khoản</a></li>
+                                                <li><a href="#">Đổi mật khẩu</a></li>
+                                                <li>
+                                                    <form method="POST" action="{{ route('student.logout') }}"
+                                                        style="margin:0;">
+                                                        @csrf
+                                                        <button type="submit" class="dropdown-item"
+                                                            style="padding:8px 0; font-size:15px; color:#232d3b; font-weight:500; background:none; border:none; width:100%; text-align:left;">
+                                                            Đăng xuất
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+
+                                        </li>
+                                    @else
+                                        <li><a href="#">Trang chủ </a></li>
+                                        <li><a href="#">Khóa học </a></li>
+                                        <li><a href="#">Giới thiệu </a></li>
+                                        <li><a href="#">Liên hệ </a></li>
+                                        <li>
+                                            <i class="la la-sign-in mr-1"></i>
+                                            <a href="{{ route('student.login') }}"> Đăng nhập</a>
+                                        </li>
+                                        <li>
+                                            <i class="la la-user mr-1"></i>
+                                            <a href="{{ route('student.register') }}"> Đăng ký</a>
+                                        </li>
+                                    @endauth
                                 </ul>
                             </nav><!-- end main-menu -->
 

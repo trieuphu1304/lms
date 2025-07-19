@@ -22,4 +22,6 @@
 <link rel="stylesheet" href="{{ asset('frontend/css/fancybox.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/tooltipster.bundle.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
 <!-- end inject -->
