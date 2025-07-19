@@ -14,6 +14,7 @@
                     <th>Tên danh mục</th>
                     <th>Mô tả</th>
                     <th>Ngày tạo</th>
+                    <th>Ảnh đại diện</th>
                     <th class="text-center">Hành động</th>
                 </tr>
             </thead>
@@ -24,6 +25,12 @@
                         <td>{{ $category->name }}</td>
                         <td>{{ Str::limit($category->description, 50) }}</td>
                         <td>{{ $category->created_at->format('d/m/Y H:i') }}</td>
+                        <td>
+                            @if ($category->avatar)
+                                <img src="{{ asset('storage/' . $category->avatar) }}" alt="avatar"
+                                    style="max-width:60px;">
+                            @endif
+                        </td>
                         <td class="text-center">
                             <a href="{{ route('admin.categories.edit', $category->id) }}"
                                 class="btn btn-sm btn-warning me-1">

@@ -75,7 +75,7 @@
             </div><!-- container -->
         </div><!-- end hero-slider-item -->
     </div>
-</section><!-- end hero-area -->
+</section>
 <!--================================
         END HERO AREA
 =================================-->
@@ -197,7 +197,7 @@
             </div><!-- end col-lg-3 -->
         </div><!-- end row -->
     </div>
-</section><!-- end feature-area -->
+</section>
 <!--======================================
        END FEATURE AREA
 ======================================-->

@@ -6,7 +6,7 @@
                 <h4 class="mb-0">Thêm danh mục mới</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.categories.store') }}" method="POST">
+                <form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label"><i class="bx bx-label"></i> Tên danh mục</label>
@@ -16,6 +16,16 @@
                     <div class="mb-3">
                         <label class="form-label"><i class="bx bx-detail"></i> Mô tả</label>
                         <textarea name="description" class="form-control" rows="3" placeholder="Nhập mô tả"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><i class="bx bx-image"></i> Ảnh đại diện</label>
+                        <input type="file" name="avatar" class="form-control" accept="image/*">
+                        @if (isset($category) && $category->avatar)
+                            <div class="mt-2">
+                                <img src="{{ asset('storage/' . $category->avatar) }}" alt="avatar"
+                                    style="max-width:100px;">
+                            </div>
+                        @endif
                     </div>
                     <div class="d-flex justify-content-end">
                         <a href="{{ route('admin.categories') }}" class="btn btn-secondary me-2">

@@ -21,6 +21,7 @@
                 <thead class="table-primary">
                     <tr>
                         <th>#</th>
+                        <th>Ảnh đại diện</th>
                         <th>Tên danh mục</th>
                         <th>Mô tả</th>
                         <th>Hành động</th>
@@ -30,6 +31,12 @@
                     @forelse($categories as $category)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td>
+                                @if ($category->avatar)
+                                    <img src="{{ asset('storage/' . $category->avatar) }}" alt="avatar"
+                                        style="max-width:60px;">
+                                @endif
+                            </td>
                             <td>{{ $category->name }}</td>
                             <td>{{ \Illuminate\Support\Str::limit($category->description, 50) }}</td>
                             <td>
@@ -49,7 +56,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center text-muted">Không có danh mục nào.</td>
+                            <td colspan="5" class="text-center text-muted">Không có danh mục nào.</td>
                         </tr>
                     @endforelse
                 </tbody>

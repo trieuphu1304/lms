@@ -25,10 +25,14 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        Category::create($request->only('name', 'description'));
-        return redirect()->route('teacher.categories.index')->with('success', 'Tạo danh mục thành công');
+        $data = $request->only('name', 'description');
+        if ($request->hasFile('avatar')) {
+            $data['avatar'] = $request->file('avatar')->store('categories', 'public');
+        }
+        Category::create($data);
+        return redirect()->route('teacher.categories.index')->with('success', 'Thêm danh mục thành công!');
     }
 
     public function edit(Category $category)
@@ -41,10 +45,14 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        $category->update($request->only('name', 'description'));
-        return redirect()->route('teacher.categories.index')->with('success', 'Cập nhật danh mục thành công');
+        $data = $request->only('name', 'description');
+        if ($request->hasFile('avatar')) {
+            $data['avatar'] = $request->file('avatar')->store('categories', 'public');
+        }
+        $category->update($data);
+        return redirect()->route('teacher.categories.index')->with('success', 'Cập nhật thành công!');
     }
 
     public function destroy(Category $category)

@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <form action="{{ route('teacher.categories.update', $category->id) }}" method="POST">
+    <form action="{{ route('teacher.categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -33,6 +33,17 @@
                 <div class="mb-3">
                     <label class="form-label text-muted">Mô tả (Không bắt buộc)</label>
                     <textarea name="description" class="form-control rounded-3" rows="3" placeholder="Mô tả...">{{ old('description', $category->description) }}</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label"><i class="bx bx-image"></i> Ảnh đại diện</label>
+                    <input type="file" name="avatar" class="form-control" accept="image/*">
+                    @if (isset($category) && $category->avatar)
+                        <div class="mt-2">
+                            <img src="{{ asset('storage/' . $category->avatar) }}" alt="avatar"
+                                style="max-width:100px;">
+                        </div>
+                    @endif
                 </div>
             </div>
 

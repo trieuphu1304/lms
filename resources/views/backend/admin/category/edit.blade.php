@@ -6,7 +6,8 @@
                 <h4 class="mb-0">Chỉnh sửa danh mục</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.categories.update', $category->id) }}" method="POST">
+                <form action="{{ route('admin.categories.update', $category->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
@@ -17,6 +18,16 @@
                     <div class="mb-3">
                         <label class="form-label"><i class="bx bx-detail"></i> Mô tả</label>
                         <textarea name="description" class="form-control" rows="3">{{ $category->description }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><i class="bx bx-image"></i> Ảnh đại diện</label>
+                        <input type="file" name="avatar" class="form-control" accept="image/*">
+                        @if (isset($category) && $category->avatar)
+                            <div class="mt-2">
+                                <img src="{{ asset('storage/' . $category->avatar) }}" alt="avatar"
+                                    style="max-width:100px;">
+                            </div>
+                        @endif
                     </div>
                     <div class="d-flex justify-content-end">
                         <a href="{{ route('admin.categories') }}" class="btn btn-secondary me-2">

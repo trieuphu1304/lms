@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <form action="{{ route('teacher.categories.store') }}" method="POST">
+    <form action="{{ route('teacher.categories.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card border-0 shadow-sm rounded-4">
             <div class="card-header bg-light-purple text-dark fw-semibold border-bottom">
@@ -31,6 +31,17 @@
                 <div class="mb-3">
                     <label class="form-label text-muted">Mô tả (Không bắt buộc)</label>
                     <textarea name="description" class="form-control rounded-3" rows="3" placeholder="Ghi chú thêm về danh mục..."></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label"><i class="bx bx-image"></i> Ảnh đại diện</label>
+                    <input type="file" name="avatar" class="form-control" accept="image/*">
+                    @if (isset($category) && $category->avatar)
+                        <div class="mt-2">
+                            <img src="{{ asset('storage/' . $category->avatar) }}" alt="avatar"
+                                style="max-width:100px;">
+                        </div>
+                    @endif
                 </div>
             </div>
 
