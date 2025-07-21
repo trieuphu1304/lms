@@ -35,6 +35,7 @@ use App\Http\Controllers\Frontend\Student\StudentController;
 use App\Http\Controllers\Frontend\Student\CourseStudentController;
 use App\Http\Controllers\Frontend\Student\AboutController;
 use App\Http\Controllers\Frontend\Student\ContactController;
+use App\Http\Controllers\Frontend\Student\CourseDetailController;
 
 // ------------ Login Routes ------------
 Route::get('/admin/login', [AuthSessionController::class, 'showAdminLogin'])->name('admin.login');
@@ -232,6 +233,10 @@ Route::get('/ajax/courses', [StudentController::class, 'ajaxCourses'])->name('aj
 // Trang khóa học
 Route::get('/courses', [CourseStudentController::class, 'index'])->name('courses.index');
 Route::get('/student/courses/filter', [CourseStudentController::class, 'filter'])->name('student.course.filter');
+
+
+// Chi tiết khóa học
+Route::get('/course/{id}', [CourseDetailController::class, 'index'])->name('course.detail');
 
 //Trang giới thiệu
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');

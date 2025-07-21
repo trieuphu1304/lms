@@ -84,5 +84,5 @@ class CourseStudentController extends Controller
         return response()->json(['html' => $html]);
     }
 
-
+    
 }
