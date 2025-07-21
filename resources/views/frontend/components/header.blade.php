@@ -75,7 +75,7 @@
                                                             </li>
                                                         @endforeach
                                                         <li>
-                                                            <a href="#">Tất cả khóa học</a>
+                                                            <a href="{{ route('courses.index') }}">Tất cả khóa học</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -124,7 +124,7 @@
                                     @else
                                         <li><a href="{{ route('student.index') }}">Trang chủ </a></li>
                                         <li><a href="{{ route('courses.index') }}">Khóa học </a></li>
-                                        <li><a href="#">Giới thiệu </a></li>
+                                        <li><a href="{{ route('about.index') }}">Giới thiệu </a></li>
                                         <li><a href="#">Liên hệ </a></li>
                                         <li>
                                             <i class="la la-sign-in mr-1"></i>
