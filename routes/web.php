@@ -34,6 +34,7 @@ use App\Http\Controllers\Backend\Teacher\CategoryController as TeacherCategoryCo
 use App\Http\Controllers\Frontend\Student\StudentController;
 use App\Http\Controllers\Frontend\Student\CourseStudentController;
 use App\Http\Controllers\Frontend\Student\AboutController;
+use App\Http\Controllers\Frontend\Student\ContactController;
 
 // ------------ Login Routes ------------
 Route::get('/admin/login', [AuthSessionController::class, 'showAdminLogin'])->name('admin.login');
@@ -234,3 +235,7 @@ Route::get('/student/courses/filter', [CourseStudentController::class, 'filter']
 
 //Trang giới thiệu
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+
+//Trang liên hệ
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');

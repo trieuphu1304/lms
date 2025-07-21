@@ -12,7 +12,7 @@
 <script src="{{ asset('frontend/js/jquery.lazy.min.js') }}"></script>
 <script src="{{ asset('frontend/js/main.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
     $(document).ready(function() {
         function fetchCourses() {
@@ -48,6 +48,40 @@
         // Bắt sự kiện khi checkbox thay đổi
         $(document).on('change', '.filter-checkbox', function() {
             fetchCourses();
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('.contact-form').on('submit', function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: "{{ route('contact.submit') }}", // hoặc '/contact'
+                method: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    toastr.success('Gửi liên hệ thành công!');
+                    $('.contact-form')[0].reset();
+                },
+                error: function(xhr) {
+                    if (xhr.status === 422) {
+                        let errors = xhr.responseJSON.errors;
+                        $.each(errors, function(key, value) {
+                            toastr.error(value[0]);
+                        });
+                    } else {
+                        toastr.error('Có lỗi xảy ra khi gửi liên hệ.');
+                    }
+                }
+            });
         });
     });
 </script>

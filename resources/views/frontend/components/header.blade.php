@@ -125,7 +125,7 @@
                                         <li><a href="{{ route('student.index') }}">Trang chủ </a></li>
                                         <li><a href="{{ route('courses.index') }}">Khóa học </a></li>
                                         <li><a href="{{ route('about.index') }}">Giới thiệu </a></li>
-                                        <li><a href="#">Liên hệ </a></li>
+                                        <li><a href="{{ route('contact.index') }}">Liên hệ </a></li>
                                         <li>
                                             <i class="la la-sign-in mr-1"></i>
                                             <a href="{{ route('student.login') }}"> Đăng nhập</a>

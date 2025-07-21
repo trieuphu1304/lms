@@ -24,4 +24,8 @@
 <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+
 <!-- end inject -->
