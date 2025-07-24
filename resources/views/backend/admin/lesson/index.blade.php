@@ -7,6 +7,7 @@
                     <tr>
                         <th>#</th>
                         <th>Tên bài giảng</th>
+                        <th>Tên chương</th>
                         <th>Nội dung</th>
                         <th>Video</th>
                         <th>Tài liệu</th>
@@ -18,6 +19,8 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $lesson->title }}</td>
+                            <td>{{ $lesson->section->title ?? 'Chưa có chương' }}</td>
+
                             <td>{{ Str::limit($lesson->content, 50) }}</td>
                             <td>
                                 @if ($lesson->video_url)

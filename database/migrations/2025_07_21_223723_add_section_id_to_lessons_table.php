@@ -9,22 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        
-        Schema::table('lessons', function (Blueprint $table) {
-            $table->foreignId('section_id')->nullable()->constrained()->onDelete('set null');
-        });
-
-    }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function up()
     {
         Schema::table('lessons', function (Blueprint $table) {
-            //
+            $table->unsignedBigInteger('section_id')->nullable()->after('course_id');
+
+            // Nếu có quan hệ foreign key:
+            $table->foreign('section_id')->references('id')->on('sections')->onDelete('set null');
         });
     }
+
+    public function down()
+    {
+        Schema::table('lessons', function (Blueprint $table) {
+            $table->dropForeign(['section_id']);
+            $table->dropColumn('section_id');
+        });
+    }
+
 };

@@ -6,15 +6,25 @@
     <form action="{{ route('teacher.lesson.store') }}" method="POST">
         @csrf
         <div class="card p-4">
+            <!-- Khóa học (khóa để không cho chọn lại) -->
             <div class="mb-3">
                 <label class="form-label">Khóa học</label>
-                <select name="course_id" class="form-select" required>
-                    <option value="">-- Chọn khóa học --</option>
-                    @foreach ($courses as $course)
-                        <option value="{{ $course->id }}">{{ $course->title }}</option>
+                <input type="text" class="form-control" value="{{ $course->title }}" disabled>
+                <input type="hidden" name="course_id" value="{{ $course->id }}">
+            </div>
+
+            <!-- Section chỉ hiển thị theo course đó -->
+            <div class="mb-3">
+                <label class="form-label">Chương học</label>
+                <select name="section_id" class="form-select" required>
+                    <option value="">-- Chọn chương học --</option>
+                    @foreach ($sections as $section)
+                        <option value="{{ $section->id }}">{{ $section->title }}</option>
                     @endforeach
                 </select>
             </div>
+
+
 
             <div class="mb-3">
                 <label class="form-label">Tiêu đề</label>

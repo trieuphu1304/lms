@@ -23,7 +23,6 @@
                         <th>#</th>
                         <th>Ảnh đại diện</th>
                         <th>Tên danh mục</th>
-                        <th>Mô tả</th>
                         <th>Hành động</th>
                     </tr>
                 </thead>
@@ -38,7 +37,7 @@
                                 @endif
                             </td>
                             <td>{{ $category->name }}</td>
-                            <td>{{ \Illuminate\Support\Str::limit($category->description, 50) }}</td>
+
                             <td>
                                 <a href="{{ route('teacher.categories.edit', $category->id) }}"
                                     class="btn btn-sm btn-outline-primary">

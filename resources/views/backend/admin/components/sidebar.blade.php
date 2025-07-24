@@ -26,7 +26,7 @@
         </li>
         <li>
             <a href="{{ route('admin.categories') }}">
-                <div class="parent-icon"><i class="fadeIn animated bx bx-message-error"></i>
+                <div class="parent-icon"><i class="bx bx-menu"></i>
                 </div>
                 <div class="menu-title">Quản lí danh mục</div>
             </a>
@@ -41,6 +41,13 @@
                     <a href="{{ route('admin.course') }}">
                         <div class="parent-icon"><i class="bx bx-book"></i></div>
                         <div class="menu-title">Khóa học</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('admin.section') }}">
+                        <div class="parent-icon"><i class="bx bx-message-square-edit"></i></div>
+                        <div class="menu-title">Chương học</div>
                     </a>
                 </li>
 

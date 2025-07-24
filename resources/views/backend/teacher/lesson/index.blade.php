@@ -12,9 +12,10 @@
             <a href="{{ route('teacher.course') }}" class="btn btn-outline-secondary">
                 <i class="bx bx-arrow-back"></i> Quay lại khóa học
             </a>
-            <a href="{{ route('teacher.lesson.create') }}" class="btn btn-primary">
-                <i class="bx bx-plus"></i> Thêm bài giảng
+            <a href="{{ route('teacher.lesson.create', ['course_id' => $course->id]) }}" class="btn btn-primary">
+                Thêm bài giảng
             </a>
+
         </div>
     </div>
 
@@ -25,6 +26,7 @@
             <tr>
                 <th>Tiêu đề</th>
                 <th>Khóa học</th>
+                <th>Tên chương</th>
                 <th>Video</th>
                 <th>Tài liệu</th>
                 <th>Thao tác</th>
@@ -40,6 +42,7 @@
                 <tr>
                     <td>{{ $lesson->title }}</td>
                     <td>{{ $lesson->course->title }}</td>
+                    <td>{{ $lesson->section->title ?? 'Chưa có chương' }}</td>
                     <td>
                         @if ($lesson->video_url)
                             <a href="{{ $lesson->video_url }}" target="_blank">Xem video</a>
@@ -60,8 +63,8 @@
 
                         <a href="{{ route('teacher.lesson.edit', $lesson->id) }}"
                             class="btn btn-sm btn-outline-warning">Sửa</a>
-                        <form action="{{ route('teacher.lesson.delete', $lesson->id) }}" method="POST" class="d-inline"
-                            onsubmit="return confirm('Bạn muốn xóa bài giảng này?')">
+                        <form action="{{ route('teacher.lesson.delete', $lesson->id) }}" method="POST"
+                            class="d-inline" onsubmit="return confirm('Bạn muốn xóa bài giảng này?')">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-sm btn-outline-danger">Xóa</button>

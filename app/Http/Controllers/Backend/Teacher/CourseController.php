@@ -10,16 +10,19 @@ use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
-    // Hiển thị danh sách khóa học của giáo viên đang đăng nhập
     public function index()
     {
         $teacherId = Auth::id();
-        $courses = Course::where('teacher_id', $teacherId)->get();
-        $courses = Course::with(['teacher', 'category'])->latest()->get();
+
+        $courses = Course::with(['teacher', 'category'])
+            ->where('teacher_id', $teacherId)
+            ->latest()
+            ->get();
 
         $template = 'backend.teacher.course.index';
         return view('backend.teacher.master', compact('template', 'courses'));
     }
+
 
     // Form tạo khóa học
     public function create()

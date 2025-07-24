@@ -6,7 +6,18 @@
             <i class="bx bx-plus"></i> Thêm khóa học
         </a>
     </div>
-
+    @php
+        $level_vi = [
+            'beginner' => 'Cơ bản',
+            'intermediate' => 'Trung cấp',
+            'advanced' => 'Nâng cao',
+        ];
+        $level_class = [
+            'beginner' => 'level-basic',
+            'intermediate' => 'level-intermediate',
+            'advanced' => 'level-advanced',
+        ];
+    @endphp
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -44,7 +55,8 @@
                             <td>{{ $course->title }}</td>
                             <td>{{ $course->category->name ?? 'Chưa phân loại' }}</td>
                             <td>{{ \Illuminate\Support\Str::limit($course->description, 50) }}</td>
-                            <td>{{ $course->level }}</td>
+                            <td>
+                                {{ $level_vi[$course->level] ?? $course->level }}</td>
                             <td>{{ $course->teacher->name ?? 'Chưa gán' }}</td>
                             <td>
                                 <a href="{{ route('teacher.lesson', $course->id) }}"

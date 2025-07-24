@@ -10,8 +10,12 @@ class LessonController extends Controller
 {
     public function index($courseId)
     {
+        // Lấy khóa học
         $course = Course::findOrFail($courseId);
-        $lessons = $course->lessons()->get();
+
+        // Lấy các bài giảng thuộc khóa học, kèm section
+        $lessons = $course->lessons()->with('section')->get();
+
         $template = 'backend.admin.lesson.index';
         return view('backend.admin.master', compact('template', 'lessons', 'course'));
     }
@@ -22,10 +26,10 @@ class LessonController extends Controller
         if ($lesson) {
             $courseId = $lesson->course_id;
             $lesson->delete();
-            // Truyền $courseId vào route
+
             return redirect()->route('admin.lesson', $courseId)->with('success', 'Bài giảng đã được xóa!');
         }
-        // Nếu không tìm thấy bài giảng, có thể redirect về trang danh sách khóa học hoặc trang trước đó
+
         return redirect()->back()->with('error', 'Không tìm thấy bài giảng!');
     }
 }
