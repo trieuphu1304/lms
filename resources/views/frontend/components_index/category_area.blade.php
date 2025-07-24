@@ -25,7 +25,7 @@
                         <div class="category-content">
                             <div class="category-inner">
                                 <h3 class="cat__title"><a href="#">{{ $category->name }}</a></h3>
-                                <p class="cat__meta">{{ $category->courses_count ?? 0 }} courses</p>
+                                <p class="cat__meta">{{ $category->courses_count ?? 0 }} khóa học</p>
                                 <a href="#" class="btn theme-btn theme-btn-sm theme-btn-white">Khám phá<i
                                         class="la la-arrow-right icon ml-1"></i></a>
                             </div>

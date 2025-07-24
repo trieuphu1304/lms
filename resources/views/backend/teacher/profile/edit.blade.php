@@ -34,18 +34,22 @@
             </div>
 
             <div class="mb-3">
-                <label for="avatar" class="form-label">Avatar</label>
-                <input type="file" name="avatar" id="avatar" class="form-control">
-                @if ($user->avatar)
-                    <img src="{{ asset('storage/' . $user->avatar) }}" alt="Avatar" class="mt-2 rounded-circle"
-                        width="100">
-                @else
-                    <img src="https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&size=100" alt="Avatar"
-                        class="mt-2 rounded-circle">
-                @endif
-            </div>
+                <label for="description" class="form-label">Mô tả</label>
+                <textarea name="description" id="description" class="form-control" rows="3">{{ old('description', $user->description) }}</textarea>
 
-            <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
+                <div class="mb-3">
+                    <label for="avatar" class="form-label">Avatar</label>
+                    <input type="file" name="avatar" id="avatar" class="form-control">
+                    @if ($user->avatar)
+                        <img src="{{ asset('storage/' . $user->avatar) }}" alt="Avatar" class="mt-2 rounded-circle"
+                            width="100">
+                    @else
+                        <img src="https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&size=100" alt="Avatar"
+                            class="mt-2 rounded-circle">
+                    @endif
+                </div>
+
+                <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
         </form>
     </div>
 </div>

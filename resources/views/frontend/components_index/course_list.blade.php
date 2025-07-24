@@ -28,7 +28,7 @@
                 <h6 class="fs-14 mb-3 ribbon {{ $level_class[$course->level] ?? '' }}">
                     {{ $level_vi[$course->level] ?? $course->level }}
                 </h6>
-                <h5 class="card-title"><a href="course-details.html">{{ $course->title }}</a></h5>
+                <h5 class="card-title"><a href="{{ route('course.detail', $course->id) }}">{{ $course->title }}</a></h5>
                 <p class="card-text">
                     <a href="teacher-detail.html">
                         Giáo viên: {{ $course->teacher->name ?? 'Chưa có giáo viên' }}

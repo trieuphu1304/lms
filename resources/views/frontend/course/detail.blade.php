@@ -88,685 +88,452 @@
                             <h3 class="fs-24 font-weight-semi-bold">Nội dung khóa học</h3>
                             <div class="curriculum-duration fs-15">
                                 <span class="curriculum-total__text mr-2"><strong
-                                        class="text-black font-weight-semi-bold">Tổng:</strong> 17 lectures</span>
-                                <span class="curriculum-total__hours"><strong
+                                        class="text-black font-weight-semi-bold">Tổng bài giảng:</strong>
+                                    {{ $lessons->count() }}</span>
+                                {{-- <span class="curriculum-total__hours"><strong
                                         class="text-black font-weight-semi-bold">Tổng thời gian:</strong>
-                                    02:35:47</span>
+                                    02:35:47</span> --}}
                             </div>
                         </div>
                         <div class="curriculum-content">
-                            <div id="accordion" class="generic-accordion">
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
-                                        <button class="btn btn-link d-flex align-items-center justify-content-between"
-                                            data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                            <i class="la la-plus"></i>
-                                            <i class="la la-minus"></i>
-                                            Giới thiệu khóa học
-                                            <span class="fs-15 text-gray font-weight-medium">6 lectures</span>
-                                        </button>
-                                    </div><!-- end card-header -->
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                        data-parent="#accordion">
-                                        <div class="card-body">
-                                            <ul class="generic-list-item">
-                                                <li>
-                                                    <a href="#"
-                                                        class="d-flex align-items-center justify-content-between text-color"
-                                                        data-toggle="modal" data-target="#previewModal">
-                                                        <span>
-                                                            <i class="la la-play-circle mr-1"></i>
-                                                            Introductory words
-                                                            <span class="ribbon ml-2 fs-13">Preview</span>
-                                                        </span>
-                                                        <span>02:27</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span>
-                                                            <i class="la la-play-circle mr-1"></i>
-                                                            Remaster in Progress
-                                                        </span>
-                                                        <span>03:09</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span>
-                                                            <i class="la la-play-circle mr-1"></i>
-                                                            Video Quality
-                                                        </span>
-                                                        <span>01:16</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span>
-                                                            <i class="la la-play-circle mr-1"></i>
-                                                            Important Tip - Source Code
-                                                        </span>
-                                                        <span>02:07</span>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end card-body -->
-                                    </div><!-- end collapse -->
-                                </div><!-- end card -->
-                                <div class="card">
-                                    <div class="card-header" id="headingTwo">
-                                        <button
-                                            class="btn btn-link collapsed d-flex align-items-center justify-content-between"
-                                            data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                                            aria-controls="collapseTwo">
-                                            <i class="la la-plus"></i>
-                                            <i class="la la-minus"></i>
-                                            Software tools setup
-                                            <span class="fs-15 text-gray font-weight-medium">6 lectures</span>
-                                        </button>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                        data-parent="#accordion">
-                                        <div class="card-body">
-                                            <ul class="generic-list-item">
-                                                <li>
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span>
-                                                            <i class="la la-play-circle mr-1"></i>
-                                                            Biggest Tip to Succeed as a Java Programmer
-                                                        </span>
-                                                        <span>02:27</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span>
-                                                            <i class="la la-file mr-1"></i>
-                                                            ** IMPORTANT ** - Configuring IntelliJ IDEA
-                                                        </span>
-                                                        <span>00:16</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span>
-                                                            <i class="la la-play-circle mr-1"></i>
-                                                            Video Quality
-                                                        </span>
-                                                        <span>01:16</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span>
-                                                            <i class="la la-play-circle mr-1"></i>
-                                                            Important Tip - Source Code
-                                                        </span>
-                                                        <span>02:07</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span>
-                                                            <i class="la la-code mr-1"></i>
-                                                            Interface
-                                                        </span>
-                                                        <span>1 question</span>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end card-body -->
-                                    </div>
-                                </div><!-- end card -->
-                                <div class="card">
-                                    <div class="card-header" id="headingThree">
-                                        <button
-                                            class="btn btn-link collapsed d-flex align-items-center justify-content-between"
-                                            data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
-                                            aria-controls="collapseThree">
-                                            <i class="la la-plus"></i>
-                                            <i class="la la-minus"></i>
-                                            Conclusion
-                                            <span class="fs-15 text-gray font-weight-medium">1 lectures</span>
-                                        </button>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                        data-parent="#accordion">
-                                        <div class="card-body">
-                                            <ul class="generic-list-item">
-                                                <li>
-                                                    <a href="#"
-                                                        class="d-flex align-items-center justify-content-between text-color"
-                                                        data-toggle="modal" data-target="#previewModal">
-                                                        <span>
-                                                            <i class="la la-play-circle mr-1"></i>
-                                                            Conclusion
-                                                            <span class="ribbon ml-2 fs-13">Watch</span>
-                                                        </span>
-                                                        <span>02:27</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end card-body -->
-                                    </div><!-- end collapse -->
-                                </div><!-- end card -->
-                            </div><!-- end generic-accordion -->
-                        </div><!-- end curriculum-content -->
-                    </div><!-- end course-overview-card -->
-                    <div class="course-overview-card pt-4">
-                        <h3 class="fs-24 font-weight-semi-bold pb-4">Students also bought</h3>
-                        <div class="view-more-carousel owl-action-styled">
-                            <div class="card card-item card-item-list-layout border border-gray shadow-none">
-                                <div class="card-image">
-                                    <a href="course-details.html" class="d-block">
-                                        <img class="card-img-top" src="images/img8.jpg" alt="Card image cap">
-                                    </a>
-                                    <div class="course-badge-labels">
-                                        <div class="course-badge">Bestseller</div>
-                                        <div class="course-badge blue">-39%</div>
-                                    </div>
-                                </div><!-- end card-image -->
-                                <div class="card-body">
-                                    <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">All Levels</h6>
-                                    <h5 class="card-title"><a href="course-details.html">The Business Intelligence
-                                            Analyst Course 2021</a></h5>
-                                    <p class="card-text"><a href="teacher-detail.html">Jose Portilla</a></p>
-                                    <div class="rating-wrap d-flex align-items-center py-2">
-                                        <div class="review-stars">
-                                            <span class="rating-number">4.4</span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star-o"></span>
-                                        </div>
-                                        <span class="rating-total pl-1">(20,230)</span>
-                                    </div><!-- end rating-wrap -->
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="card-price text-black font-weight-bold">12.99 <span
-                                                class="before-price font-weight-medium">129.99</span></p>
-                                        <div class="icon-element icon-element-sm shadow-sm cursor-pointer"
-                                            title="Add to Wishlist"><i class="la la-heart-o"></i></div>
-                                    </div>
-                                </div><!-- end card-body -->
-                            </div><!-- end card -->
-                            <div class="card card-item card-item-list-layout border border-gray shadow-none">
-                                <div class="card-image">
-                                    <a href="course-details.html" class="d-block">
-                                        <img class="card-img-top" src="images/img9.jpg" alt="Card image cap">
-                                    </a>
-                                    <div class="course-badge-labels">
-                                        <div class="course-badge red">Featured</div>
-                                    </div>
-                                </div><!-- end card-image -->
-                                <div class="card-body">
-                                    <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">All Levels</h6>
-                                    <h5 class="card-title"><a href="course-details.html">The Business Intelligence
-                                            Analyst Course 2021</a></h5>
-                                    <p class="card-text"><a href="teacher-detail.html">Jose Portilla</a></p>
-                                    <div class="rating-wrap d-flex align-items-center py-2">
-                                        <div class="review-stars">
-                                            <span class="rating-number">4.4</span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star-o"></span>
-                                        </div>
-                                        <span class="rating-total pl-1">(20,230)</span>
-                                    </div><!-- end rating-wrap -->
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="card-price text-black font-weight-bold">129.99</p>
-                                        <div class="icon-element icon-element-sm shadow-sm cursor-pointer"
-                                            title="Add to Wishlist"><i class="la la-heart-o"></i></div>
-                                    </div>
-                                </div><!-- end card-body -->
-                            </div><!-- end card -->
-                            <div class="card card-item card-item-list-layout border border-gray shadow-none">
-                                <div class="card-image">
-                                    <a href="course-details.html" class="d-block">
-                                        <img class="card-img-top" src="images/img8.jpg" alt="Card image cap">
-                                    </a>
-                                    <div class="course-badge-labels">
-                                        <div class="course-badge">Bestseller</div>
-                                        <div class="course-badge blue">-39%</div>
-                                    </div>
-                                </div><!-- end card-image -->
-                                <div class="card-body">
-                                    <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">All Levels</h6>
-                                    <h5 class="card-title"><a href="course-details.html">The Business Intelligence
-                                            Analyst Course 2021</a></h5>
-                                    <p class="card-text"><a href="teacher-detail.html">Jose Portilla</a></p>
-                                    <div class="rating-wrap d-flex align-items-center py-2">
-                                        <div class="review-stars">
-                                            <span class="rating-number">4.4</span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star-o"></span>
-                                        </div>
-                                        <span class="rating-total pl-1">(20,230)</span>
-                                    </div><!-- end rating-wrap -->
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="card-price text-black font-weight-bold">12.99 <span
-                                                class="before-price font-weight-medium">129.99</span></p>
-                                        <div class="icon-element icon-element-sm shadow-sm cursor-pointer"
-                                            title="Add to Wishlist"><i class="la la-heart-o"></i></div>
-                                    </div>
-                                </div><!-- end card-body -->
-                            </div><!-- end card -->
-                            <div class="card card-item card-item-list-layout border border-gray shadow-none">
-                                <div class="card-image">
-                                    <a href="course-details.html" class="d-block">
-                                        <img class="card-img-top" src="images/img9.jpg" alt="Card image cap">
-                                    </a>
-                                    <div class="course-badge-labels">
-                                        <div class="course-badge red">Featured</div>
-                                    </div>
-                                </div><!-- end card-image -->
-                                <div class="card-body">
-                                    <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">All Levels</h6>
-                                    <h5 class="card-title"><a href="course-details.html">The Business Intelligence
-                                            Analyst Course 2021</a></h5>
-                                    <p class="card-text"><a href="teacher-detail.html">Jose Portilla</a></p>
-                                    <div class="rating-wrap d-flex align-items-center py-2">
-                                        <div class="review-stars">
-                                            <span class="rating-number">4.4</span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star-o"></span>
-                                        </div>
-                                        <span class="rating-total pl-1">(20,230)</span>
-                                    </div><!-- end rating-wrap -->
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="card-price text-black font-weight-bold">129.99</p>
-                                        <div class="icon-element icon-element-sm shadow-sm cursor-pointer"
-                                            title="Add to Wishlist"><i class="la la-heart-o"></i></div>
-                                    </div>
-                                </div><!-- end card-body -->
-                            </div><!-- end card -->
-                        </div><!-- end view-more-carousel -->
-                    </div><!-- end course-overview-card -->
+                            @foreach ($course->sections as $section)
+                                <div id="accordion" class="generic-accordion">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <button
+                                                class="btn btn-link d-flex align-items-center justify-content-between"
+                                                data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                <i class="la la-plus"></i>
+                                                <i class="la la-minus"></i>
+                                                {{ $course->sections[0]->title }}
+                                                <span class="fs-15 text-gray font-weight-medium">
+                                                    {{ $course->sections[0]->lessons->count() }} bài giảng
+                                                </span>
+
+                                            </button>
+                                        </div><!-- end card-header -->
+                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                            data-parent="#accordion">
+                                            <div class="card-body">
+                                                <ul class="generic-list-item">
+                                                    @foreach ($course->sections[0]->lessons as $lesson)
+                                                        <li>
+                                                            <a href="#"
+                                                                class="d-flex align-items-center justify-content-between text-color"
+                                                                data-toggle="modal" data-target="#previewModal">
+                                                                <span>
+                                                                    <i class="la la-play-circle mr-1"></i>
+                                                                    {{ $lesson->title }}
+                                                                    <span class="ribbon ml-2 fs-13"></span>
+                                                                </span>
+                                                                {{-- <span>Thời gian khóa học</span> --}}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div><!-- end card-body -->
+                                        </div><!-- end collapse -->
+                                    </div><!-- end card -->
+                            @endforeach
+                        </div><!-- end generic-accordion -->
+                    </div><!-- end curriculum-content -->
+                </div><!-- end course-overview-card -->
 
 
 
-                    <div class="course-overview-card pt-4">
-                        <h3 class="fs-24 font-weight-semi-bold pb-4">About the instructor</h3>
-                        <div class="instructor-wrap">
-                            <div class="media media-card">
-                                <div class="instructor-img">
-                                    <a href="teacher-detail.html" class="media-img d-block">
-                                        <img class="lazy" src="images/img-loading.png"
-                                            data-src="images/small-avatar-1.jpg" alt="Avatar image">
-                                    </a>
-                                    <ul class="generic-list-item pt-3">
-                                        <li><i class="la la-star mr-2 text-color-3"></i> 4.6 Instructor Rating</li>
-                                        <li><i class="la la-user mr-2 text-color-3"></i> 45,786 Students</li>
-                                        <li><i class="la la-comment-o mr-2 text-color-3"></i> 2,533 Reviews</li>
-                                        <li><i class="la la-play-circle-o mr-2 text-color-3"></i> 24 Courses</li>
-                                        <li><a href="teacher-detail.html">View all Courses</a></li>
-                                    </ul>
-                                </div><!-- end instructor-img -->
-                                <div class="media-body">
-                                    <h5><a href="teacher-detail.html">Tim Buchalka</a></h5>
-                                    <span class="d-block lh-18 pt-2 pb-3">Joined 4 years ago</span>
-                                    <p class="text-black lh-18 pb-3">Java Python Android and C# Expert Developer -
-                                        878K+ students</p>
-                                    <p class="pb-3">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                        industry. Lorem Ipsum has been the industry’s standard dummy text ever since the
-                                        1500s, when an unknown printer took a galley of type and scrambled it to make a
-                                        type specimen book. It has survived not only five centuries, but also the leap
-                                        into electronic typesetting, remaining essentially unchanged.</p>
-                                    <div class="collapse" id="collapseMoreTwo">
-                                        <p class="pb-3">After learning the hard way, Tim was determined to become the
-                                            best teacher he could, and to make his training as painless as possible, so
-                                            that you, or anyone else with the desire to become a software developer,
-                                            could become one.</p>
-                                        <p class="pb-3">If you want to become a financial analyst, a finance manager,
-                                            an FP&A analyst, an investment banker, a business executive, an
-                                            entrepreneur, a business intelligence analyst, a data analyst, or a data
-                                            scientist, <strong class="text-black font-weight-semi-bold">Tim Buchalka's
-                                                courses are the perfect course to start</strong>.</p>
-                                    </div>
-                                    <a class="collapse-btn collapse--btn fs-15" data-toggle="collapse"
-                                        href="#collapseMoreTwo" role="button" aria-expanded="false"
-                                        aria-controls="collapseMoreTwo">
-                                        <span class="collapse-btn-hide">Show more<i
-                                                class="la la-angle-down ml-1 fs-14"></i></span>
-                                        <span class="collapse-btn-show">Show less<i
-                                                class="la la-angle-up ml-1 fs-14"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div><!-- end instructor-wrap -->
-                    </div><!-- end course-overview-card -->
-                    <div class="course-overview-card pt-4">
-                        <h3 class="fs-24 font-weight-semi-bold pb-40px">Student feedback</h3>
-                        <div class="feedback-wrap">
-                            <div class="media media-card align-items-center">
-                                <div class="review-rating-summary">
-                                    <span class="stats-average__count">4.6</span>
-                                    <div class="rating-wrap pt-1">
-                                        <div class="review-stars">
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star-half-alt"></span>
-                                        </div>
-                                        <span class="rating-total d-block">(2,533)</span>
-                                        <span>Course Rating</span>
-                                    </div><!-- end rating-wrap -->
-                                </div><!-- end review-rating-summary -->
-                                <div class="media-body">
-                                    <div class="review-bars d-flex align-items-center mb-2">
-                                        <div class="review-bars__text">5 stars</div>
-                                        <div class="review-bars__fill">
-                                            <div class="skillbar-box">
-                                                <div class="skillbar" data-percent="77%">
-                                                    <div class="skillbar-bar bg-3"></div>
-                                                </div> <!-- End Skill Bar -->
-                                            </div>
-                                        </div><!-- end review-bars__fill -->
-                                        <div class="review-bars__percent">77%</div>
-                                    </div><!-- end review-bars -->
-                                    <div class="review-bars d-flex align-items-center mb-2">
-                                        <div class="review-bars__text">4 stars</div>
-                                        <div class="review-bars__fill">
-                                            <div class="skillbar-box">
-                                                <div class="skillbar" data-percent="54%">
-                                                    <div class="skillbar-bar bg-3"></div>
-                                                </div> <!-- End Skill Bar -->
-                                            </div>
-                                        </div><!-- end review-bars__fill -->
-                                        <div class="review-bars__percent">54%</div>
-                                    </div><!-- end review-bars -->
-                                    <div class="review-bars d-flex align-items-center mb-2">
-                                        <div class="review-bars__text">3 stars</div>
-                                        <div class="review-bars__fill">
-                                            <div class="skillbar-box">
-                                                <div class="skillbar" data-percent="14%">
-                                                    <div class="skillbar-bar bg-3"></div>
-                                                </div> <!-- End Skill Bar -->
-                                            </div>
-                                        </div><!-- end review-bars__fill -->
-                                        <div class="review-bars__percent">14%</div>
-                                    </div><!-- end review-bars -->
-                                    <div class="review-bars d-flex align-items-center mb-2">
-                                        <div class="review-bars__text">2 stars</div>
-                                        <div class="review-bars__fill">
-                                            <div class="skillbar-box">
-                                                <div class="skillbar" data-percent="5%">
-                                                    <div class="skillbar-bar bg-3"></div>
-                                                </div> <!-- End Skill Bar -->
-                                            </div>
-                                        </div><!-- end review-bars__fill -->
-                                        <div class="review-bars__percent">5%</div>
-                                    </div><!-- end review-bars -->
-                                    <div class="review-bars d-flex align-items-center mb-2">
-                                        <div class="review-bars__text">1 stars</div>
-                                        <div class="review-bars__fill">
-                                            <div class="skillbar-box">
-                                                <div class="skillbar" data-percent="2%">
-                                                    <div class="skillbar-bar bg-3"></div>
-                                                </div> <!-- End Skill Bar -->
-                                            </div>
-                                        </div><!-- end review-bars__fill -->
-                                        <div class="review-bars__percent">2%</div>
-                                    </div><!-- end review-bars -->
-                                </div><!-- end media-body -->
-                            </div>
-                        </div><!-- end feedback-wrap -->
-                    </div><!-- end course-overview-card -->
-                    <div class="course-overview-card pt-4">
-                        <h3 class="fs-24 font-weight-semi-bold pb-4">Reviews</h3>
-                        <div class="review-wrap">
-                            <div class="d-flex flex-wrap align-items-center pb-4">
-                                <form method="post" class="mr-3 flex-grow-1">
-                                    <div class="form-group">
-                                        <input class="form-control form--control pl-3" type="text" name="search"
-                                            placeholder="Search reviews">
-                                        <span class="la la-search search-icon"></span>
-                                    </div>
-                                </form>
-                                <div class="select-container mb-3">
-                                    <select class="select-container-select">
-                                        <option value="all-rating">All ratings</option>
-                                        <option value="five-star">Five stars</option>
-                                        <option value="four-star">Four stars</option>
-                                        <option value="three-star">Three stars</option>
-                                        <option value="two-star">Two stars</option>
-                                        <option value="one-star">One star</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
-                                <div class="media-img mr-4 rounded-full">
-                                    <img class="rounded-full lazy" src="images/img-loading.png"
-                                        data-src="images/small-avatar-1.jpg" alt="User image">
-                                </div>
-                                <div class="media-body">
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between pb-1">
-                                        <h5>Kavi arasan</h5>
-                                        <div class="review-stars">
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                        </div>
-                                    </div>
-                                    <span class="d-block lh-18 pb-2">a month ago</span>
-                                    <p class="pb-2">This is one of the best courses I have taken in Udemy. It is very
-                                        complete, and it has made continue learning about Java and SQL databases as
-                                        well.</p>
-                                    <div class="helpful-action">
-                                        <span class="d-block fs-13">Was this review helpful?</span>
-                                        <button class="btn">Yes</button>
-                                        <button class="btn">No</button>
-                                        <span class="btn-text fs-14 cursor-pointer pl-1" data-toggle="modal"
-                                            data-target="#reportModal">Report</span>
-                                    </div>
-                                </div>
-                            </div><!-- end media -->
 
-                        </div><!-- end review-wrap -->
-                        <div class="see-more-review-btn text-center">
-                            <button type="button" class="btn theme-btn theme-btn-transparent">Load more
-                                reviews</button>
-                        </div>
-                    </div><!-- end course-overview-card -->
-                    <div class="course-overview-card pt-4">
-                        <h3 class="fs-24 font-weight-semi-bold pb-4">Add a Review</h3>
-                        <div class="leave-rating-wrap pb-4">
-                            <div class="leave-rating leave--rating">
-                                <input type="radio" name='rate' id="star5" />
-                                <label for="star5"></label>
-                                <input type="radio" name='rate' id="star4" />
-                                <label for="star4"></label>
-                                <input type="radio" name='rate' id="star3" />
-                                <label for="star3"></label>
-                                <input type="radio" name='rate' id="star2" />
-                                <label for="star2"></label>
-                                <input type="radio" name='rate' id="star1" />
-                                <label for="star1"></label>
-                            </div><!-- end leave-rating -->
-                        </div>
-                        <form method="post" class="row">
-                            <div class="input-box col-lg-6">
-                                <label class="label-text">Name</label>
-                                <div class="form-group">
-                                    <input class="form-control form--control" type="text" name="name"
-                                        placeholder="Your Name">
-                                    <span class="la la-user input-icon"></span>
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box col-lg-6">
-                                <label class="label-text">Email</label>
-                                <div class="form-group">
-                                    <input class="form-control form--control" type="email" name="email"
-                                        placeholder="Email Address">
-                                    <span class="la la-envelope input-icon"></span>
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box col-lg-12">
-                                <label class="label-text">Message</label>
-                                <div class="form-group">
-                                    <textarea class="form-control form--control pl-3" name="message" placeholder="Write Message" rows="5"></textarea>
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="btn-box col-lg-12">
-                                <div class="custom-control custom-checkbox mb-3 fs-15">
-                                    <input type="checkbox" class="custom-control-input" id="saveCheckbox" required>
-                                    <label class="custom-control-label custom--control-label" for="saveCheckbox">
-                                        Save my name, and email in this browser for the next time I comment.
-                                    </label>
-                                </div><!-- end custom-control -->
-                                <button class="btn theme-btn" type="submit">Submit Review</button>
-                            </div><!-- end btn-box -->
-                        </form>
-                    </div><!-- end course-overview-card -->
-                </div><!-- end course-details-content-wrap -->
-            </div><!-- end col-lg-8 -->
-            <div class="col-lg-4">
-                <div class="sidebar sidebar-negative">
-                    <div class="card card-item">
-                        <div class="card-body">
-                            <div class="preview-course-video">
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#previewModal">
-                                    <img src="images/img-loading.png" data-src="images/preview-img.jpg"
-                                        alt="course-img" class="w-100 rounded lazy">
-                                    <div class="preview-course-video-content">
-                                        <div class="overlay"></div>
-                                        <div class="play-button">
-                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                viewBox="-307.4 338.8 91.8 91.8"
-                                                style=" enable-background:new -307.4 338.8 91.8 91.8;"
-                                                xml:space="preserve">
-                                                <style type="text/css">
-                                                    .st0 {
-                                                        fill: #ffffff;
-                                                        border-radius: 100px;
-                                                    }
+                <div class="course-overview-card pt-4">
+                    <h3 class="fs-24 font-weight-semi-bold pb-4">Thông tin giáo viên</h3>
+                    <div class="instructor-wrap">
+                        <div class="media media-card">
+                            <div class="instructor-img">
+                                <a href="teacher-detail.html" class="media-img d-block">
+                                    @if ($course->teacher && $course->teacher->avatar)
+                                        <img class="lazy" src="{{ asset('storage/' . $course->teacher->avatar) }}"
+                                            data-src="{{ asset('storage/' . $course->teacher->avatar) }}"
+                                            alt="Avatar Teacher">
+                                    @else
+                                        <img class="lazy" src="{{ asset('storage/default-avatar.jpg') }}"
+                                            data-src="{{ asset('storage/default-avatar.jpg') }}"
+                                            alt="Default Avatar">
+                                    @endif
 
-                                                    .st1 {
-                                                        fill: #000000;
-                                                    }
-                                                </style>
-                                                <g>
-                                                    <circle class="st0" cx="-261.5" cy="384.7" r="45.9">
-                                                    </circle>
-                                                    <path class="st1"
-                                                        d="M-272.9,363.2l35.8,20.7c0.7,0.4,0.7,1.3,0,1.7l-35.8,20.7c-0.7,0.4-1.5-0.1-1.5-0.9V364C-274.4,363.3-273.5,362.8-272.9,363.2z">
-                                                    </path>
-                                                </g>
-                                            </svg>
-                                        </div>
-                                        <p class="fs-15 font-weight-bold text-white pt-3">Preview this course</p>
-                                    </div>
                                 </a>
-                            </div><!-- end preview-course-video -->
-                            <div class="preview-course-feature-content pt-40px">
-                                <p class="d-flex align-items-center pb-2">
-                                    <span class="fs-35 font-weight-semi-bold text-black">$76.99</span>
-                                    <span class="before-price mx-1">$104.99</span>
-                                    <span class="price-discount">24% off</span>
-                                </p>
-                                <p class="preview-price-discount-text pb-35px">
-                                    <span class="text-color-3">4 days</span> left at this price!
-                                </p>
-                                <div class="buy-course-btn-box">
-                                    <button type="button" class="btn theme-btn w-100 mb-2"><i
-                                            class="la la-shopping-cart fs-18 mr-1"></i> Add to cart</button>
-                                    <button type="button" class="btn theme-btn w-100 theme-btn-white mb-2"><i
-                                            class="la la-shopping-bag mr-1"></i> Buy this course</button>
+                                <ul class="generic-list-item pt-3">
+                                    <li><i class="la la-star mr-2 text-color-3"></i> 4.6 Instructor Rating</li>
+                                    <li><i class="la la-user mr-2 text-color-3"></i> {{ $totalStudents }} Học viên
+                                    </li>
+                                    <li><i class="la la-comment-o mr-2 text-color-3"></i> 2,533 Reviews</li>
+                                    <li><i class="la la-play-circle-o mr-2 text-color-3"></i> {{ $totalCourses }} Khóa
+                                        học</li>
+                                    <li><a href="teacher-detail.html"></a></li>
+                                </ul>
+                            </div><!-- end instructor-img -->
+                            <div class="media-body">
+                                <h5><a href="teacher-detail.html">{{ $course->teacher->name }}</a></h5>
+                                <span class="d-block lh-18 pt-2 pb-3">
+                                    Thời gian dạy: {{ $user->created_at->diffForHumans() }}
+                                </span>
+
+                                <p class="text-black lh-18 pb-3"></p>
+                                <p class="pb-3">{{ $course->teacher->description }}</p>
+                                <div class="collapse" id="collapseMoreTwo">
+                                    <p class="pb-3"> </p>
                                 </div>
-                                <p class="fs-14 text-center pb-4">30-Day Money-Back Guarantee</p>
-                                <div class="preview-course-incentives">
-                                    <h3 class="card-title fs-18 pb-2">This course includes</h3>
-                                    <ul class="generic-list-item pb-3">
-                                        <li><i class="la la-play-circle-o mr-2 text-color"></i>2.5 hours on-demand
-                                            video</li>
-                                        <li><i class="la la-file mr-2 text-color"></i>34 articles</li>
-                                        <li><i class="la la-file-text mr-2 text-color"></i>12 downloadable resources
-                                        </li>
-                                        <li><i class="la la-code mr-2 text-color"></i>51 coding exercises</li>
-                                        <li><i class="la la-key mr-2 text-color"></i>Full lifetime access</li>
-                                        <li><i class="la la-television mr-2 text-color"></i>Access on mobile and TV
-                                        </li>
-                                        <li><i class="la la-certificate mr-2 text-color"></i>Certificate of Completion
-                                        </li>
-                                    </ul>
-                                    <div class="section-block"></div>
-                                    <div class="buy-for-team-container pt-4">
-                                        <h3 class="fs-18 font-weight-semi-bold pb-2">Training 5 or more people?</h3>
-                                        <p class="lh-24 pb-3">Get your team access to 3,000+ top Aduca courses anytime,
-                                            anywhere.</p>
-                                        <a href="for-business.html"
-                                            class="btn theme-btn theme-btn-sm theme-btn-transparent lh-30 w-100">Try
-                                            Aduca for Business</a>
+                                <a class="collapse-btn collapse--btn fs-15" data-toggle="collapse"
+                                    href="#collapseMoreTwo" role="button" aria-expanded="false"
+                                    aria-controls="collapseMoreTwo">
+                                    <span class="collapse-btn-hide">Show more<i
+                                            class="la la-angle-down ml-1 fs-14"></i></span>
+                                    <span class="collapse-btn-show">Show less<i
+                                            class="la la-angle-up ml-1 fs-14"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div><!-- end instructor-wrap -->
+                </div><!-- end course-overview-card -->
+                <div class="course-overview-card pt-4">
+                    <h3 class="fs-24 font-weight-semi-bold pb-40px">Student feedback</h3>
+                    <div class="feedback-wrap">
+                        <div class="media media-card align-items-center">
+                            <div class="review-rating-summary">
+                                <span class="stats-average__count">{{ $averageRating }}</span>
+                                <div class="rating-wrap pt-1">
+                                    <div class="review-stars">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= floor($averageRating))
+                                                <span class="la la-star"></span>
+                                            @elseif ($i - $averageRating < 1)
+                                                <span class="la la-star-half-alt"></span>
+                                            @else
+                                                <span class="la la-star-o"></span>
+                                            @endif
+                                        @endfor
                                     </div>
-                                </div><!-- end preview-course-incentives -->
-                            </div><!-- end preview-course-content -->
+                                    <span class="rating-total d-block">({{ $totalReviews }})</span>
+                                    <span>Course Rating</span>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                @foreach ([5, 4, 3, 2, 1] as $star)
+                                    @php
+                                        $percent =
+                                            $totalReviews > 0
+                                                ? round(($ratingBreakdown[$star] / $totalReviews) * 100)
+                                                : 0;
+                                    @endphp
+                                    <div class="review-bars d-flex align-items-center mb-2">
+                                        <div class="review-bars__text">{{ $star }} stars</div>
+                                        <div class="review-bars__fill">
+                                            <div class="skillbar-box">
+                                                <div class="skillbar" data-percent="{{ $percent }}%">
+                                                    <div class="skillbar-bar bg-3"
+                                                        style="width: {{ $percent }}%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="review-bars__percent">{{ $percent }}%</div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
-                    </div><!-- end card -->
-                    <div class="card card-item">
-                        <div class="card-body">
-                            <h3 class="card-title fs-18 pb-2">Course Features</h3>
-                            <div class="divider"><span></span></div>
-                            <ul class="generic-list-item generic-list-item-flash">
-                                <li class="d-flex align-items-center justify-content-between"><span><i
-                                            class="la la-clock mr-2 text-color"></i>Duration</span> 2.5 hours</li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i
-                                            class="la la-play-circle-o mr-2 text-color"></i>Lectures</span> 17</li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i
-                                            class="la la-file-text-o mr-2 text-color"></i>Resources</span> 12</li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i
-                                            class="la la-bolt mr-2 text-color"></i>Quizzes</span> 26</li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i
-                                            class="la la-eye mr-2 text-color"></i>Preview Lessons</span> 4</li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i
-                                            class="la la-language mr-2 text-color"></i>Language</span> English</li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i
-                                            class="la la-lightbulb mr-2 text-color"></i>Skill level</span> All levels
+                    </div>
+                </div>
+
+                <div class="course-overview-card pt-4">
+                    <h3 class="fs-24 font-weight-semi-bold pb-4">Reviews</h3>
+                    <div class="review-wrap">
+                        <div class="d-flex flex-wrap align-items-center pb-4">
+                            <form method="post" class="mr-3 flex-grow-1">
+                                <div class="form-group">
+                                    <input class="form-control form--control pl-3" type="text" name="search"
+                                        placeholder="Search reviews">
+                                    <span class="la la-search search-icon"></span>
+                                </div>
+                            </form>
+                            <div class="select-container mb-3">
+                                <select class="select-container-select">
+                                    <option value="all-rating">All ratings</option>
+                                    <option value="five-star">Five stars</option>
+                                    <option value="four-star">Four stars</option>
+                                    <option value="three-star">Three stars</option>
+                                    <option value="two-star">Two stars</option>
+                                    <option value="one-star">One star</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
+                            <div class="media-img mr-4 rounded-full">
+                                <img class="rounded-full lazy" src="images/img-loading.png"
+                                    data-src="images/small-avatar-1.jpg" alt="User image">
+                            </div>
+                            <div class="media-body">
+                                <div class="d-flex flex-wrap align-items-center justify-content-between pb-1">
+                                    <h5>Kavi arasan</h5>
+                                    <div class="review-stars">
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                    </div>
+                                </div>
+                                <span class="d-block lh-18 pb-2">a month ago</span>
+                                <p class="pb-2">This is one of the best courses I have taken in Udemy. It is very
+                                    complete, and it has made continue learning about Java and SQL databases as
+                                    well.</p>
+                                <div class="helpful-action">
+                                    <span class="d-block fs-13">Was this review helpful?</span>
+                                    <button class="btn">Yes</button>
+                                    <button class="btn">No</button>
+                                    <span class="btn-text fs-14 cursor-pointer pl-1" data-toggle="modal"
+                                        data-target="#reportModal">Report</span>
+                                </div>
+                            </div>
+                        </div><!-- end media -->
+
+                    </div><!-- end review-wrap -->
+                    <div class="see-more-review-btn text-center">
+                        <button type="button" class="btn theme-btn theme-btn-transparent">Load more
+                            reviews</button>
+                    </div>
+                </div><!-- end course-overview-card -->
+                <div class="course-overview-card pt-4">
+                    <h3 class="fs-24 font-weight-semi-bold pb-4">Add a Review</h3>
+
+                    <!-- Đánh giá sao -->
+                    <div class="leave-rating-wrap pb-4">
+                        <div class="leave-rating leave--rating">
+                            @for ($i = 5; $i >= 1; $i--)
+                                <input type="radio" name="rate" id="star{{ $i }}"
+                                    value="{{ $i }}" />
+                                <label for="star{{ $i }}"></label>
+                            @endfor
+                        </div>
+                    </div>
+
+                    <!-- Form đánh giá -->
+                    <form method="POST" action="{{ route('reviews.store', $course->id) }}" class="row"
+                        id="reviewForm">
+                        @csrf
+                        <div class="input-box col-lg-6">
+                            <label class="label-text">Tên</label>
+                            <div class="form-group">
+                                <input class="form-control form--control" type="text" name="name"
+                                    value="{{ Auth::check() ? Auth::user()->name : '' }}" placeholder="Tên của bạn"
+                                    {{ Auth::check() ? 'readonly' : '' }}>
+                            </div>
+                        </div>
+                        <div class="input-box col-lg-6">
+                            <label class="label-text">Email</label>
+                            <div class="form-group">
+                                <input class="form-control form--control" type="email" name="email"
+                                    value="{{ Auth::check() ? Auth::user()->email : '' }}"
+                                    placeholder="Email của bạn" {{ Auth::check() ? 'readonly' : '' }}>
+                            </div>
+                        </div>
+                        <div class="input-box col-lg-12">
+                            <label class="label-text">Nội dung</label>
+                            <div class="form-group">
+                                <textarea class="form-control form--control" name="message" placeholder="Viết đánh giá..." rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="btn-box col-lg-12">
+                            <div class="custom-control custom-checkbox mb-3 fs-15">
+                                <input type="checkbox" class="custom-control-input" id="saveCheckbox" required>
+                                <label class="custom-control-label" for="saveCheckbox">Tôi đồng ý lưu thông tin đánh
+                                    giá này.</label>
+                            </div>
+                            <button class="btn theme-btn" type="submit">Lưu đánh giá</button>
+                        </div>
+                    </form>
+                </div>
+                <script>
+                    document.getElementById('reviewForm').addEventListener('submit', function(e) {
+                        let isLoggedIn = {{ Auth::check() ? 'true' : 'false' }};
+                        let isEnrolled = {{ Auth::check() && $course->students->contains(Auth::id()) ? 'true' : 'false' }};
+
+                        if (!isLoggedIn) {
+                            e.preventDefault();
+                            toastr.error('Bạn cần đăng nhập để đánh giá khóa học.');
+                        } else if (!isEnrolled) {
+                            e.preventDefault();
+                            toastr.warning('Bạn cần đăng ký khóa học này để đánh giá.');
+                        }
+                    });
+                </script>
+
+
+
+            </div><!-- end course-details-content-wrap -->
+        </div><!-- end col-lg-8 -->
+        <div class="col-lg-4">
+            <div class="sidebar sidebar-negative">
+                <div class="card card-item">
+                    <div class="card-body">
+                        <div class="preview-course-video">
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#previewModal">
+                                <img src="{{ $course->avatar ? asset('storage/' . $course->avatar) : asset('frontend/images/img8.jpg') }}"
+                                    data-src="{{ $course->avatar ? asset('storage/' . $course->avatar) : asset('frontend/images/img8.jpg') }}"
+                                    alt="course-img" class="w-100 rounded lazy">
+                                <div class="preview-course-video-content">
+                                    <div class="overlay"></div>
+                                    <div class="play-button">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                            viewBox="-307.4 338.8 91.8 91.8"
+                                            style=" enable-background:new -307.4 338.8 91.8 91.8;"
+                                            xml:space="preserve">
+                                            <style type="text/css">
+                                                .st0 {
+                                                    fill: #ffffff;
+                                                    border-radius: 100px;
+                                                }
+
+                                                .st1 {
+                                                    fill: #000000;
+                                                }
+                                            </style>
+                                            <g>
+                                                <circle class="st0" cx="-261.5" cy="384.7" r="45.9">
+                                                </circle>
+                                                <path class="st1"
+                                                    d="M-272.9,363.2l35.8,20.7c0.7,0.4,0.7,1.3,0,1.7l-35.8,20.7c-0.7,0.4-1.5-0.1-1.5-0.9V364C-274.4,363.3-273.5,362.8-272.9,363.2z">
+                                                </path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <p class="fs-15 font-weight-bold text-white pt-3">GIỚI THIỆU KHÓA HỌC</p>
+                                </div>
+                            </a>
+                        </div><!-- end preview-course-video -->
+                        <div class="preview-course-feature-content pt-40px">
+                            {{-- <p class="d-flex align-items-center pb-2">
+                                <span class="fs-35 font-weight-semi-bold text-black">$76.99</span>
+                                <span class="before-price mx-1">$104.99</span>
+                                <span class="price-discount">24% off</span>
+                            </p>
+                            <p class="preview-price-discount-text pb-35px">
+                                <span class="text-color-3">4 days</span> left at this price!
+                            </p> --}}
+                            <div class="buy-course-btn-box">
+                                <button type="button" class="btn theme-btn w-100 mb-2"><i
+                                        class="la la-shopping-cart fs-18 mr-1"></i> Đăng kí</button>
+
+                            </div>
+                            <p class="fs-14 text-center pb-4"></p>
+                            <div class="preview-course-incentives">
+                                <h3 class="card-title fs-18 pb-2">Khóa học bao gồm</h3>
+                                <ul class="generic-list-item pb-3">
+                                    {{-- <li><i class="la la-play-circle-o mr-2 text-color"></i>2.5 hours on-demand
+                                        video</li> --}}
+                                    <li><i class="la la-file mr-2 text-color"></i>{{ $lessons->count() }} Bài giảng
+                                    </li>
+                                    {{-- <li><i class="la la-file-text mr-2 text-color"></i>12 downloadable resources --}}
+                                    </li>
+                                    <li><i class="la la-code mr-2 text-color"></i>{{ $totalQuizzes }} Bài kiểm tra
+                                    </li>
+                                    <li><i class="la la-key mr-2 text-color"></i>Học mọi lúc</li>
+                                    <li><i class="la la-television mr-2 text-color"></i>Học trên điện thoại và máy
+                                        tính bảng</li>
+                                    </li>
+                                    <li><i class="la la-certificate mr-2 text-color"></i>Nhận chứng chỉ khi hoàn thành
+                                    </li>
+                                </ul>
+                                <div class="section-block"></div>
+                                <div class="buy-for-team-container pt-4">
+                                    {{-- <h3 class="fs-18 font-weight-semi-bold pb-2">Training 5 or more people?</h3>
+                                    <p class="lh-24 pb-3">Get your team access to 3,000+ top Aduca courses anytime,
+                                        anywhere.</p>
+                                    <a href="for-business.html"
+                                        class="btn theme-btn theme-btn-sm theme-btn-transparent lh-30 w-100">Try
+                                        Aduca for Business</a> --}}
+                                </div>
+                            </div><!-- end preview-course-incentives -->
+                        </div><!-- end preview-course-content -->
+                    </div>
+                </div><!-- end card -->
+                @php
+                    $level_vi = [
+                        'beginner' => 'Cơ bản',
+                        'intermediate' => 'Trung cấp',
+                        'advanced' => 'Nâng cao',
+                    ];
+                    $level_class = [
+                        'beginner' => 'level-basic',
+                        'intermediate' => 'level-intermediate',
+                        'advanced' => 'level-advanced',
+                    ];
+                @endphp
+                <div class="card card-item">
+                    <div class="card-body">
+                        <h3 class="card-title fs-18 pb-2">Tính năng của khóa học</h3>
+                        <div class="divider"><span></span></div>
+                        <ul class="generic-list-item generic-list-item-flash">
+                            {{-- <li class="d-flex align-items-center justify-content-between"><span><i
+                                        class="la la-clock mr-2 text-color"></i>Duration</span> 2.5 hours</li> --}}
+                            <li class="d-flex align-items-center justify-content-between"><span><i
+                                        class="la la-play-circle-o mr-2 text-color"></i>Bài giảng</span>
+                                {{ $lessons->count() }}</li>
+                            <li class="d-flex align-items-center justify-content-between"><span><i
+                                        class="la la-file-text-o mr-2 text-color"></i>Tài liệu</span>
+                                {{ $totalDocuments }}</li>
+                            <li class="d-flex align-items-center justify-content-between"><span><i
+                                        class="la la-bolt mr-2 text-color"></i>Bài kiểm tra</span> {{ $totalQuizzes }}
+                            </li>
+                            {{-- <li class="d-flex align-items-center justify-content-between"><span><i
+                                        class="la la-eye mr-2 text-color"></i>Preview Lessons</span> 4</li> --}}
+                            <li class="d-flex align-items-center justify-content-between"><span><i
+                                        class="la la-language mr-2 text-color"></i>Language</span> Tiếng anh</li>
+                            <li class="d-flex align-items-center justify-content-between"><span><i
+                                        class="la la-lightbulb mr-2 text-color"></i>Cấp độ</span>
+                                {{ $level_vi[$course->level] ?? $course->level }}
+                            </li>
+                            </li>
+                            <li class="d-flex align-items-center justify-content-between"><span><i
+                                        class="la la-users mr-2 text-color"></i>Học viên</span> {{ $courseStudents }}
+                            </li>
+                            <li class="d-flex align-items-center justify-content-between"><span><i
+                                        class="la la-certificate mr-2 text-color"></i>Chứng nhận</span> Có</li>
+                        </ul>
+                    </div>
+
+                </div><!-- end card -->
+                <div class="card card-item">
+                    <div class="card-body">
+                        <h3 class="card-title fs-18 pb-2">Danh mục khóa học</h3>
+                        <div class="divider"><span></span></div>
+                        <ul class="generic-list-item">
+                            @foreach ($categories as $category)
+                                <li>
+                                    <a href="{{ route('courses.index') }}">{{ $category->name }}</a>
                                 </li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i
-                                            class="la la-users mr-2 text-color"></i>Students</span> 30,506</li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i
-                                            class="la la-certificate mr-2 text-color"></i>Certificate</span> Yes</li>
-                            </ul>
-                        </div>
-                    </div><!-- end card -->
-                    <div class="card card-item">
-                        <div class="card-body">
-                            <h3 class="card-title fs-18 pb-2">Course Categories</h3>
-                            <div class="divider"><span></span></div>
-                            <ul class="generic-list-item">
-                                <li><a href="#">Development</a></li>
+                            @endforeach
 
-                            </ul>
-                        </div>
-                    </div><!-- end card -->
-                    <div class="card card-item">
+                        </ul>
+                    </div>
+                </div><!-- end card -->
+                <div class="card card-item">
 
-                    </div><!-- end card -->
-                    <div class="card card-item">
-                        <div class="card-body">
-                            <h3 class="card-title fs-18 pb-2">Course Tags</h3>
-                            <div class="divider"><span></span></div>
-                            <ul class="generic-list-item generic-list-item-boxed d-flex flex-wrap fs-15">
-                                <li class="mr-2"><a href="#">Beginner</a></li>
-
-                            </ul>
-                        </div>
-                    </div><!-- end card -->
-                </div><!-- end sidebar -->
-            </div><!-- end col-lg-4 -->
-        </div><!-- end row -->
+                </div><!-- end card -->
+                <div class="card card-item">
+                    <div class="card-body">
+                        <h3 class="card-title fs-18 pb-2">Danh sách cấp độ</h3>
+                        <div class="divider"><span></span></div>
+                        <ul class="generic-list-item generic-list-item-boxed d-flex flex-wrap fs-15">
+                            @foreach ($levels as $level)
+                                <li class="mr-2">
+                                    <a href="{{ route('courses.index', ['level' => $level]) }}">
+                                        {{ $level_vi[$level] ?? ucfirst($level) }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div><!-- end card -->
+            </div><!-- end sidebar -->
+        </div><!-- end col-lg-4 -->
+    </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end course-details-area -->
 <!--======================================
@@ -779,45 +546,57 @@
 <section class="related-course-area bg-gray pt-60px pb-60px">
     <div class="container">
         <div class="related-course-wrap">
-            <h3 class="fs-28 font-weight-semi-bold pb-35px">More Courses by <a href="teacher-detail.html"
-                    class="text-color hover-underline">Tim Buchalka</a></h3>
-            <div class="view-more-carousel-2 owl-action-styled">
-                <div class="card card-item">
-                    <div class="card-image">
-                        <a href="course-details.html" class="d-block">
-                            <img class="card-img-top" src="images/img8.jpg" alt="Card image cap">
-                        </a>
-                        <div class="course-badge-labels">
-                            <div class="course-badge">Bestseller</div>
-                            <div class="course-badge blue">-39%</div>
-                        </div>
-                    </div><!-- end card-image -->
-                    <div class="card-body">
-                        <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">All Levels</h6>
-                        <h5 class="card-title"><a href="course-details.html">The Business Intelligence Analyst Course
-                                2021</a></h5>
-                        <p class="card-text"><a href="teacher-detail.html">Jose Portilla</a></p>
-                        <div class="rating-wrap d-flex align-items-center py-2">
-                            <div class="review-stars">
-                                <span class="rating-number">4.4</span>
-                                <span class="la la-star"></span>
-                                <span class="la la-star"></span>
-                                <span class="la la-star"></span>
-                                <span class="la la-star"></span>
-                                <span class="la la-star-o"></span>
+            <h3 class="fs-28 font-weight-semi-bold pb-35px">Các khóa học khác của <a href="teacher-detail.html"
+                    class="text-color hover-underline">{{ $course->teacher->name }}</a></h3>
+            @if ($otherCourses->count())
+                <div class="view-more-carousel-2 owl-action-styled owl-carousel">
+                    @foreach ($otherCourses as $item)
+                        <div class="card card-item">
+                            <div class="card-image">
+                                <a href="{{ route('course.detail', $item->id) }}" class="d-block">
+                                    <img class="card-img-top"
+                                        src="{{ $item->avatar ? asset('storage/' . $item->avatar) : asset('frontend/images/img8.jpg') }}"
+                                        alt="{{ $item->title }}">
+                                </a>
+                                <div class="course-badge-labels">
+                                    @if ($item->is_hot)
+                                        <div class="course-badge">Hot</div>
+                                    @endif
+                                    @if ($item->is_bestseller)
+                                        <div class="course-badge blue">Bestseller</div>
+                                    @endif
+                                </div>
                             </div>
-                            <span class="rating-total pl-1">(20,230)</span>
-                        </div><!-- end rating-wrap -->
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p class="card-price text-black font-weight-bold">12.99 <span
-                                    class="before-price font-weight-medium">129.99</span></p>
-                            <div class="icon-element icon-element-sm shadow-sm cursor-pointer"
-                                title="Add to Wishlist"><i class="la la-heart-o"></i></div>
-                        </div>
-                    </div><!-- end card-body -->
-                </div><!-- end card -->
+                            <div class="card-body">
+                                <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">{{ $item->level }}</h6>
+                                <h5 class="card-title">
+                                    <a href="{{ route('course.detail', $item->id) }}">{{ $item->title }}</a>
+                                </h5>
+                                <p class="card-text">
+                                    <a href="#">{{ $item->teacher->name }}</a>
+                                </p>
+                                <div class="rating-wrap d-flex align-items-center py-2">
+                                    <div class="review-stars">
+                                        <span
+                                            class="rating-number">{{ number_format($item->rating, 1) ?? '0.0' }}</span>
+                                        {!! str_repeat('<span class="la la-star"></span>', floor($item->rating ?? 0)) !!}
+                                        {!! str_repeat('<span class="la la-star-o"></span>', 5 - floor($item->rating ?? 0)) !!}
+                                    </div>
+                                    <span class="rating-total pl-1">({{ $item->reviews_count ?? 0 }})</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
 
-            </div><!-- end view-more-carousel -->
+                                    <div class="icon-element icon-element-sm shadow-sm cursor-pointer"
+                                        title="Yêu thích">
+                                        <i class="la la-heart-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
         </div><!-- end related-course-wrap -->
     </div><!-- end container -->
 </section><!-- end related-course-area -->

@@ -38,6 +38,7 @@ use App\Http\Controllers\Frontend\Student\CourseStudentController;
 use App\Http\Controllers\Frontend\Student\AboutController;
 use App\Http\Controllers\Frontend\Student\ContactController;
 use App\Http\Controllers\Frontend\Student\CourseDetailController;
+use App\Http\Controllers\Frontend\Student\ReviewController;
 
 // ------------ Login Routes ------------
 Route::get('/admin/login', [AuthSessionController::class, 'showAdminLogin'])->name('admin.login');
@@ -255,6 +256,10 @@ Route::get('/student/courses/filter', [CourseStudentController::class, 'filter']
 
 // Chi tiết khóa học
 Route::get('/course/{id}', [CourseDetailController::class, 'index'])->name('course.detail');
+
+// Đánh giá khóa học
+Route::post('/courses/{id}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
 
 //Trang giới thiệu
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');

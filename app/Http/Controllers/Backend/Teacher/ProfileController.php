@@ -35,11 +35,13 @@ class ProfileController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'description' => 'nullable|string|max:1000',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->description = $request->description;
 
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');

@@ -38,6 +38,9 @@
                         <td>{{ $user->email }}</td>
                     </tr>
                     <tr>
+                        <th>Mô tả:</th>
+                        <td>{{ $user->description ?? '---' }}</td>
+                    <tr>
                         <th>Ngày tạo tài khoản:</th>
                         <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
                     </tr>

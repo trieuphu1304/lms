@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;  
 use App\Models\Section;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SectionController extends Controller
 {
@@ -30,8 +31,10 @@ class SectionController extends Controller
 
     public function create()
     {
+        $teacherId = Auth::id(); 
+        $courses = Course::where('teacher_id', $teacherId)->get();
+
         $template = 'backend.teacher.section.create';
-        $courses = Course::all();
         return view('backend.teacher.master', compact('courses', 'template'));
     }
 
@@ -50,7 +53,9 @@ class SectionController extends Controller
     {
         $template = 'backend.teacher.section.edit';
         $section = Section::findOrFail($id);
-        $courses = Course::all();
+        $teacherId = Auth::id(); 
+        $courses = Course::where('teacher_id', $teacherId)->get();
+
         return view('backend.teacher.master', compact('section', 'courses', 'template'));
     }
 
