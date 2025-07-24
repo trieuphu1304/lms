@@ -35,7 +35,21 @@
 
                 </div><!-- end rating-wrap -->
                 <div class="d-flex justify-content-between align-items-center">
-                    <button class="btn theme-btn">Đăng kí</button>
+                    @if (Auth::check() && Auth::user()->role === 'student')
+                        @if (!$course->students->contains(Auth::id()))
+                            <form action="{{ route('courses.enroll', $course->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn theme-btn w-100 mb-2"><i
+                                        class="la la-success fs-18 mr-1"></i>Đăng ký khóa
+                                    học</button>
+                            </form>
+                        @else
+                            <button class="btn btn-success" disabled>Đã đăng ký</button>
+                        @endif
+                    @else
+                        <a href="{{ route('student.login') }}" class="btn btn-info">Đăng nhập để đăng
+                            ký</a>
+                    @endif
                     <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist"><i
                             class="la la-heart-o"></i></div>
                 </div>

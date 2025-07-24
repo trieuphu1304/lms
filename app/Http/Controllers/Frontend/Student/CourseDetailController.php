@@ -84,6 +84,12 @@ class CourseDetailController extends Controller
                 'percent' => $percent,
             ];
         }
+        $ratingBreakdown = [];
+        foreach ($ratings as $star => $data) {
+            $ratingBreakdown[$star] = $data['count'];
+        }
+
+        $reviews = Review::where('course_id', $id)->latest()->paginate(5);
 
         $user = $course->teacher;
 
@@ -105,7 +111,9 @@ class CourseDetailController extends Controller
             'otherCourses',
             'averageRating',
             'totalReviews',
-            'ratings'
+            'ratings',
+            'ratingBreakdown',
+            'reviews'
         ));
     }
 }

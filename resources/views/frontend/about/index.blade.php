@@ -390,7 +390,7 @@
             <div class="col-lg-3 responsive-column-half">
                 <div class="card card-item member-card text-center">
                     <div class="card-image">
-                        <img class="card-img-top1" src="{{ asset('frontend/images/small-avatar-8.jpg') }}"
+                        <img class="card-img-top1" src="{{ asset('frontend/images/small-avatar-2.jpg') }}"
                             alt="team member">
                     </div>
                     <div class="card-body">

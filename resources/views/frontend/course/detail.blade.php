@@ -194,7 +194,7 @@
                     </div><!-- end instructor-wrap -->
                 </div><!-- end course-overview-card -->
                 <div class="course-overview-card pt-4">
-                    <h3 class="fs-24 font-weight-semi-bold pb-40px">Student feedback</h3>
+                    <h3 class="fs-24 font-weight-semi-bold pb-40px">Đánh giá của học viên</h3>
                     <div class="feedback-wrap">
                         <div class="media media-card align-items-center">
                             <div class="review-rating-summary">
@@ -212,7 +212,7 @@
                                         @endfor
                                     </div>
                                     <span class="rating-total d-block">({{ $totalReviews }})</span>
-                                    <span>Course Rating</span>
+                                    <span>Đánh giá</span>
                                 </div>
                             </div>
                             <div class="media-body">
@@ -241,104 +241,90 @@
                     </div>
                 </div>
 
-                <div class="course-overview-card pt-4">
-                    <h3 class="fs-24 font-weight-semi-bold pb-4">Reviews</h3>
-                    <div class="review-wrap">
-                        <div class="d-flex flex-wrap align-items-center pb-4">
-                            <form method="post" class="mr-3 flex-grow-1">
-                                <div class="form-group">
-                                    <input class="form-control form--control pl-3" type="text" name="search"
-                                        placeholder="Search reviews">
-                                    <span class="la la-search search-icon"></span>
+                @foreach ($course->reviews as $review)
+                    <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
+                        <div class="media-img mr-4 rounded-full">
+                            <img class="rounded-full lazy" src="{{ asset('images/img-loading.png') }}"
+                                data-src="{{ asset('images/default-avatar.png') }}" alt="User image">
+                        </div>
+                        <div class="media-body">
+                            <div class="d-flex flex-wrap align-items-center justify-content-between pb-1">
+                                <h5>{{ $review->name }}</h5>
+                                <div class="review-stars">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <span
+                                            class="la la-star {{ $i <= $review->rating ? 'text-warning' : 'text-muted' }}"></span>
+                                    @endfor
                                 </div>
-                            </form>
-                            <div class="select-container mb-3">
-                                <select class="select-container-select">
-                                    <option value="all-rating">All ratings</option>
-                                    <option value="five-star">Five stars</option>
-                                    <option value="four-star">Four stars</option>
-                                    <option value="three-star">Three stars</option>
-                                    <option value="two-star">Two stars</option>
-                                    <option value="one-star">One star</option>
-                                </select>
+                            </div>
+                            <span class="d-block lh-18 pb-2">{{ $review->created_at->diffForHumans() }}</span>
+                            <p class="pb-2">{{ $review->message }}</p>
+                            <div class="helpful-action">
+                                <span class="d-block fs-13">Đánh giá này có hữu ích không?</span>
+                                <button class="btn">Có</button>
+                                <button class="btn">Không</button>
+                                <span class="btn-text fs-14 cursor-pointer pl-1" data-toggle="modal"
+                                    data-target="#reportModal">Báo cáo</span>
                             </div>
                         </div>
-                        <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
-                            <div class="media-img mr-4 rounded-full">
-                                <img class="rounded-full lazy" src="images/img-loading.png"
-                                    data-src="images/small-avatar-1.jpg" alt="User image">
-                            </div>
-                            <div class="media-body">
-                                <div class="d-flex flex-wrap align-items-center justify-content-between pb-1">
-                                    <h5>Kavi arasan</h5>
-                                    <div class="review-stars">
-                                        <span class="la la-star"></span>
-                                        <span class="la la-star"></span>
-                                        <span class="la la-star"></span>
-                                        <span class="la la-star"></span>
-                                        <span class="la la-star"></span>
-                                    </div>
-                                </div>
-                                <span class="d-block lh-18 pb-2">a month ago</span>
-                                <p class="pb-2">This is one of the best courses I have taken in Udemy. It is very
-                                    complete, and it has made continue learning about Java and SQL databases as
-                                    well.</p>
-                                <div class="helpful-action">
-                                    <span class="d-block fs-13">Was this review helpful?</span>
-                                    <button class="btn">Yes</button>
-                                    <button class="btn">No</button>
-                                    <span class="btn-text fs-14 cursor-pointer pl-1" data-toggle="modal"
-                                        data-target="#reportModal">Report</span>
-                                </div>
-                            </div>
-                        </div><!-- end media -->
-
-                    </div><!-- end review-wrap -->
-                    <div class="see-more-review-btn text-center">
-                        <button type="button" class="btn theme-btn theme-btn-transparent">Load more
-                            reviews</button>
                     </div>
-                </div><!-- end course-overview-card -->
+                @endforeach
+
+                {{ $reviews->links() }}
+
                 <div class="course-overview-card pt-4">
-                    <h3 class="fs-24 font-weight-semi-bold pb-4">Add a Review</h3>
-
-                    <!-- Đánh giá sao -->
-                    <div class="leave-rating-wrap pb-4">
-                        <div class="leave-rating leave--rating">
-                            @for ($i = 5; $i >= 1; $i--)
-                                <input type="radio" name="rate" id="star{{ $i }}"
-                                    value="{{ $i }}" />
-                                <label for="star{{ $i }}"></label>
-                            @endfor
+                    @if ($errors->any())
+                        <div class="alert alert-danger mt-3">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                    </div>
-
-                    <!-- Form đánh giá -->
-                    <form method="POST" action="{{ route('reviews.store', $course->id) }}" class="row"
-                        id="reviewForm">
+                    @endif
+                    <form method="POST" action="{{ route('reviews.store', $course->id) }}" id="reviewForm">
                         @csrf
-                        <div class="input-box col-lg-6">
-                            <label class="label-text">Tên</label>
-                            <div class="form-group">
-                                <input class="form-control form--control" type="text" name="name"
-                                    value="{{ Auth::check() ? Auth::user()->name : '' }}" placeholder="Tên của bạn"
-                                    {{ Auth::check() ? 'readonly' : '' }}>
+                        <h3 class="fs-24 font-weight-semi-bold pb-4">Thêm đánh giá</h3>
+                        <!-- Đánh giá sao -->
+                        <div class="leave-rating-wrap pb-4">
+                            <div class="leave-rating leave--rating">
+                                @for ($i = 5; $i >= 1; $i--)
+                                    <input type="radio" name="rating" id="star{{ $i }}"
+                                        value="{{ $i }}" required />
+                                    <label for="star{{ $i }}"></label>
+                                @endfor
                             </div>
                         </div>
-                        <div class="input-box col-lg-6">
-                            <label class="label-text">Email</label>
-                            <div class="form-group">
-                                <input class="form-control form--control" type="email" name="email"
-                                    value="{{ Auth::check() ? Auth::user()->email : '' }}"
-                                    placeholder="Email của bạn" {{ Auth::check() ? 'readonly' : '' }}>
+
+                        <!-- Tên và Email (trong cùng 1 hàng) -->
+                        <div class="row">
+                            <div class="input-box col-lg-6 mb-3">
+                                <label class="label-text">Tên</label>
+                                <div class="form-group">
+                                    <input class="form-control form--control" type="text" name="name"
+                                        value="{{ Auth::check() ? Auth::user()->name : '' }}"
+                                        placeholder="Tên của bạn" {{ Auth::check() ? 'readonly' : '' }}>
+                                </div>
+                            </div>
+                            <div class="input-box col-lg-6 mb-3">
+                                <label class="label-text">Email</label>
+                                <div class="form-group">
+                                    <input class="form-control form--control" type="email" name="email"
+                                        value="{{ Auth::check() ? Auth::user()->email : '' }}"
+                                        placeholder="Email của bạn" {{ Auth::check() ? 'readonly' : '' }}>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Nội dung đánh giá -->
                         <div class="input-box col-lg-12">
                             <label class="label-text">Nội dung</label>
                             <div class="form-group">
                                 <textarea class="form-control form--control" name="message" placeholder="Viết đánh giá..." rows="5"></textarea>
                             </div>
                         </div>
+
+                        <!-- Check + Submit -->
                         <div class="btn-box col-lg-12">
                             <div class="custom-control custom-checkbox mb-3 fs-15">
                                 <input type="checkbox" class="custom-control-input" id="saveCheckbox" required>
@@ -348,11 +334,15 @@
                             <button class="btn theme-btn" type="submit">Lưu đánh giá</button>
                         </div>
                     </form>
+
                 </div>
                 <script>
+                    let hasReviewed = {{ $course->reviews->where('student_id', Auth::id())->isNotEmpty() ? 'true' : 'false' }};
+
                     document.getElementById('reviewForm').addEventListener('submit', function(e) {
                         let isLoggedIn = {{ Auth::check() ? 'true' : 'false' }};
                         let isEnrolled = {{ Auth::check() && $course->students->contains(Auth::id()) ? 'true' : 'false' }};
+                        let ratingChecked = document.querySelector('input[name="rating"]:checked');
 
                         if (!isLoggedIn) {
                             e.preventDefault();
@@ -360,6 +350,12 @@
                         } else if (!isEnrolled) {
                             e.preventDefault();
                             toastr.warning('Bạn cần đăng ký khóa học này để đánh giá.');
+                        } else if (!ratingChecked) {
+                            e.preventDefault();
+                            toastr.warning('Vui lòng chọn số sao để đánh giá.');
+                        } else if (hasReviewed) {
+                            e.preventDefault();
+                            toastr.error('Bạn đã đánh giá khóa học này rồi.');
                         }
                     });
                 </script>
@@ -417,8 +413,23 @@
                                 <span class="text-color-3">4 days</span> left at this price!
                             </p> --}}
                             <div class="buy-course-btn-box">
-                                <button type="button" class="btn theme-btn w-100 mb-2"><i
-                                        class="la la-shopping-cart fs-18 mr-1"></i> Đăng kí</button>
+                                @if (Auth::check() && Auth::user()->role === 'student')
+                                    @if (!$course->students->contains(Auth::id()))
+                                        <form action="{{ route('courses.enroll', $course->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn theme-btn w-100 mb-2"><i
+                                                    class="la la-success fs-18 mr-1"></i>Đăng ký khóa
+                                                học</button>
+                                        </form>
+                                    @else
+                                        <button class="btn btn-success" disabled>Đã đăng ký</button>
+                                    @endif
+                                @else
+                                    <a href="{{ route('student.login') }}" class="btn btn-info">Đăng nhập để đăng
+                                        ký</a>
+                                @endif
+
+
 
                             </div>
                             <p class="fs-14 text-center pb-4"></p>

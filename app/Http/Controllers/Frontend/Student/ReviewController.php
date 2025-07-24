@@ -12,6 +12,14 @@ class ReviewController extends Controller
 {
     public function store(Request $request, $courseId)
     {
+        // Kiểm tra nếu user đã review rồi
+        $existingReview = Review::where('course_id', $courseId)
+            ->where('student_id', auth()->id())
+            ->first();
+
+        if ($existingReview) {
+            return redirect()->back()->with('error', 'Bạn đã đánh giá khóa học này rồi.');
+        }
         $course = Course::findOrFail($courseId);
 
         // Chỉ cho học viên đã đăng ký mới được đánh giá
@@ -32,6 +40,7 @@ class ReviewController extends Controller
             'rating' => $request->rating,
             'message' => $request->message,
         ]);
+        
 
         return redirect()->back()->with('success', 'Đánh giá của bạn đã được gửi.');
     }

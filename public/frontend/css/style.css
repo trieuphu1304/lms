@@ -3235,9 +3235,16 @@ div.datedropper .picker .pick-lg-b li {
   position: relative;
 }
 
-.leave-rating input {
-  display: none;
+.leave--rating input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
+
+/* .leave-rating input {
+  display: none;
+} */
 
 .leave-rating input:checked~label::before {
   color: #F68A03;
