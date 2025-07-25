@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category; 
 use App\Models\Course;
+use App\Models\Review;
 
 class StudentController extends Controller
 {
@@ -19,8 +20,14 @@ class StudentController extends Controller
         } else {
             $courses = Course::latest()->take(6)->get();
         }
+
+        $reviews = Review::with('student') // eager load student
+            ->where('rating', 5)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         $template = 'frontend.index';
-        return view('frontend.master', compact('template','categories', 'courses', 'categoryId'));
+        return view('frontend.master', compact('template','categories', 'courses', 'categoryId', 'reviews'));
     }
 
     public function ajaxCourses(Request $request)
