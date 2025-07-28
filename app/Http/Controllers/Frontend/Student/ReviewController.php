@@ -8,26 +8,35 @@ use App\Models\Review;
 use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 
+
+
 class ReviewController extends Controller
 {
     public function store(Request $request, $courseId)
     {
-        // Kiểm tra nếu user đã review rồi
+        // Trả lỗi nếu chưa đăng nhập
+        if (!auth()->check()) {
+            return response()->json(['message' => 'Bạn chưa đăng nhập.'], 401);
+        }
+
+        $course = Course::with('students')->findOrFail($courseId);
+
+        // Chỉ cho học viên đã đăng ký
+        if (!$course->students->contains(Auth::id())) {
+            return response()->json(['message' => 'Bạn chưa đăng ký khóa học này.'], 403);
+        }
+
+        // Đã review chưa?
         $existingReview = Review::where('course_id', $courseId)
             ->where('student_id', auth()->id())
             ->first();
 
         if ($existingReview) {
-            return redirect()->back()->with('error', 'Bạn đã đánh giá khóa học này rồi.');
-        }
-        $course = Course::findOrFail($courseId);
-
-        // Chỉ cho học viên đã đăng ký mới được đánh giá
-        if (!$course->students->contains(Auth::id())) {
-            return redirect()->back()->with('error', 'Bạn chưa đăng ký khóa học này.');
+            return response()->json(['message' => 'Bạn đã đánh giá khóa học này rồi.'], 409);
         }
 
-        $request->validate([
+        // Validate dữ liệu
+        $validated = $request->validate([
             'rating' => 'required|integer|min:1|max:5',
             'message' => 'nullable|string|max:2000',
         ]);
@@ -37,11 +46,22 @@ class ReviewController extends Controller
             'student_id' => Auth::id(),
             'name' => Auth::user()->name,
             'email' => Auth::user()->email,
-            'rating' => $request->rating,
-            'message' => $request->message,
+            'rating' => $validated['rating'],
+            'message' => $validated['message'] ?? null,
         ]);
-        
 
-        return redirect()->back()->with('success', 'Đánh giá của bạn đã được gửi.');
+        return response()->json(['message' => 'Đánh giá của bạn đã được gửi thành công!']);
     }
+
+    public function fetch($id)
+    {
+        $reviews = Review::where('course_id', $id)
+            ->latest()
+            ->take(5) // hoặc paginate nếu cần
+            ->get();
+
+        return view('frontend.course.components.review', compact('reviews'));
+    }
+
+
 }

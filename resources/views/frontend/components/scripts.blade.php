@@ -15,7 +15,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-
+<script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
 
 <script>
     $(document).ready(function() {
@@ -86,6 +86,32 @@
                     }
                 }
             });
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        $(".testimonial-carousel").owlCarousel({
+            loop: true,
+            margin: 30,
+            nav: false,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            items: 2, // hoặc 1 nếu bạn muốn hiển thị từng cái
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 2
+                },
+                992: {
+                    items: 3
+                }
+            }
         });
     });
 </script>

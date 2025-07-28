@@ -15,54 +15,55 @@
                     <h6 class="ribbon ribbon-lg mr-2 bg-3 text-white">Hot</h6>
                     <div class="rating-wrap d-flex flex-wrap align-items-center">
                         <div class="review-stars">
-                            <span class="rating-number">4.4</span>
-                            <span class="la la-star"></span>
-                            <span class="la la-star"></span>
-                            <span class="la la-star"></span>
-                            <span class="la la-star"></span>
-                            <span class="la la-star-o"></span>
+                            <span class="rating-number">{{ number_format($averageRating ?? 0, 1) }}</span>
+                            @php
+                                $rating = floor($averageRating ?? 0);
+                            @endphp
+                            {!! str_repeat('<span class="la la-star"></span>', $rating) !!}
+                            {!! str_repeat('<span class="la la-star-o"></span>', 5 - $rating) !!}
                         </div>
-                        <span class="rating-total pl-1">(20,230 đánh giá)</span>
-                        <span class="student-total pl-2">540,815 học viên</span>
+                        <span class="rating-total pl-1">({{ $totalReviews ?? 0 }})</span>
                     </div>
-                </div><!-- end d-flex -->
-                <p class="pt-2 pb-1">Giáo viên phụ trách <a href="teacher-detail.html"
-                        class="text-color hover-underline">{{ $course->teacher->name }}</a></p>
-                <div class="d-flex flex-wrap align-items-center">
-                    <p class="pr-3 d-flex align-items-center">
-                        <svg class="svg-icon-color-gray mr-1" width="16px" viewBox="0 0 24 24">
-                            <path
-                                d="M23 12l-2.44-2.78.34-3.68-3.61-.82-1.89-3.18L12 3 8.6 1.54 6.71 4.72l-3.61.81.34 3.68L1 12l2.44 2.78-.34 3.69 3.61.82 1.89 3.18L12 21l3.4 1.46 1.89-3.18 3.61-.82-.34-3.68L23 12zm-10 5h-2v-2h2v2zm0-4h-2V7h2v6z">
-                            </path>
-                        </svg>
-                        Ngày tạo {{ $course->created_at->format('d/m/Y') }}
-                    </p>
-                    <p class="pr-3 d-flex align-items-center">
-                        <svg class="svg-icon-color-gray mr-1" width="16px" viewBox="0 0 24 24">
-                            <path
-                                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95a15.65 15.65 0 00-1.38-3.56A8.03 8.03 0 0118.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.987 7.987 0 015.08 16zm2.95-8H5.08a7.987 7.987 0 014.33-3.56A15.65 15.65 0 008.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 01-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z">
-                            </path>
-                        </svg>
-                        English
-                    </p>
-                </div><!-- end d-flex -->
-                <div class="bread-btn-box pt-3">
-                    <button class="btn theme-btn theme-btn-sm theme-btn-transparent lh-28 mr-2 mb-2">
-                        <i class="la la-heart-o mr-1"></i>
-                        <span class="swapping-btn" data-text-swap="Wishlisted" data-text-original="Wishlist">Yêu
-                            thích</span>
-                    </button>
-                    <button class="btn theme-btn theme-btn-sm theme-btn-transparent lh-28 mr-2 mb-2" data-toggle="modal"
-                        data-target="#shareModal">
-                        <i class="la la-share mr-1"></i>Chia sẻ
-                    </button>
-                    <button class="btn theme-btn theme-btn-sm theme-btn-transparent lh-28 mb-2" data-toggle="modal"
-                        data-target="#reportModal">
-                        <i class="la la-flag mr-1"></i>Báo cáo
-                    </button>
+
                 </div>
-            </div><!-- end breadcrumb-content -->
-        </div><!-- end col-lg-8 -->
+            </div><!-- end d-flex -->
+            <p class="pt-2 pb-1">Giáo viên phụ trách <a href="teacher-detail.html"
+                    class="text-color hover-underline">{{ $course->teacher->name }}</a></p>
+            <div class="d-flex flex-wrap align-items-center">
+                <p class="pr-3 d-flex align-items-center">
+                    <svg class="svg-icon-color-gray mr-1" width="16px" viewBox="0 0 24 24">
+                        <path
+                            d="M23 12l-2.44-2.78.34-3.68-3.61-.82-1.89-3.18L12 3 8.6 1.54 6.71 4.72l-3.61.81.34 3.68L1 12l2.44 2.78-.34 3.69 3.61.82 1.89 3.18L12 21l3.4 1.46 1.89-3.18 3.61-.82-.34-3.68L23 12zm-10 5h-2v-2h2v2zm0-4h-2V7h2v6z">
+                        </path>
+                    </svg>
+                    Ngày tạo {{ $course->created_at->format('d/m/Y') }}
+                </p>
+                <p class="pr-3 d-flex align-items-center">
+                    <svg class="svg-icon-color-gray mr-1" width="16px" viewBox="0 0 24 24">
+                        <path
+                            d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95a15.65 15.65 0 00-1.38-3.56A8.03 8.03 0 0118.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.987 7.987 0 015.08 16zm2.95-8H5.08a7.987 7.987 0 014.33-3.56A15.65 15.65 0 008.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 01-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z">
+                        </path>
+                    </svg>
+                    English
+                </p>
+            </div><!-- end d-flex -->
+            <div class="bread-btn-box pt-3">
+                <button class="btn theme-btn theme-btn-sm theme-btn-transparent lh-28 mr-2 mb-2">
+                    <i class="la la-heart-o mr-1"></i>
+                    <span class="swapping-btn" data-text-swap="Wishlisted" data-text-original="Wishlist">Yêu
+                        thích</span>
+                </button>
+                <button class="btn theme-btn theme-btn-sm theme-btn-transparent lh-28 mr-2 mb-2" data-toggle="modal"
+                    data-target="#shareModal">
+                    <i class="la la-share mr-1"></i>Chia sẻ
+                </button>
+                <button class="btn theme-btn theme-btn-sm theme-btn-transparent lh-28 mb-2" data-toggle="modal"
+                    data-target="#reportModal">
+                    <i class="la la-flag mr-1"></i>Báo cáo
+                </button>
+            </div>
+        </div><!-- end breadcrumb-content -->
+    </div><!-- end col-lg-8 -->
     </div><!-- end container -->
 </section><!-- end breadcrumb-area -->
 <!-- ================================
@@ -117,21 +118,46 @@
                                             data-parent="#accordion">
                                             <div class="card-body">
                                                 <ul class="generic-list-item">
+                                                    @php
+                                                        $enrolled = $course->students->contains(Auth::id());
+                                                    @endphp
+
                                                     @foreach ($course->sections[0]->lessons as $lesson)
                                                         <li>
-                                                            <a href="#"
-                                                                class="d-flex align-items-center justify-content-between text-color"
-                                                                data-toggle="modal" data-target="#previewModal">
-                                                                <span>
-                                                                    <i class="la la-play-circle mr-1"></i>
-                                                                    {{ $lesson->title }}
-                                                                    <span class="ribbon ml-2 fs-13"></span>
-                                                                </span>
-                                                                {{-- <span>Thời gian khóa học</span> --}}
-                                                            </a>
+                                                            @if ($enrolled)
+                                                                <a href="{{ route('lessons.show', $lesson->id) }}"
+                                                                    class="d-flex align-items-center justify-content-between text-color">
+                                                                    <span>
+                                                                        <i class="la la-play-circle mr-1"></i>
+                                                                        {{ $lesson->title }}
+                                                                        <span class="ribbon ml-2 fs-13"></span>
+                                                                    </span>
+                                                                </a>
+                                                            @else
+                                                                <a href="#"
+                                                                    class="d-flex align-items-center justify-content-between text-color not-enrolled"
+                                                                    data-lesson="{{ $lesson->title }}">
+                                                                    <span>
+                                                                        <i class="la la-play-circle mr-1"></i>
+                                                                        {{ $lesson->title }}
+                                                                        <span class="ribbon ml-2 fs-13"></span>
+                                                                    </span>
+                                                                </a>
+                                                            @endif
                                                         </li>
                                                     @endforeach
+
                                                 </ul>
+                                                <script>
+                                                    document.querySelectorAll('.not-enrolled').forEach(function(link) {
+                                                        link.addEventListener('click', function(e) {
+                                                            e.preventDefault();
+                                                            const lesson = this.getAttribute('data-lesson') || 'bài giảng';
+                                                            toastr.warning(`Bạn cần đăng ký khóa học để xem "${lesson}".`);
+                                                        });
+                                                    });
+                                                </script>
+
                                             </div><!-- end card-body -->
                                         </div><!-- end collapse -->
                                     </div><!-- end card -->
@@ -155,8 +181,7 @@
                                             alt="Avatar Teacher">
                                     @else
                                         <img class="lazy" src="{{ asset('storage/default-avatar.jpg') }}"
-                                            data-src="{{ asset('storage/default-avatar.jpg') }}"
-                                            alt="Default Avatar">
+                                            data-src="{{ asset('storage/default-avatar.jpg') }}" alt="Default Avatar">
                                     @endif
 
                                 </a>
@@ -240,35 +265,38 @@
                         </div>
                     </div>
                 </div>
-
-                @foreach ($course->reviews as $review)
-                    <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
-                        <div class="media-img mr-4 rounded-full">
-                            <img class="rounded-full lazy" src="{{ asset('images/img-loading.png') }}"
-                                data-src="{{ asset('images/default-avatar.png') }}" alt="User image">
-                        </div>
-                        <div class="media-body">
-                            <div class="d-flex flex-wrap align-items-center justify-content-between pb-1">
-                                <h5>{{ $review->name }}</h5>
-                                <div class="review-stars">
-                                    @for ($i = 1; $i <= 5; $i++)
-                                        <span
-                                            class="la la-star {{ $i <= $review->rating ? 'text-warning' : 'text-muted' }}"></span>
-                                    @endfor
+                <div id="reviewList">
+                    @foreach ($course->reviews as $review)
+                        <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
+                            <div class="media-img mr-4 rounded-full">
+                                <img class="rounded-full lazy" src="{{ asset('images/img-loading.png') }}"
+                                    data-src="{{ asset('images/default-avatar.png') }}" alt="User image">
+                            </div>
+                            <div class="media-body">
+                                <div class="d-flex flex-wrap align-items-center justify-content-between pb-1">
+                                    <h5>{{ $review->name }}</h5>
+                                    <div class="review-stars">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <span
+                                                class="la la-star {{ $i <= $review->rating ? 'text-warning' : 'text-muted' }}"></span>
+                                        @endfor
+                                    </div>
+                                </div>
+                                <span class="d-block lh-18 pb-2">{{ $review->created_at->diffForHumans() }}</span>
+                                <p class="pb-2">{{ $review->message }}</p>
+                                <div class="helpful-action">
+                                    <span class="d-block fs-13">Đánh giá này có hữu ích không?</span>
+                                    <button class="btn">Có</button>
+                                    <button class="btn">Không</button>
+                                    <span class="btn-text fs-14 cursor-pointer pl-1" data-toggle="modal"
+                                        data-target="#reportModal">Báo cáo</span>
                                 </div>
                             </div>
-                            <span class="d-block lh-18 pb-2">{{ $review->created_at->diffForHumans() }}</span>
-                            <p class="pb-2">{{ $review->message }}</p>
-                            <div class="helpful-action">
-                                <span class="d-block fs-13">Đánh giá này có hữu ích không?</span>
-                                <button class="btn">Có</button>
-                                <button class="btn">Không</button>
-                                <span class="btn-text fs-14 cursor-pointer pl-1" data-toggle="modal"
-                                    data-target="#reportModal">Báo cáo</span>
-                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
+
+
 
                 {{ $reviews->links() }}
 
@@ -285,18 +313,19 @@
                     <form method="POST" action="{{ route('reviews.store', $course->id) }}" id="reviewForm">
                         @csrf
                         <h3 class="fs-24 font-weight-semi-bold pb-4">Thêm đánh giá</h3>
+
                         <!-- Đánh giá sao -->
                         <div class="leave-rating-wrap pb-4">
                             <div class="leave-rating leave--rating">
                                 @for ($i = 5; $i >= 1; $i--)
                                     <input type="radio" name="rating" id="star{{ $i }}"
-                                        value="{{ $i }}" required />
+                                        value="{{ $i }}" required>
                                     <label for="star{{ $i }}"></label>
                                 @endfor
                             </div>
                         </div>
 
-                        <!-- Tên và Email (trong cùng 1 hàng) -->
+                        <!-- Tên và Email -->
                         <div class="row">
                             <div class="input-box col-lg-6 mb-3">
                                 <label class="label-text">Tên</label>
@@ -324,7 +353,7 @@
                             </div>
                         </div>
 
-                        <!-- Check + Submit -->
+                        <!-- Checkbox + Submit -->
                         <div class="btn-box col-lg-12">
                             <div class="custom-control custom-checkbox mb-3 fs-15">
                                 <input type="checkbox" class="custom-control-input" id="saveCheckbox" required>
@@ -335,30 +364,78 @@
                         </div>
                     </form>
 
+
                 </div>
                 <script>
-                    let hasReviewed = {{ $course->reviews->where('student_id', Auth::id())->isNotEmpty() ? 'true' : 'false' }};
-
                     document.getElementById('reviewForm').addEventListener('submit', function(e) {
+                        e.preventDefault();
+
+                        let form = e.target;
+                        let formData = new FormData(form);
+
                         let isLoggedIn = {{ Auth::check() ? 'true' : 'false' }};
                         let isEnrolled = {{ Auth::check() && $course->students->contains(Auth::id()) ? 'true' : 'false' }};
+                        let hasReviewed =
+                            {{ $course->reviews->where('student_id', Auth::id())->isNotEmpty() ? 'true' : 'false' }};
                         let ratingChecked = document.querySelector('input[name="rating"]:checked');
 
                         if (!isLoggedIn) {
-                            e.preventDefault();
                             toastr.error('Bạn cần đăng nhập để đánh giá khóa học.');
-                        } else if (!isEnrolled) {
-                            e.preventDefault();
-                            toastr.warning('Bạn cần đăng ký khóa học này để đánh giá.');
-                        } else if (!ratingChecked) {
-                            e.preventDefault();
-                            toastr.warning('Vui lòng chọn số sao để đánh giá.');
-                        } else if (hasReviewed) {
-                            e.preventDefault();
-                            toastr.error('Bạn đã đánh giá khóa học này rồi.');
+                            return;
                         }
+                        if (!isEnrolled) {
+                            toastr.warning('Bạn cần đăng ký khóa học này để đánh giá.');
+                            return;
+                        }
+                        if (!ratingChecked) {
+                            toastr.warning('Vui lòng chọn số sao để đánh giá.');
+                            return;
+                        }
+                        if (hasReviewed) {
+                            toastr.error('Bạn đã đánh giá khóa học này rồi.');
+                            return;
+                        }
+
+                        fetch(form.action, {
+                                method: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                    'Accept': 'application/json',
+                                },
+                                body: formData
+                            })
+                            .then(response => {
+                                if (!response.ok) throw response;
+                                return response.json();
+                            })
+                            .then(data => {
+                                toastr.success(data.message);
+                                form.reset();
+
+                                // Gọi lại danh sách review
+                                fetch(`{{ route('reviews.fetch', $course->id) }}`)
+                                    .then(res => res.text())
+                                    .then(html => {
+                                        document.getElementById('reviewList').innerHTML = html;
+                                    });
+                            })
+                            .catch(async error => {
+                                if (error.status === 422) {
+                                    const res = await error.json();
+                                    for (let key in res.errors) {
+                                        toastr.error(res.errors[key][0]);
+                                    }
+                                } else if (error.status === 409) {
+                                    const res = await error.json();
+                                    toastr.error(res.message);
+                                } else {
+                                    toastr.error('Đã xảy ra lỗi khi gửi đánh giá.');
+                                }
+                            });
                     });
                 </script>
+
+
 
 
 
@@ -579,7 +656,8 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">{{ $item->level }}</h6>
+                                <h6 class="ribbon ribbon-blue-bg fs-14 mb-3 {{ $level_class[$course->level] ?? '' }}">
+                                    {{ $level_vi[$item->level] ?? $item->level }}</h6>
                                 <h5 class="card-title">
                                     <a href="{{ route('course.detail', $item->id) }}">{{ $item->title }}</a>
                                 </h5>
@@ -588,12 +666,15 @@
                                 </p>
                                 <div class="rating-wrap d-flex align-items-center py-2">
                                     <div class="review-stars">
-                                        <span
-                                            class="rating-number">{{ number_format($item->rating, 1) ?? '0.0' }}</span>
-                                        {!! str_repeat('<span class="la la-star"></span>', floor($item->rating ?? 0)) !!}
-                                        {!! str_repeat('<span class="la la-star-o"></span>', 5 - floor($item->rating ?? 0)) !!}
+                                        <span class="rating-number">{{ number_format($item->ratings ?? 0, 1) }}</span>
+                                        @php
+                                            $rating = floor($item->ratings ?? 0);
+                                        @endphp
+                                        {!! str_repeat('<span class="la la-star"></span>', $rating) !!}
+                                        {!! str_repeat('<span class="la la-star-o"></span>', 5 - $rating) !!}
                                     </div>
-                                    <span class="rating-total pl-1">({{ $item->reviews_count ?? 0 }})</span>
+
+                                    <span class="rating-total pl-1">({{ $item->reviews->count() ?? 0 }})</span>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
 
@@ -646,15 +727,15 @@
                         <path d="m336 288h-48v32h-104v16h104v32h48v-32h128v-16h-128zm-16 64h-16v-48h16zm0 0"></path>
                     </svg>
                     <div class="section-heading">
-                        <h2 class="section__title mb-1 fs-22">Become a Teacher, Share your knowledge</h2>
-                        <p class="section__desc">Create an online video course, reach students across the globe, and
-                            earn money</p>
+                        <h2 class="section__title mb-1 fs-22">Trở thành giáo viên, Chia sể kiến thức của bạn</h2>
+                        <p class="section__desc">Tạo bài giảng online đến khắp học viên trên thế giới và nhận hoa hồng
+                            xứng đáng</p>
                     </div><!-- end section-heading -->
                 </div>
             </div><!-- end col-lg-9 -->
             <div class="col-lg-3">
                 <div class="cta-btn-box text-right">
-                    <a href="become-a-teacher.html" class="btn theme-btn">Tech on Aduca <i
+                    <a href="become-a-teacher.html" class="btn theme-btn">Giảng dạy với Aduca <i
                             class="la la-arrow-right icon ml-1"></i> </a>
                 </div>
             </div><!-- end col-lg-3 -->

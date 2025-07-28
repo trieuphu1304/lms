@@ -53,4 +53,9 @@ class Course extends Model
         return $this->hasMany(\App\Models\Review::class);
     }
 
+    public function enrollments()
+    {
+        return $this->belongsToMany(Course::class, 'course_student', 'student_id', 'course_id');
+    }
+
 }

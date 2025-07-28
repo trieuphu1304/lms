@@ -40,6 +40,8 @@ use App\Http\Controllers\Frontend\Student\ContactController;
 use App\Http\Controllers\Frontend\Student\CourseDetailController;
 use App\Http\Controllers\Frontend\Student\ReviewController;
 use App\Http\Controllers\Frontend\Student\EnrollmentController;
+use App\Http\Controllers\Frontend\Student\LessonController as LessonStudentController;
+use App\Http\Controllers\Frontend\Student\ProfileController as StudentProfileController;
 
 // ------------ Login Routes ------------
 Route::get('/admin/login', [AuthSessionController::class, 'showAdminLogin'])->name('admin.login');
@@ -246,7 +248,7 @@ Route::post('/student/logout', [AuthSessionController::class, 'studentLogout'])-
 Route::get('/student/register', [RegisteredController::class, 'create'])->name('student.register');
 Route::post('/student/register', [RegisteredController::class, 'store'])->name('student.register.store');
 //Trang chủ
-Route::get('/index', [StudentController::class, 'index'])
+Route::get('/', [StudentController::class, 'index'])
         ->name('student.index');
 Route::get('/ajax/courses', [StudentController::class, 'ajaxCourses'])->name('ajax.courses');
 
@@ -263,7 +265,10 @@ Route::get('/course/{id}', [CourseDetailController::class, 'index'])->name('cour
 
 // Đánh giá khóa học
 Route::post('/courses/{id}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::get('/courses/{id}/reviews', [ReviewController::class, 'fetch'])->name('reviews.fetch');
 
+//Chi tiết bài học
+Route::get('/lessons/{id}', [LessonStudentController::class, 'show'])->name('lessons.show');
 
 //Trang giới thiệu
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
@@ -271,3 +276,10 @@ Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 //Trang liên hệ
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
+
+//Thông tin cá nhân
+Route::get('/profile', [StudentProfileController::class, 'show'])->name('student.profile');
+Route::get('/profile/edit', [StudentProfileController::class, 'edit'])->name('student.profile.edit');
+Route::post('/profile/update', [StudentProfileController::class, 'update'])->name('student.profile.update');
+Route::get('/change-password', [StudentProfileController::class, 'showChangePassword'])->name('student.change_password');
+Route::post('/change-password', [StudentProfileController::class, 'updatePassword'])->name('student.update_password');

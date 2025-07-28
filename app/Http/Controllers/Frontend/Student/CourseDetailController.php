@@ -34,11 +34,18 @@ class CourseDetailController extends Controller
         $categories = Category::withCount('courses')->latest()->take(6)->get();
 
         // Lấy các khóa học khác của giáo viên (trừ khóa hiện tại)
-        $otherCourses = Course::where('teacher_id', $course->teacher_id)
+        $otherCourses = Course::with('reviews') // Load reviews
+            ->where('teacher_id', $course->teacher_id)
             ->where('id', '!=', $course->id)
             ->latest()
             ->take(6)
-            ->get();
+            ->get()
+            ->map(function ($course) {
+                // Gán giá trị ratings trung bình để dùng ở view
+                $course->ratings = round($course->reviews->avg('rating'), 1) ?? 0;
+                return $course;
+            });
+
 
         // Tổng số học viên của giáo viên (duy nhất)
         $totalStudents = DB::table('course_student')

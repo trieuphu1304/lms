@@ -21,13 +21,12 @@ class StudentController extends Controller
             $courses = Course::latest()->take(6)->get();
         }
 
-        $reviews = Review::with('student') // eager load student
-            ->where('rating', 5)
-            ->orderBy('created_at', 'desc')
-            ->get();
-
+        $testimonials = Review::with(['student', 'course']) 
+            ->latest()
+            ->take(10)
+            ->get();    
         $template = 'frontend.index';
-        return view('frontend.master', compact('template','categories', 'courses', 'categoryId', 'reviews'));
+        return view('frontend.master', compact('template','categories', 'courses', 'categoryId', 'testimonials'));
     }
 
     public function ajaxCourses(Request $request)

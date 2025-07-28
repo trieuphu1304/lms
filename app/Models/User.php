@@ -4,6 +4,17 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\QuizResult;
+use App\Models\Feedback;
+use App\Models\Notification;
+use App\Models\Certificate;
+use App\Models\Lesson;
+use App\Models\Course;
+use App\Models\Section;
+use App\Models\Category;
+use App\Models\Review;
+
 
 class User extends Authenticatable
 {
@@ -56,5 +67,20 @@ class User extends Authenticatable
             ->withPivot('is_completed')
             ->wherePivot('is_completed', true);
     }
+
+    public function enrollments()
+    {
+        return $this->belongsToMany(Course::class, 'course_student', 'student_id', 'course_id')
+            ->withTimestamps()
+            ->withPivot(['enrolled_at', 'progress', 'completed_at']); // nếu muốn dùng thêm các cột này
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'student_id');
+    }
+
+
+    
 
 }

@@ -27,5 +27,6 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-
+<link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
 <!-- end inject -->
