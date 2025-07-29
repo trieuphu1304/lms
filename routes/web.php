@@ -42,6 +42,7 @@ use App\Http\Controllers\Frontend\Student\ReviewController;
 use App\Http\Controllers\Frontend\Student\EnrollmentController;
 use App\Http\Controllers\Frontend\Student\LessonController as LessonStudentController;
 use App\Http\Controllers\Frontend\Student\ProfileController as StudentProfileController;
+use App\Http\Controllers\Frontend\Student\MyCourseController;
 
 // ------------ Login Routes ------------
 Route::get('/admin/login', [AuthSessionController::class, 'showAdminLogin'])->name('admin.login');
@@ -278,8 +279,11 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact.index
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
 //Thông tin cá nhân
-Route::get('/profile', [StudentProfileController::class, 'show'])->name('student.profile');
+Route::get('/student/profile', [StudentProfileController::class, 'show'])->name('student.profile');
 Route::get('/profile/edit', [StudentProfileController::class, 'edit'])->name('student.profile.edit');
 Route::post('/profile/update', [StudentProfileController::class, 'update'])->name('student.profile.update');
 Route::get('/change-password', [StudentProfileController::class, 'showChangePassword'])->name('student.change_password');
 Route::post('/change-password', [StudentProfileController::class, 'updatePassword'])->name('student.update_password');
+
+//Khóa học của tôi
+Route::get('/my-courses', [MyCourseController::class, 'index'])->name('student.courses');

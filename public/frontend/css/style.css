@@ -3254,6 +3254,24 @@ div.datedropper .picker .pick-lg-b li {
   content: "Awful!";
 }
 
+.my-course-filter-item {
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.my-course-filter-item {
+  margin-right: 65px;
+  flex-shrink: 0;
+}
+
+.select-container {
+  width: 160px;
+}
+
+.select-container-select {
+  min-width: 160px;
+}
+
 .leave-rating input:nth-of-type(4):checked~.rating-result-text::before {
   content: "Poor!";
 }

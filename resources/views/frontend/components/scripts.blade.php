@@ -115,3 +115,37 @@
         });
     });
 </script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('filterForm');
+
+        if (!form) {
+            console.error('Không tìm thấy form với id filterForm');
+            return;
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const params = new URLSearchParams(formData).toString();
+            const url = form.action + '?' + params;
+
+            fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('course-list').innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Lỗi:', error);
+                });
+        });
+    });
+</script>
