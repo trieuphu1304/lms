@@ -22,9 +22,7 @@
                             <tr>
                                 <td>{{ $student->name }}</td>
                                 <td>{{ $student->email }}</td>
-                                <td>
-                                    {{ $student->pivot->progress ?? 0 }}%
-                                </td>
+                                <td>{{ $student->pivot->progress ?? 0 }}%</td>
                             </tr>
                         @empty
                             <tr>
@@ -36,4 +34,5 @@
             </div>
         </div>
     @endforeach
+
 </div>
