@@ -267,10 +267,14 @@
                 </div>
                 <div id="reviewList">
                     @foreach ($course->reviews as $review)
+                        @php
+                            $student = $review->student;
+                        @endphp
                         <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
                             <div class="media-img mr-4 rounded-full">
                                 <img class="rounded-full lazy" src="{{ asset('images/img-loading.png') }}"
-                                    data-src="{{ asset('images/default-avatar.png') }}" alt="User image">
+                                    data-src="{{ $student && $student->avatar ? asset('storage/' . $student->avatar) : asset('frontend/images/default-course.jpg') }}"
+                                    alt="User image">
                             </div>
                             <div class="media-body">
                                 <div class="d-flex flex-wrap align-items-center justify-content-between pb-1">
