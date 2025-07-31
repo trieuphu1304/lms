@@ -42,6 +42,7 @@ use App\Http\Controllers\Frontend\Student\ReviewController;
 use App\Http\Controllers\Frontend\Student\EnrollmentController;
 use App\Http\Controllers\Frontend\Student\LessonController as LessonStudentController;
 use App\Http\Controllers\Frontend\Student\ProfileController as StudentProfileController;
+use App\Http\Controllers\Frontend\Student\QuizController as StudentQuizController;
 use App\Http\Controllers\Frontend\Student\MyCourseController;
 
 // ------------ Login Routes ------------
@@ -270,6 +271,11 @@ Route::get('/courses/{id}/reviews', [ReviewController::class, 'fetch'])->name('r
 
 //Chi tiết bài học
 Route::get('/lessons/{id}', [LessonStudentController::class, 'show'])->name('lessons.show');
+
+//Bài kiểm tra
+Route::get('/lessons/{lesson}/quiz', [StudentQuizController::class, 'show'])->name('quiz.show');
+Route::post('/lessons/{lesson}/quiz/submit', [StudentQuizController::class, 'submit'])->name('quiz.submit');
+Route::get('/lessons/{lesson}/quiz/result', [StudentQuizController::class, 'result'])->name('quiz.result');
 
 //Trang giới thiệu
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');

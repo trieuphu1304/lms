@@ -371,8 +371,31 @@
                                                                             </div>
                                                                         </div>
                                                                     @endif
-
                                                                 </div>
+                                                                @if ($lessonItem->quizzes && $lessonItem->quizzes->count())
+                                                                    <div class="mt-2 d-flex align-items-center gap-2">
+                                                                        <a href="{{ route('quiz.show', ['lesson' => $lessonItem->id]) }}"
+                                                                            class="btn btn-sm btn-outline-primary">
+                                                                            <i class="la la-question-circle"></i>
+                                                                            Làm bài kiểm tra
+                                                                        </a>
+
+                                                                        @php
+                                                                            $quizDone = $lessonItem->quizzes
+                                                                                ->first()
+                                                                                ->results->where(
+                                                                                    'student_id',
+                                                                                    $studentId,
+                                                                                )
+                                                                                ->isNotEmpty();
+                                                                        @endphp
+                                                                        @if ($quizDone)
+                                                                            <span class="text-success fs-14"><i
+                                                                                    class="la la-check-circle"></i>
+                                                                                Đã làm</span>
+                                                                        @endif
+                                                                    </div>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </li>

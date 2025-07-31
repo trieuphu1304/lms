@@ -9,7 +9,7 @@
 
 
         <div class="d-flex gap-2">
-            <a href="{{ route('teacher.lesson', $lesson->id) }}" class="btn btn-outline-secondary">
+            <a href="{{ route('teacher.lesson', $lesson->course_id) }}" class="btn btn-outline-secondary">
                 <i class="bx bx-arrow-back"></i> Quay lại bài giảng
             </a>
             <a href="{{ route('teacher.quiz.create', $lesson->id) }}" class="btn btn-primary">

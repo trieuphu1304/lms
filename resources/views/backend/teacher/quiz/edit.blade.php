@@ -2,7 +2,7 @@
 
     <div class="page-header d-flex justify-content-between align-items-center mb-3">
         <h3 class="page-title text-primary">Chỉnh sửa bài kiểm tra</h3>
-        <a href="{{ route('teacher.quiz', $quiz->lesson_id) }}" class="btn btn-outline-secondary">
+        <a href="{{ route('teacher.lesson.quizzes', $quiz->lesson_id) }}" class="btn btn-outline-secondary">
             <i class="bx bx-arrow-back"></i> Quay lại
         </a>
     </div>
