@@ -186,10 +186,10 @@
 
                                 </a>
                                 <ul class="generic-list-item pt-3">
-                                    <li><i class="la la-star mr-2 text-color-3"></i> 4.6 Instructor Rating</li>
+                                    <li><i class="la la-star mr-2 text-color-3"></i> 4.6 Sao</li>
                                     <li><i class="la la-user mr-2 text-color-3"></i> {{ $totalStudents }} Học viên
                                     </li>
-                                    <li><i class="la la-comment-o mr-2 text-color-3"></i> 2,533 Reviews</li>
+                                    <li><i class="la la-comment-o mr-2 text-color-3"></i> 2,533 Đánh giá</li>
                                     <li><i class="la la-play-circle-o mr-2 text-color-3"></i> {{ $totalCourses }} Khóa
                                         học</li>
                                     <li><a href="teacher-detail.html"></a></li>

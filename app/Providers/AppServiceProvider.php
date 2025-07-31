@@ -33,16 +33,27 @@ class AppServiceProvider extends ServiceProvider
         // Gửi notifications tới header giáo viên
         View::composer('backend.teacher.components.header', function ($view) {
             if (Auth::check()) {
-                $notifications = Notification::where('user_id', Auth::id())
+                $userId = Auth::id();
+
+                $notifications = Notification::where('user_id', $userId)
                     ->latest()
                     ->take(5)
                     ->get();
+
+                $unreadCount = Notification::where('user_id', $userId)
+                    ->where('is_read', false)
+                    ->count();
             } else {
                 $notifications = collect();
+                $unreadCount = 0;
             }
 
-            $view->with('notifications', $notifications);
+            $view->with([
+                'notifications' => $notifications,
+                'unreadCount' => $unreadCount,
+            ]);
         });
+
 
         // Truyền $category vào header
         View::composer('frontend.components.header', function ($view) {

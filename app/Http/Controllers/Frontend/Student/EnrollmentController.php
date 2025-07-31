@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -20,6 +21,20 @@ class EnrollmentController extends Controller
 
         // Thêm user vào bảng course_student
         $course->students()->attach($user->id);
+
+        // Lấy giáo viên của khóa học
+        $teacherId = $course->teacher_id;
+
+        // Tạo thông báo cho giáo viên
+        Notification::create([
+            'user_id' => $course->teacher_id, // giáo viên nhận thông báo
+            'actor_name' => Auth::user()->name, // học viên tạo thông báo
+            'actor_id'  => $user->id,
+            'title' => 'vừa đăng ký khóa học "' . $course->title . '"',
+            'message' => '', 
+            'is_read' => false,
+        ]);
+
 
         return redirect()->back()->with('success', 'Đăng ký khóa học thành công!');
     }

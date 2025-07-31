@@ -24,8 +24,16 @@
 
     <ul class="nav user-menu">
         <li class="nav-item dropdown noti-dropdown me-2">
-            <a href="#" class="dropdown-toggle nav-link header-nav-list" data-bs-toggle="dropdown">
+            <a href="#" class="dropdown-toggle nav-link header-nav-list position-relative"
+                data-bs-toggle="dropdown" id="notiToggle">
                 <img src="{{ asset('backend/teacher/assets/img/icons/header-icon-05.svg') }}" alt>
+
+                @if ($unreadCount > 0)
+                    <span class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle"
+                        id="notificationBadge">
+                        {{ $unreadCount }}
+                    </span>
+                @endif
             </a>
             <div class="dropdown-menu notifications">
                 <div class="topnav-dropdown-header">
@@ -50,12 +58,14 @@
                                     <div class="media d-flex">
                                         <span class="avatar avatar-sm flex-shrink-0">
                                             <img class="avatar-img rounded-circle" alt="User Image"
-                                                src="{{ asset('storage/' . ($noti->user->avatar ?? 'default.jpg')) }}">
+                                                src="{{ asset('storage/' . ($noti->actor->avatar ?? 'default.jpg')) }}">
+
                                         </span>
                                         <div class="media-body flex-grow-1">
                                             <p class="noti-details">
-                                                <span class="noti-title">{{ $noti->user->name ?? 'Người dùng' }}</span>
+                                                <span class="noti-title">{{ $noti->actor_name ?? 'Học viên' }}</span>
                                                 {{ $noti->title }}
+
                                             </p>
                                             <p class="noti-time">
                                                 <span
@@ -79,6 +89,32 @@
             </div>
 
         </li>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const notiToggle = document.getElementById('notiToggle');
+                const badge = document.getElementById('notificationBadge');
+
+                notiToggle.addEventListener('click', function() {
+                    // Ẩn badge
+                    setTimeout(() => {
+                        if (badge) {
+                            badge.style.display = 'none';
+                        }
+
+                        // Gửi AJAX để mark as read
+                        fetch("{{ route('teacher.notifications.mark_all_read') }}", {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Accept': 'application/json'
+                            }
+                        });
+                    }, 200);
+                });
+            });
+        </script>
+
 
         <li class="nav-item zoom-screen me-2">
             <a href="#" class="nav-link header-nav-list">

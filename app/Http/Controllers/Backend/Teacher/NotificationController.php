@@ -18,6 +18,16 @@ class NotificationController extends Controller
         return view('backend.teacher.master', compact('notifications'));
     }
 
+    public function markAllRead()
+    {
+        Notification::where('user_id', Auth::id())
+            ->where('is_read', false)
+            ->update(['is_read' => true]);
+
+        return response()->json(['success' => true]);
+    }
+
+
     // Xóa tất cả
     public function destroyAll()
     {

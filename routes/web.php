@@ -175,6 +175,7 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('categories/{category}/edit', [TeacherCategoryController::class, 'edit'])->name('teacher.categories.edit');
     Route::put('categories/{category}', [TeacherCategoryController::class, 'update'])->name('teacher.categories.update');
     Route::delete('categories/{category}', [TeacherCategoryController::class, 'destroy'])->name('teacher.categories.destroy');
+   
     // Quản lí bài giảng
     Route::get('/teacher/lesson/{course}', [TeacherLessonController::class, 'index'])->name('teacher.lesson');
     Route::get('/lesson/create', [TeacherLessonController::class, 'create'])->name('teacher.lesson.create');
@@ -226,8 +227,10 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('/teacher/feedback', [TeacherFeedbackController::class, 'index'])->name('teacher.feedback');
     Route::get('/teacher/feedback/{id}', [TeacherFeedbackController::class, 'show'])->name('teacher.feedback.show');
     Route::delete('/teacher/feedback/delete/{id}', [TeacherFeedbackController::class, 'delete'])->name('teacher.feedback.delete');
+    
     //Quản lí thông báo
     Route::get('/teacher/notifications', [TeacherNotificationController::class, 'index'])->name('teacher.notifications.index');
+    Route::post('/teacher/notifications/mark-all-read', [TeacherNotificationController::class, 'markAllRead'])->name('teacher.notifications.mark_all_read');
     Route::delete('/teacher/notifications', [TeacherNotificationController::class, 'destroyAll'])->name('teacher.notifications.delete_all');
 
     //Quản lí lịch học
