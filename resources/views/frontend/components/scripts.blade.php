@@ -149,3 +149,74 @@
         });
     });
 </script>
+
+<script>
+    $(document).ready(function() {
+        let currentCourseId = null;
+        let pollingInterval = null;
+
+        function pollMessages(courseId) {
+            if (pollingInterval) clearInterval(pollingInterval);
+            pollingInterval = setInterval(function() {
+                $.get('/chat/' + courseId + '/messages', function(response) {
+                    let tempDiv = $('<div>').html(response.html);
+                    let newBox = tempDiv.find('.conversation-box').html();
+                    $('.conversation-box').html(newBox);
+                    // Scroll xuống cuối mỗi lần cập nhật
+                    const chatContainer = document.querySelector('.conversation-box');
+                    if (chatContainer) {
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                    }
+                });
+            }, 2000);
+        }
+
+        function loadMessages(courseId, scrollToBottom = true) {
+            currentCourseId = courseId;
+            $.get('/chat/' + courseId + '/messages', function(response) {
+                $('#chat-box').html(response.html);
+                if (scrollToBottom) {
+                    const chatContainer = document.querySelector('.conversation-box');
+                    if (chatContainer) {
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                    }
+                }
+                pollMessages(courseId);
+            });
+        }
+
+        $(document).on('click', '.chat-link', function(e) {
+            e.preventDefault();
+            loadMessages($(this).data('course-id'));
+        });
+
+        $(document).on('submit', '#chat-form', function(e) {
+            e.preventDefault();
+            let form = $(this);
+
+            $.ajax({
+                type: "POST",
+                url: '/chat/' + currentCourseId + '/send',
+                data: form.serialize() + '&course_id=' + currentCourseId,
+                success: function() {
+                    // Sau khi gửi, chỉ reload phần tin nhắn
+                    $.get('/chat/' + currentCourseId + '/messages', function(response) {
+                        let tempDiv = $('<div>').html(response.html);
+                        let newBox = tempDiv.find('.conversation-box').html();
+                        $('.conversation-box').html(newBox);
+                        form[0].reset();
+                        // Scroll xuống cuối
+                        const chatContainer = document.querySelector(
+                            '.conversation-box');
+                        if (chatContainer) {
+                            chatContainer.scrollTop = chatContainer.scrollHeight;
+                        }
+                    });
+                },
+                error: function() {
+                    alert('Lỗi khi gửi tin nhắn!');
+                }
+            });
+        });
+    });
+</script>

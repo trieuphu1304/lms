@@ -14,3 +14,22 @@
 <link rel="stylesheet" href="{{ asset('backend/teacher/assets/plugins/fontawesome/css/all.min.css') }}">
 <link rel="stylesheet" href="{{ asset('backend/teacher/assets/plugins/simple-calendar/simple-calendar.css') }}">
 <link rel="stylesheet" href="{{ asset('backend/teacher/assets/css/style.css') }}">
+
+
+<!-- inject:css -->
+<link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/css/line-awesome.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-select.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/css/fancybox.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/css/tooltipster.bundle.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
+<!-- end inject -->

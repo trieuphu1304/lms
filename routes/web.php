@@ -30,6 +30,8 @@ use App\Http\Controllers\Backend\Teacher\NotificationController as TeacherNotifi
 use App\Http\Controllers\Backend\Teacher\ScheduleController as TeacherScheduleController;
 use App\Http\Controllers\Backend\Teacher\CategoryController as TeacherCategoryController;
 use App\Http\Controllers\Backend\Teacher\SectionController as TeacherSectionController;
+use App\Http\Controllers\Backend\Teacher\TeacherChatController;
+
 
 
 // Student Controllers
@@ -44,6 +46,7 @@ use App\Http\Controllers\Frontend\Student\LessonController as LessonStudentContr
 use App\Http\Controllers\Frontend\Student\ProfileController as StudentProfileController;
 use App\Http\Controllers\Frontend\Student\QuizController as StudentQuizController;
 use App\Http\Controllers\Frontend\Student\MyCourseController;
+use App\Http\Controllers\Frontend\Student\ChatController;
 
 // ------------ Login Routes ------------
 Route::get('/admin/login', [AuthSessionController::class, 'showAdminLogin'])->name('admin.login');
@@ -240,6 +243,15 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('/schedules/edit/{id}', [TeacherScheduleController::class, 'edit'])->name('teacher.schedule.edit');
     Route::put('/schedules/update/{id}', [TeacherScheduleController::class, 'update'])->name('teacher.schedule.update');
     Route::delete('/schedules/delete/{id}', [TeacherScheduleController::class, 'destroy'])->name('teacher.schedule.delete');
+
+    //Chat
+    Route::prefix('teacher/chat')->group(function () {
+    Route::get('/', [TeacherChatController::class, 'index'])->name('teacher.chat.index');
+    Route::get('/students/{course}', [TeacherChatController::class, 'getStudents'])->name('teacher.chat.students');
+    Route::get('/messages/{course}/{student}', [TeacherChatController::class, 'getMessages'])->name('teacher.chat.messages');
+    Route::post('/send', [TeacherChatController::class, 'sendMessage'])->name('teacher.chat.send');
+    });
+
 });
 
 
@@ -296,3 +308,12 @@ Route::post('/change-password', [StudentProfileController::class, 'updatePasswor
 
 //Khóa học của tôi
 Route::get('/my-courses', [MyCourseController::class, 'index'])->name('student.courses');
+
+//Chat
+Route::get('/chat', [ChatController::class, 'index'])->name('chat.index'); // Danh sách khóa học
+Route::get('/chat/{courseId}', [ChatController::class, 'showChat'])->name('chat.course'); // Khung chat
+Route::post('/chat/{courseId}/send', [ChatController::class, 'sendMessage'])->name('chat.send');
+Route::get('/chat/{course}/messages', [ChatController::class, 'loadMessages'])->name('chat.messages');
+
+Route::get('/messages/{receiverId}', [ChatController::class, 'fetchMessages'])->name('fetch');
+Route::post('/send', [ChatController::class, 'sendMessage'])->name('send');

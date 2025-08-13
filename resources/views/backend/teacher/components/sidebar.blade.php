@@ -47,6 +47,13 @@
                         <span> Quản lí lịch trình</span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('teacher.chat.index') }}">
+                        <i class="fas fa-calendar-day"></i>
+                        <span> Chat với học viên</span>
+                    </a>
+                </li>
             </ul>
 
         </div>
