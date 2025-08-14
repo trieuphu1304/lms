@@ -46,7 +46,6 @@ class CourseStudentController extends Controller
         // Lấy các khóa học sau khi lọc
         $courses = Course::paginate(6);
 
-
         $template = 'frontend.course.index';
         return view('frontend.master', compact(
             'template',
@@ -54,7 +53,8 @@ class CourseStudentController extends Controller
             'courses',
             'categories',
             'categoryId',
-            'teachers'
+            'teachers',
+            'wishlistCourses' // thêm dòng này
         ));
     }
     public function filter(Request $request)
@@ -84,5 +84,20 @@ class CourseStudentController extends Controller
         return response()->json(['html' => $html]);
     }
 
-    
+    public function toggleFavorite(Request $request, Course $course)
+    {
+        if (!auth()->check()) {
+            return response()->json(['status' => 'unauthenticated']);
+        }
+        $user = auth()->user();
+        $isFavorited = $user->favoriteCourses()->where('course_id', $course->id)->exists();
+
+        if ($isFavorited) {
+            $user->favoriteCourses()->detach($course->id);
+            return response()->json(['status' => 'removed']);
+        } else {
+            $user->favoriteCourses()->attach($course->id);
+            return response()->json(['status' => 'added']);
+        }
+    }
 }

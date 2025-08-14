@@ -90,6 +90,9 @@ class User extends Authenticatable
         return $this->hasMany(Message::class, 'receiver_id');
     }
 
-    
+    public function favoriteCourses()
+    {
+        return $this->belongsToMany(Course::class, 'favorites');
+    }
 
 }

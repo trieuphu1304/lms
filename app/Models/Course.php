@@ -24,7 +24,10 @@ class Course extends Model
                     ->withTimestamps()
                     ->withPivot(['enrolled_at', 'progress', 'completed_at']);
     }
-
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(User::class, 'favorites');
+    }
 
     public function feedbacks()
     {

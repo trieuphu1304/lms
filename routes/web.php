@@ -315,5 +315,5 @@ Route::get('/chat/{courseId}', [ChatController::class, 'showChat'])->name('chat.
 Route::post('/chat/{courseId}/send', [ChatController::class, 'sendMessage'])->name('chat.send');
 Route::get('/chat/{course}/messages', [ChatController::class, 'loadMessages'])->name('chat.messages');
 
-Route::get('/messages/{receiverId}', [ChatController::class, 'fetchMessages'])->name('fetch');
-Route::post('/send', [ChatController::class, 'sendMessage'])->name('send');
+//Yêu thích khóa học
+Route::post('/courses/{course}/favorite', [CourseStudentController::class, 'toggleFavorite'])->name('courses.favorite');

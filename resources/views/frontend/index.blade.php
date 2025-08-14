@@ -109,9 +109,9 @@
 <!-- ================================
        START BLOG AREA
 ================================= -->
-<section class="blog-area section--padding bg-gray overflow-hidden">
+{{-- <section class="blog-area section--padding bg-gray overflow-hidden">
     @include('frontend.components_index.blog_area')
-</section><!-- end blog-area -->
+</section><!-- end blog-area --> --}}
 <!-- ================================
        START BLOG AREA
 ================================= -->

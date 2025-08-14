@@ -65,7 +65,80 @@
                     </div><!-- end my-course-body -->
                 </div><!-- end tab-pane -->
 
+                <div class="tab-pane fade" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
+                    <div class="my-course-body">
+                        <div class="my-course-info pb-40px d-flex flex-wrap align-items-center justify-content-between">
+                            <h3 class="fs-22 font-weight-semi-bold">Khóa học yêu thích của tôi</h3>
+                            <div class="my-course-filter-item">
+
+                            </div>
+                        </div><!-- end my-course-info -->
+                        <div class="my-course-cards">
+                            <div class="row">
+                                @if ($wishlistCourses->count())
+                                    @foreach ($wishlistCourses as $course)
+                                        <div class="col-lg-4 responsive-column-half mb-4"
+                                            id="wishlist-course-{{ $course->id }}">
+                                            <div class="card card-item h-100 d-flex flex-column">
+                                                <div class="card-image">
+                                                    <a href="{{ route('course.detail', $course->id) }}" class="d-block">
+                                                        <img class="card-img-top lazy"
+                                                            src="{{ $course->avatar ? asset('storage/' . $course->avatar) : asset('frontend/images/img8.jpg') }}"
+                                                            alt="Course image">
+                                                    </a>
+                                                </div>
+                                                <div class="card-body d-flex flex-column">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h5 class="card-title mb-0">
+                                                            <a href="{{ route('course.detail', $course->id) }}">
+                                                                {{ $course->title }}
+                                                            </a>
+                                                        </h5>
+
+                                                    </div>
+                                                    <p class="card-text lh-22 pt-2">
+                                                        {{ $course->teacher->name ?? 'Giáo viên' }}
+                                                    </p>
+                                                    <div class="d-flex justify-content-between align-items-center mt-2">
+                                                        <div class="review-stars">
+                                                            <span
+                                                                class="rating-number">{{ number_format($course->ratings ?? 0, 1) }}</span>
+                                                            @php $rating = floor($course->ratings ?? 0); @endphp
+                                                            {!! str_repeat('<span class="la la-star"></span>', $rating) !!}
+                                                            {!! str_repeat('<span class="la la-star-o"></span>', 5 - $rating) !!}
+                                                        </div>
+                                                        <button class="btn btn-danger btn-sm"
+                                                            onclick="removeFromWishlist({{ $course->id }})"
+                                                            title="Xóa khỏi yêu thích">
+                                                            <i class="la la-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                    {{-- Pagination --}}
+                                    <div class="col-12">
+                                        <div class="text-center pt-3">
+                                            {{ $courses->links('pagination::bootstrap-4') }}
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="col-12">
+                                        <div class="alert alert-warning text-center">
+                                            <i class="la la-info-circle mr-1"></i> Không có khóa học nào phù hợp với
+                                            tiêu chí lọc.
+                                        </div>
+                                    </div>
+                                @endif
+                            </div><!-- end row -->
+                        </div><!-- end my-course-cards -->
+                    </div><!-- end my-course-body -->
+                </div><!-- end tab-pane -->
             </div><!-- end tab-content -->
+
+
         </div>
     </div><!-- end container -->
 </section><!-- end my-courses-area -->

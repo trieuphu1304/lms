@@ -220,3 +220,48 @@
         });
     });
 </script>
+
+<script>
+    $(document).on('click', '.favorite-btn', function() {
+        var btn = $(this);
+        var courseId = btn.data('course-id');
+        $.post('/courses/' + courseId + '/favorite', {
+            _token: '{{ csrf_token() }}'
+        }, function(res) {
+            if (res.status === 'unauthenticated') {
+                toastr.warning('Bạn cần đăng nhập để sử dụng chức năng này!');
+            } else if (res.status === 'added') {
+                btn.find('i').removeClass('la-heart-o').addClass('la-heart text-danger');
+                toastr.success('Đã thêm vào khóa học yêu thích!');
+            } else {
+                btn.find('i').removeClass('la-heart text-danger').addClass('la-heart-o');
+                toastr.info('Đã xóa khỏi khóa học yêu thích!');
+            }
+        });
+    });
+</script>
+
+<script>
+    function removeFromWishlist(courseId) {
+        if (!confirm('Bạn có chắc muốn xóa khỏi danh sách yêu thích?')) return;
+        $.ajax({
+            url: '/courses/' + courseId + '/favorite',
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(res) {
+                if (res.status === 'removed') {
+                    // Ẩn card khóa học vừa xóa
+                    $('#wishlist-course-' + courseId).remove();
+                    toastr.success('Đã xóa khỏi danh sách yêu thích!');
+                } else {
+                    toastr.error('Có lỗi xảy ra!');
+                }
+            },
+            error: function() {
+                toastr.error('Có lỗi xảy ra!');
+            }
+        });
+    }
+</script>
