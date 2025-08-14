@@ -46,6 +46,12 @@ class CourseStudentController extends Controller
         // Lấy các khóa học sau khi lọc
         $courses = Course::paginate(6);
 
+        // Lấy danh sách khóa học yêu thích của user (nếu đã đăng nhập)
+        $wishlistCourses = [];
+        if (auth()->check()) {
+            $wishlistCourses = auth()->user()->favoriteCourses()->with('teacher')->get();
+        }
+        $wishlistIds = auth()->check() ? auth()->user()->favoriteCourses()->pluck('courses.id')->toArray() : [];
         $template = 'frontend.course.index';
         return view('frontend.master', compact(
             'template',
@@ -54,7 +60,8 @@ class CourseStudentController extends Controller
             'categories',
             'categoryId',
             'teachers',
-            'wishlistCourses' // thêm dòng này
+            'wishlistCourses',
+            'wishlistIds' 
         ));
     }
     public function filter(Request $request)
@@ -77,9 +84,12 @@ class CourseStudentController extends Controller
         }
 
         $courses = $query->latest()->get();
+        
+
+        $wishlistIds = auth()->check() ? auth()->user()->favoriteCourses()->pluck('courses.id')->toArray() : [];
 
         // Trả về HTML thay vì redirect
-        $html = view('frontend.course.components.course-list', compact('courses'))->render();
+        $html = view('frontend.course.components.course-list', compact('courses', 'wishlistIds'))->render();
 
         return response()->json(['html' => $html]);
     }

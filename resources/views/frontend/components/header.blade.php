@@ -98,6 +98,7 @@
                                     @auth('web')
                                         @if (auth()->user()->role === 'student' || auth()->user()->role === 3)
                                             <li><a href="{{ route('student.index') }}">Trang chủ</a></li>
+                                            <li><a href="{{ route('courses.index') }}">Khóa học</a></li>
                                             <li><a href="{{ route('student.courses') }}">Khóa học của tôi</a></li>
                                             <li><a href="{{ route('chat.index') }}">Chat với giáo viên</a></li>
                                             </li>

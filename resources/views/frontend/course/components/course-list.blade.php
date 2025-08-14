@@ -50,8 +50,14 @@
                         <a href="{{ route('student.login') }}" class="btn btn-info">Đăng nhập để đăng
                             ký</a>
                     @endif
-                    <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist"><i
-                            class="la la-heart-o"></i></div>
+                    <div class="icon-element icon-element-sm shadow-sm cursor-pointer favorite-btn"
+                        data-course-id="{{ $course->id }}" title="Thêm vào danh sách yêu thích">
+                        @if (in_array($course->id, $wishlistIds))
+                            <i class="la la-heart text-danger"></i>
+                        @else
+                            <i class="la la-heart-o"></i>
+                        @endif
+                    </div>
                 </div>
             </div><!-- end card-body -->
         </div><!-- end card -->
