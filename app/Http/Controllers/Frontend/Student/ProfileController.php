@@ -24,9 +24,13 @@ class ProfileController extends Controller
 
         //Lấy thông tin khóa học
         $joinedCourses = $user->coursesJoined()->with('teacher', 'reviews')->get();
+        $wishlistCourses = [];
+        if (auth()->check()) {
+            $wishlistCourses = auth()->user()->favoriteCourses()->with('teacher')->paginate(6);
+        }
+        $wishlistIds = auth()->check() ? auth()->user()->favoriteCourses()->pluck('courses.id')->toArray() : [];
 
-
-        return view('frontend.master', compact('template','user', 'enrollmentsCount', 'reviewsCount',  'certificatesCount', 'joinedCourses'));
+        return view('frontend.master', compact('template','user', 'enrollmentsCount', 'reviewsCount',  'certificatesCount', 'joinedCourses', 'wishlistCourses', 'wishlistIds'));
     }
 
     public function edit()

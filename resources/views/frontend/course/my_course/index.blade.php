@@ -127,8 +127,7 @@
                                 @else
                                     <div class="col-12">
                                         <div class="alert alert-warning text-center">
-                                            <i class="la la-info-circle mr-1"></i> Không có khóa học nào phù hợp với
-                                            tiêu chí lọc.
+                                            <i class="la la-info-circle mr-1"></i> Không có khóa học nào yêu thích nào.
                                         </div>
                                     </div>
                                 @endif

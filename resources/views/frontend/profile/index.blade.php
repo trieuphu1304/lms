@@ -301,44 +301,64 @@
                     <div class="my-course-body">
                         <div class="my-course-cards">
                             <div class="row">
-                                <div class="col-lg-4 responsive-column-half">
-                                    <div class="card card-item">
-                                        <div class="card-image">
-                                            <a href="course-details.html" class="d-block">
-                                                <img class="card-img-top lazy" src="images/img8.jpg"
-                                                    alt="Card image cap" style="">
-                                            </a>
-                                            <div class="course-badge-labels">
-                                                <div class="course-badge">Bestseller</div>
-                                                <div class="course-badge blue">-39%</div>
-                                            </div>
-                                        </div><!-- end card-image -->
-                                        <div class="card-body">
-                                            <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">All Levels</h6>
-                                            <h5 class="card-title"><a href="course-details.html">The Business
-                                                    Intelligence Analyst Course 2021</a></h5>
-                                            <p class="card-text"><a href="teacher-detail.html">Jose Portilla</a></p>
-                                            <div class="rating-wrap d-flex align-items-center py-2">
-                                                <div class="review-stars">
-                                                    <span class="rating-number">4.4</span>
-                                                    <span class="la la-star"></span>
-                                                    <span class="la la-star"></span>
-                                                    <span class="la la-star"></span>
-                                                    <span class="la la-star"></span>
-                                                    <span class="la la-star-o"></span>
+                                @if ($wishlistCourses->count())
+                                    @foreach ($wishlistCourses as $course)
+                                        <div class="col-lg-4 responsive-column-half mb-4"
+                                            id="wishlist-course-{{ $course->id }}">
+                                            <div class="card card-item h-100 d-flex flex-column">
+                                                <div class="card-image">
+                                                    <a href="{{ route('course.detail', $course->id) }}"
+                                                        class="d-block">
+                                                        <img class="card-img-top lazy"
+                                                            src="{{ $course->avatar ? asset('storage/' . $course->avatar) : asset('frontend/images/img8.jpg') }}"
+                                                            alt="Course image">
+                                                    </a>
                                                 </div>
-                                                <span class="rating-total pl-1">(20,230)</span>
-                                            </div><!-- end rating-wrap -->
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <p class="card-price text-black font-weight-bold">12.99 <span
-                                                        class="before-price font-weight-medium">129.99</span></p>
-                                                <div class="icon-element icon-element-sm shadow-sm cursor-pointer"
-                                                    title="Remove from Wishlist"><i class="la la-heart"></i></div>
-                                            </div>
-                                        </div><!-- end card-body -->
-                                    </div><!-- end card -->
-                                </div><!-- end col-lg-4 -->
+                                                <div class="card-body d-flex flex-column">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h5 class="card-title mb-0">
+                                                            <a href="{{ route('course.detail', $course->id) }}">
+                                                                {{ $course->title }}
+                                                            </a>
+                                                        </h5>
 
+                                                    </div>
+                                                    <p class="card-text lh-22 pt-2">
+                                                        {{ $course->teacher->name ?? 'Giáo viên' }}
+                                                    </p>
+                                                    <div
+                                                        class="d-flex justify-content-between align-items-center mt-2">
+                                                        <div class="review-stars">
+                                                            <span
+                                                                class="rating-number">{{ number_format($course->ratings ?? 0, 1) }}</span>
+                                                            @php $rating = floor($course->ratings ?? 0); @endphp
+                                                            {!! str_repeat('<span class="la la-star"></span>', $rating) !!}
+                                                            {!! str_repeat('<span class="la la-star-o"></span>', 5 - $rating) !!}
+                                                        </div>
+                                                        <button class="btn btn-danger btn-sm"
+                                                            onclick="removeFromWishlist({{ $course->id }})"
+                                                            title="Xóa khỏi yêu thích">
+                                                            <i class="la la-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                    {{-- Pagination --}}
+                                    <div class="col-12">
+                                        <div class="text-center pt-3">
+                                            {{ $wishlistCourses->links('pagination::bootstrap-4') }}
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="col-12">
+                                        <div class="alert alert-warning text-center">
+                                            <i class="la la-info-circle mr-1"></i> Không có khóa học yêu thích nào nào.
+                                        </div>
+                                    </div>
+                                @endif
                             </div><!-- end row -->
                         </div><!-- end my-course-cards -->
                     </div><!-- end my-course-body -->
