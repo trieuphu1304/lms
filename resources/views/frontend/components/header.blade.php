@@ -110,7 +110,8 @@
                                                     <span class="dropdown-arrow"></span>
                                                     <li><a href="{{ route('student.profile') }}">Thông tin tài khoản</a>
                                                     </li>
-                                                    <li><a href="#">Đổi mật khẩu</a></li>
+                                                    <li><a href="{{ route('student.change_password') }}">Đổi mật khẩu</a>
+                                                    </li>
                                                     <li>
                                                         <form method="POST" action="{{ route('student.logout') }}"
                                                             style="margin:0;">
