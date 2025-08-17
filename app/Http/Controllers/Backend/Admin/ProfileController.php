@@ -16,7 +16,7 @@ class ProfileController extends Controller
         /** @var \App\Models\User $user */
         $user = Auth::user();
         $template = 'backend.admin.profile.index';
-        return view('backend.master', compact('template', 'user'));
+        return view('backend.admin.master', compact('template', 'user'));
     }
 
     // Hiển thị form chỉnh sửa thông tin cá nhân
@@ -25,7 +25,7 @@ class ProfileController extends Controller
         /** @var \App\Models\User $user */
         $user = Auth::user();
         $template = 'backend.admin.profile.edit';
-        return view('backend.master', compact('template', 'user'));
+        return view('backend.admin.master', compact('template', 'user'));
     }
 
     // Cập nhật thông tin cá nhân
