@@ -99,7 +99,7 @@
                                     </div>
                                     <button class="btn theme-btn" type="submit">Đăng nhập <i
                                             class="la la-arrow-right icon ml-1"></i></button>
-                                    <p class="fs-14 pt-2">Chưa có tài khoản? <a href="sign-up.html"
+                                    <p class="fs-14 pt-2">Chưa có tài khoản? <a href="{{ route('student.register') }}"
                                             class="text-color hover-underline">Đăng kí</a></p>
                                 </div><!-- end btn-box -->
                             </form>

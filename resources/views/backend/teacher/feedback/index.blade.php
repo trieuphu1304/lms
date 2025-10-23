@@ -38,26 +38,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($feedbacks as $index => $feedback)
+                    @forelse ($reviews as $index => $review)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $feedback->user->name }}</td>
-                            <td>{{ $feedback->user->email }}</td>
-                            <td>{{ $feedback->course->title ?? 'Không rõ' }}</td>
-                            <td>{{ $feedback->created_at->format('d/m/Y H:i') }}</td>
+                            <td>{{ $review->student->name }}</td>
+                            <td>{{ $review->student->email }}</td>
+                            <td>{{ $review->course->title ?? 'Không rõ' }}</td>
+                            <td>{{ $review->created_at->format('d/m/Y H:i') }}</td>
                             <td>
-                                @if ($feedback->is_read)
+                                @if ($review->is_read)
                                     <span class="badge bg-success">Đã đọc</span>
                                 @else
                                     <span class="badge bg-secondary">Chưa đọc</span>
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('teacher.feedback.show', $feedback->id) }}"
+                                <a href="{{ route('teacher.feedback.show', $review->id) }}"
                                     class="btn btn-sm btn-outline-info">
                                     Xem
                                 </a>
-                                <form action="{{ route('teacher.feedback.delete', $feedback->id) }}" method="POST"
+                                <form action="{{ route('teacher.feedback.delete', $review->id) }}" method="POST"
                                     class="d-inline" onsubmit="return confirm('Bạn chắc chắn muốn xóa?')">
                                     @csrf @method('DELETE')
                                     <button class="btn btn-sm btn-outline-danger">Xóa</button>

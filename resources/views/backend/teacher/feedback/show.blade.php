@@ -9,24 +9,24 @@
 
     <div class="card border-primary shadow">
         <div class="card-body">
-            <h4 class="text-secondary mb-3">{{ $feedback->title }}</h4>
+            <h4 class="text-secondary mb-3">{{ $review->title }}</h4>
 
             <div class="mb-3">
-                <strong>Người gửi:</strong> {{ $feedback->user->name }} ({{ $feedback->user->email }})
+                <strong>Người gửi:</strong> {{ $review->student->name }} ({{ $review->student->email }})
             </div>
 
             <div class="mb-3">
-                <strong>Khóa học:</strong> {{ $feedback->course->title ?? 'Không rõ' }}
+                <strong>Khóa học:</strong> {{ $review->course->title ?? 'Không rõ' }}
             </div>
 
             <div class="mb-3">
-                <strong>Ngày gửi:</strong> {{ \Carbon\Carbon::parse($feedback->created_at)->format('d/m/Y H:i') }}
+                <strong>Ngày gửi:</strong> {{ \Carbon\Carbon::parse($review->created_at)->format('d/m/Y H:i') }}
             </div>
 
             <div class="mb-3">
                 <strong>Trạng thái:</strong>
-                <span class="badge {{ $feedback->is_read ? 'bg-success' : 'bg-warning text-dark' }}">
-                    {{ $feedback->is_read ? 'Đã đọc' : 'Chưa đọc' }}
+                <span class="badge {{ $review->is_read ? 'bg-success' : 'bg-warning text-dark' }}">
+                    {{ $review->is_read ? 'Đã đọc' : 'Chưa đọc' }}
                 </span>
             </div>
 
@@ -35,7 +35,7 @@
             <div>
                 <strong>Nội dung đánh giá:</strong>
                 <div class="mt-2 border rounded p-3 bg-light">
-                    {!! nl2br(e($feedback->content)) !!}
+                    {!! nl2br(e($review->message)) !!}
                 </div>
             </div>
         </div>

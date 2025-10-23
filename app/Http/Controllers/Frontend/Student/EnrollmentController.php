@@ -36,6 +36,7 @@ class EnrollmentController extends Controller
         ]);
 
 
-        return redirect()->back()->with('success', 'Đăng ký khóa học thành công!');
+        return redirect()->route('course.detail', ['id' => $course->id])->with('success', 'Đăng ký khóa học thành công!');
+
     }
 }

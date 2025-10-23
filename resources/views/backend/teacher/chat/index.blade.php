@@ -32,7 +32,7 @@
                 </div>
 
                 {{-- Cột giữa: Danh sách học viên --}}
-                <div class="col-md-4 message-sidebar border-right" id="student-list">
+                <div class="col-md-4 message-sidebar border-right" style="padding: 1.4rem" id="student-list">
                     <div class="message-inbox-item border-bottom border-bottom-gray">
                         <div class="notification-body scrolled-box scrolled--box custom-scrollbar-styled">
                             <div class="text-center text-muted" style="margin-top: 4.5rem;">
@@ -44,9 +44,9 @@
 
                 {{-- Cột phải: Khung chat --}}
                 <div class="col-md-4 p-4" style="min-height: 600px;" id="chat-box-right">
-                    <div class="text-center text-muted mt-5">
+                    {{-- <div class="text-center text-muted" style="margin-top: 4.5rem;">
                         <h5>Chọn học viên chat</h5>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>
