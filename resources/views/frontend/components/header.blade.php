@@ -102,10 +102,8 @@
                                             <li><a href="{{ route('student.courses') }}">Khóa học của tôi</a></li>
                                             <li><a href="{{ route('chat.index') }}">Chat với giáo viên</a></li>
                                             </li>
-                                            <li class="dropdown">
-                                                <a href="#">
-                                                    Hồ sơ cá nhân <i class="la la-angle-down"></i>
-                                                </a>
+                                            <li class="dropdown position-relative">
+                                                <a href="#">Hồ sơ cá nhân <i class="la la-angle-down"></i></a>
                                                 <ul class="dropdown-menu">
                                                     <span class="dropdown-arrow"></span>
                                                     <li><a href="{{ route('student.profile') }}">Thông tin tài khoản</a>

@@ -52,7 +52,7 @@
                     </td>
                     <td>
                         @if ($lesson->document_url)
-                            <a href="{{ $lesson->document_url }}" target="_blank">Xem tài liệu</a>
+                            <a href="{{ asset($lesson->document_url) }}" target="_blank"> Xem tài liệu</a>
                         @else
                             Không có
                         @endif

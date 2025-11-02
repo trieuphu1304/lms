@@ -86,29 +86,42 @@
         START COURSE-DASHBOARD
 ======================================-->
 
-
+@php
+    use Illuminate\Support\Str;
+@endphp
 <section class="course-dashboard">
     <div class="course-dashboard-wrap">
         <div class="course-dashboard-container d-flex">
             <div class="course-dashboard-column">
                 <div class="lecture-viewer-container">
-                    @php
-                        function convertYoutubeToEmbed($url)
-                        {
-                            preg_match('/watch\?v=([^\&]+)/', $url, $matches);
-                            return isset($matches[1]) ? 'https://www.youtube.com/embed/' . $matches[1] : $url;
-                        }
-                    @endphp
+                    @if (!empty($lesson->document_url))
+                        <div class="lesson-document text-center mt-5 w-100" style="max-width: 700px;">
+                            <h4 class="mb-4 fw-bold">Tài liệu bài giảng</h4>
 
-                    <iframe width="100%" height="500" src="{{ convertYoutubeToEmbed($lesson->video_url) }}"
-                        title="{{ $lesson->title }}" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
+                            @php
+                                $documentPath = asset('storage/lessons/' . basename($lesson->document_url));
+                            @endphp
+                            <div class="d-flex justify-content-center mt-4">
+                                <a href="{{ $documentPath }}" download class="btn btn-primary">
+                                    <i class="fa fa-download me-2"></i> Tải xuống tài liệu
+                                </a>
+                            </div>
+                        </div>
+                    @else
+                        @php
+                            function convertYoutubeToEmbed($url)
+                            {
+                                preg_match('/watch\?v=([^\&]+)/', $url, $matches);
+                                return isset($matches[1]) ? 'https://www.youtube.com/embed/' . $matches[1] : $url;
+                            }
+                        @endphp
 
-
-
-
+                        <iframe width="100%" height="500" src="{{ convertYoutubeToEmbed($lesson->video_url) }}"
+                            title="{{ $lesson->title }}" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    @endif
 
                 </div><!-- end lecture-viewer-container -->
                 <div class="lecture-video-detail">
@@ -304,11 +317,7 @@
                                                 @foreach ($section->lessons as $lessonItem)
                                                     @php
                                                         $isCurrent = $lessonItem->id == $currentLessonId;
-                                                        $isResource = Str::contains(strtolower($lessonItem->title), [
-                                                            'download',
-                                                            'resource',
-                                                            'footage',
-                                                        ]);
+                                                        $isResource = !empty($lessonItem->document_url);
                                                         $hasLearned = $lessonItem->students->contains($studentId);
                                                     @endphp
                                                     <li
@@ -332,6 +341,7 @@
                                                                 </h4>
                                                                 <div class="courser-item-meta-wrap">
                                                                     <p class="course-item-meta">
+
                                                                         @if ($isResource)
                                                                             <i class="la la-file"></i>Tài
                                                                             liệu
@@ -340,37 +350,7 @@
                                                                         @endif
                                                                     </p>
 
-                                                                    @if ($isResource)
-                                                                        <div class="generic-action-wrap">
-                                                                            <div class="dropdown">
-                                                                                <a class="btn theme-btn theme-btn-sm theme-btn-transparent mt-1 fs-14 font-weight-medium"
-                                                                                    href="#"
-                                                                                    data-toggle="dropdown"
-                                                                                    aria-haspopup="true"
-                                                                                    aria-expanded="false">
-                                                                                    <i
-                                                                                        class="la la-folder-open mr-1"></i>
-                                                                                    Resources<i
-                                                                                        class="la la-angle-down ml-1"></i>
-                                                                                </a>
-                                                                                <div
-                                                                                    class="dropdown-menu dropdown-menu-right">
-                                                                                    @if ($lessonItem->document_url)
-                                                                                        <a class="dropdown-item"
-                                                                                            href="{{ asset('storage/' . $lessonItem->document_url) }}"
-                                                                                            download>
-                                                                                            {{ basename($lessonItem->document_url) }}
-                                                                                        </a>
-                                                                                    @else
-                                                                                        <span
-                                                                                            class="dropdown-item text-muted">Không
-                                                                                            có tài
-                                                                                            liệu</span>
-                                                                                    @endif
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    @endif
+
                                                                 </div>
                                                                 @if ($lessonItem->quizzes && $lessonItem->quizzes->count())
                                                                     <div class="mt-2 d-flex align-items-center gap-2">

@@ -49,8 +49,24 @@ class LessonController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'nullable|string',
             'video_url' => 'nullable|url',
-            'document_url' => 'nullable|url',
+            'document_file' => 'nullable|mimes:pdf,doc,docx|max:10240', // 10MB
         ]);
+
+        $filePath = null;
+
+        if ($request->hasFile('document_file')) {
+            $file = $request->file('document_file');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $timestamp = now()->format('Ymd_His');
+
+            // Tạo tên file mới: DeTai_20251102_203512.docx
+            $fileName = $originalName . '_' . $timestamp . '.' . $extension;
+
+            // Lưu vào thư mục storage/app/public/lessons
+            $filePath = $file->storeAs('lessons', $fileName, 'public');
+            $filePath = 'storage/' . $filePath;
+        }
 
         Lesson::create([
             'course_id' => $request->course_id,
@@ -58,12 +74,13 @@ class LessonController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'video_url' => $request->video_url,
-            'document_url' => $request->document_url,
+            'document_url' => $filePath, // lưu file path
         ]);
 
-
-        return redirect()->route('teacher.lesson', $request->course_id)->with('success', 'Đã thêm bài giảng!');
+        return redirect()->route('teacher.lesson', $request->course_id)
+                        ->with('success', 'Đã thêm bài giảng!');
     }
+
 
 
     public function edit($id)
@@ -91,28 +108,46 @@ class LessonController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'nullable|string',
             'video_url' => 'nullable|url',
-            'document_url' => 'nullable|url',
+            'document_file' => 'nullable|mimes:pdf,doc,docx|max:10240',
         ]);
 
-        // Truy vấn bài giảng và kiểm tra quyền
         $lesson = Lesson::with('course')->findOrFail($id);
-
         if ($lesson->course->teacher_id != Auth::id()) {
             abort(403, 'Bạn không có quyền cập nhật bài giảng này.');
         }
 
-        // Cập nhật bài giảng
+        $filePath = $lesson->document_url;
+
+        if ($request->hasFile('document_file')) {
+            if ($filePath && file_exists(public_path($filePath))) {
+                unlink(public_path($filePath));
+            }
+
+            $file = $request->file('document_file');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $timestamp = now()->format('Ymd_His');
+
+            $fileName = $originalName . '_' . $timestamp . '.' . $extension;
+
+            $filePath = $file->storeAs('lessons', $fileName, 'public');
+            $filePath = 'storage/' . $filePath;
+        }
+
+
         $lesson->update([
             'course_id' => $request->course_id,
             'section_id' => $request->section_id,
             'title' => $request->title,
             'content' => $request->content,
             'video_url' => $request->video_url,
-            'document_url' => $request->document_url,
+            'document_url' => $filePath,
         ]);
 
-        return redirect()->route('teacher.lesson', $lesson->course_id)->with('success', 'Cập nhật bài giảng thành công!');
+        return redirect()->route('teacher.lesson', $lesson->course_id)
+                        ->with('success', 'Cập nhật bài giảng thành công!');
     }
+
 
 
 

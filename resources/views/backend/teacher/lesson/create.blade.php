@@ -3,7 +3,7 @@
         <h3 class="page-title">Thêm bài giảng</h3>
     </div>
 
-    <form action="{{ route('teacher.lesson.store') }}" method="POST">
+    <form action="{{ route('teacher.lesson.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card p-4">
             <!-- Khóa học (khóa để không cho chọn lại) -->
@@ -24,12 +24,11 @@
                 </select>
             </div>
 
-
-
-            <div class="mb-3">
-                <label class="form-label">Tiêu đề</label>
-                <input type="text" name="title" class="form-control" required>
+            <div class="form-group">
+                <label for="document_file">Tài liệu (Word/PDF)</label>
+                <input type="file" name="document_file" class="form-control" accept=".pdf,.doc,.docx">
             </div>
+
 
             <div class="mb-3">
                 <label class="form-label">Nội dung</label>

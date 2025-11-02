@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <form action="{{ route('teacher.lesson.update', $lesson->id) }}" method="POST">
+    <form action="{{ route('teacher.lesson.update', $lesson->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="card border-primary mb-4">
@@ -58,9 +58,9 @@
                     <input type="url" name="video_url" class="form-control" value="{{ $lesson->video_url }}">
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Link Tài liệu</label>
-                    <input type="url" name="document_url" class="form-control" value="{{ $lesson->document_url }}">
+                <div class="form-group">
+                    <label for="document_file">Tài liệu (Word/PDF)</label>
+                    <input type="file" name="document_file" class="form-control" accept=".pdf,.doc,.docx">
                 </div>
             </div>
             <div class="card-footer text-end">

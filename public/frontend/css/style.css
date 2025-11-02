@@ -8111,6 +8111,50 @@ div.datedropper .picker .pick-lg-b li {
   }
 }
 
+/* --- Giải quyết dropdown bị đè --- */
+.header-menu-area {
+  position: relative;
+  z-index: 1000 !important;
+}
+
+.header-menu-content,
+.menu-wrapper,
+.main-menu ul li {
+  overflow: visible !important;
+}
+
+/* Cho dropdown nổi lên trên cùng */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  z-index: 9999 !important;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  min-width: 200px;
+}
+
+/* Tùy chỉnh dropdown đẹp hơn */
+.dropdown-menu li {
+  padding: 8px 15px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu a {
+  color: #232d3b;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  color: #007bff;
+}
+
 /*======= message-active =========*/
 .message-active {
   background-color: rgba(53, 143, 227, 0.07);
