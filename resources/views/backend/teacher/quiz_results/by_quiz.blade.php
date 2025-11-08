@@ -31,7 +31,7 @@
                             <td>{{ $result->student->email }}</td>
                             <td>{{ $result->correct_answers }}</td>
                             <td>{{ $result->total_questions }}</td>
-                            <td>{{ $result->score }}</td>
+                            <td>{{ round(($result->correct_answers / $result->total_questions) * 10, 2) }}</td>
                             <td>{{ \Carbon\Carbon::parse($result->submitted_at)->format('d/m/Y H:i') }}</td>
                         </tr>
                     @empty
