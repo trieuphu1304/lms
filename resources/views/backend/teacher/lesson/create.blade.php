@@ -23,26 +23,25 @@
                     @endforeach
                 </select>
             </div>
-
-            <div class="form-group">
-                <label for="document_file">Tài liệu (Word/PDF)</label>
-                <input type="file" name="document_file" class="form-control" accept=".pdf,.doc,.docx">
+            <div class="mb-3">
+                <label class="form-label">Tên bài giảng</label>
+                <input type="text" name="title" class="form-control" required>
             </div>
 
 
             <div class="mb-3">
-                <label class="form-label">Nội dung</label>
+                <label class="form-label">Mô tả</label>
                 <textarea name="content" class="form-control" rows="4"></textarea>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Video URL</label>
+                <label class="form-label">Video bài giảng</label>
                 <input type="url" name="video_url" class="form-control">
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">Tài liệu (Document URL)</label>
-                <input type="url" name="document_url" class="form-control">
+            <div class="form-group">
+                <label for="document_file">Tài liệu</label>
+                <input type="file" name="document_file" class="form-control" accept=".pdf,.doc,.docx">
             </div>
 
             <div class="text-end">

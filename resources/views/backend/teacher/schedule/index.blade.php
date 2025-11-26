@@ -15,7 +15,7 @@
             <tr>
                 <th>#</th>
                 <th>Khóa học</th>
-                <th>Sự kiện</th>
+                <th>Tên lịch trình</th>
                 <th>Thời gian</th>
                 <th>Địa điểm</th>
                 <th>Trạng thái</th>
@@ -33,11 +33,12 @@
                     <td>{{ $schedule->status }}</td>
                     <td>
                         <a href="{{ route('teacher.schedule.edit', $schedule->id) }}"
-                            class="btn btn-sm btn-warning">Sửa</a>
+                            class="btn btn-sm btn-outline-primary">
+                            <i class="bx bx-edit"></i>Sửa</a>
                         <form action="{{ route('teacher.schedule.delete', $schedule->id) }}" method="POST"
                             class="d-inline">
                             @csrf @method('DELETE')
-                            <button class="btn btn-sm btn-danger"
+                            <button class="btn btn-sm btn-outline-danger"
                                 onclick="return confirm('Xóa lịch trình?')">Xóa</button>
                         </form>
                     </td>

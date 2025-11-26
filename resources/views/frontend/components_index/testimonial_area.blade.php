@@ -1,7 +1,7 @@
 <div class="container">
     <div class="section-heading text-center">
-        <h5 class="ribbon ribbon-lg mb-2">Testimonials</h5>
-        <h2 class="section__title">Student's Feedback</h2>
+        <h5 class="ribbon ribbon-lg mb-2">ĐÁNH GIÁ</h5>
+        <h2 class="section__title">Đánh giá của học viên</h2>
         <span class="section-divider"></span>
     </div><!-- end section-heading -->
 </div><!-- end container -->

@@ -44,7 +44,7 @@
                         <td>{{ $result->quiz->lesson->course->title ?? '---' }}</td>
                         <td>{{ $result->quiz->lesson->title ?? '---' }}</td>
                         <td>{{ $result->quiz->title ?? '---' }}</td>
-                        <td>{{ $result->score }}</td>
+                        <td>{{ round(($result->correct_answers / $result->total_questions) * 10, 2) }}</td>
                         <td>
                             {{ $result->submitted_at ? \Carbon\Carbon::parse($result->submitted_at)->format('d/m/Y H:i') : '---' }}
                         </td>

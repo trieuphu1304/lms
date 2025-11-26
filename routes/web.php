@@ -220,11 +220,11 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('/quiz/{quiz}/results', [TeacherResultController::class, 'quizResults'])->name('teacher.quiz_results.by_quiz');
 
     //Quản lí thông tin
-    Route::get('/profile', [TeacherProfileController::class, 'index'])->name('teacher.profile');
-    Route::get('/profile/edit', [TeacherProfileController::class, 'edit'])->name('teacher.profile.edit');
-    Route::post('/profile/update', [TeacherProfileController::class, 'update'])->name('teacher.profile.update');
-    Route::get('/change-password', [TeacherProfileController::class, 'changePassword'])->name('teacher.change_password');
-    Route::post('/change-password', [TeacherProfileController::class, 'updatePassword'])->name('teacher.update_password');
+    Route::get('/teacher/profile', [TeacherProfileController::class, 'index'])->name('teacher.profile');
+    Route::get('/teacher/profile/edit', [TeacherProfileController::class, 'edit'])->name('teacher.profile.edit');
+    Route::post('/teacher/profile/update', [TeacherProfileController::class, 'update'])->name('teacher.profile.update');
+    Route::get('/teacher/change-password', [TeacherProfileController::class, 'changePassword'])->name('teacher.change_password');
+    Route::post('/teacher/change-password', [TeacherProfileController::class, 'updatePassword'])->name('teacher.update_password');
 
     //Quản lí phản hồi
     Route::get('/teacher/feedback', [TeacherFeedbackController::class, 'index'])->name('teacher.feedback');

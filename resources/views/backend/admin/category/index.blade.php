@@ -34,7 +34,7 @@
                         <td class="text-center">
                             <a href="{{ route('admin.categories.edit', $category->id) }}"
                                 class="btn btn-sm btn-warning me-1">
-                                <i class="bx bx-edit"></i> Sửa
+                                <i class="bx bx-edit"></i>
                             </a>
                             <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST"
                                 style="display:inline-block;"
@@ -42,7 +42,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">
-                                    <i class="bx bx-trash"></i> Xóa
+                                    <i class="bx bx-trash"></i>
                                 </button>
                             </form>
                         </td>

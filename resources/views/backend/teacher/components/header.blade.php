@@ -58,7 +58,7 @@
                                     <div class="media d-flex">
                                         <span class="avatar avatar-sm flex-shrink-0">
                                             <img class="avatar-img rounded-circle" alt="User Image"
-                                                src="{{ asset('storage/' . ($noti->actor->avatar ?? 'default.jpg')) }}">
+                                                src="{{ asset('storage/' . ($noti->actor->avatar ?? '')) }}">
 
                                         </span>
                                         <div class="media-body flex-grow-1">
@@ -150,6 +150,7 @@
                     </div>
                 </div>
                 <a class="dropdown-item" href="{{ route('teacher.profile') }}">Thông tin</a>
+                <a class="dropdown-item" href="{{ route('teacher.change_password') }}">Cài đặt</a>
                 <form action="{{ route('teacher.logout') }}" method="POST" class="d-inline">
                     @csrf
                     <button type="submit" class="dropdown-item bg-transparent border-0 text-start w-100">

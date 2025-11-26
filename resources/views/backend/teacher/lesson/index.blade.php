@@ -24,12 +24,12 @@
     <table class="table table-hover table-bordered border-primary">
         <thead class="table-primary">
             <tr>
-                <th>Tiêu đề</th>
+                <th>Tên bài giảng</th>
                 <th>Khóa học</th>
                 <th>Tên chương</th>
                 <th>Video</th>
                 <th>Tài liệu</th>
-                <th>Thao tác</th>
+                <th>Hành động</th>
             </tr>
         </thead>
         @if ($lessons->isEmpty())

@@ -13,10 +13,11 @@ class QuestionController extends Controller
     // Hiển thị câu hỏi của bài kiểm tra
     public function index($quizId)
     {
+        $results = QuizResult::where('quiz_id', $quizId)->with('student')->get()->keyBy('student_id');
         $quiz = Quiz::with('questions')->findOrFail($quizId);
         $questions = $quiz->questions;
         $template = 'backend.admin.question.index';
-        return view('backend.admin.master', compact('template', 'quiz', 'questions'));
+        return view('backend.admin.master', compact('template', 'quiz', 'questions', 'results'));
     }
 
     // Xóa câu hỏi
@@ -53,6 +54,6 @@ class QuestionController extends Controller
         }
 
         $template = 'backend.admin.question.student_status';
-        return view('backend.admin.master', compact('template', 'quiz', 'studentsDone', 'studentsNotDone'));
+        return view('backend.admin.master', compact('template', 'quiz', 'studentsDone', 'studentsNotDone', 'results'));
     }
 }

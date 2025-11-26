@@ -4,9 +4,7 @@
         <h3 class="page-title text-primary mb-0">
             {{ isset($schedule) ? 'Chỉnh sửa lịch trình' : 'Tạo lịch trình mới' }}
         </h3>
-        <a href="{{ route('teacher.schedule') }}" class="btn btn-outline-secondary">
-            <i class="bx bx-arrow-back"></i> Quay lại danh sách
-        </a>
+
     </div>
 
     <div class="card border-primary shadow">
@@ -31,7 +29,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="event" class="form-label">Sự kiện</label>
+                    <label for="event" class="form-label">Tên lịch trình</label>
                     <input type="text" name="event" class="form-control"
                         value="{{ old('event', $schedule->event ?? '') }}" required>
                 </div>
@@ -88,9 +86,14 @@
                 </div>
 
 
+                <div class="text-end">
+                    <a href="{{ route('teacher.schedule') }}" class="btn btn-outline-secondary">
+                        <i class="bx bx-arrow-back"></i> Quay lại danh sách
+                    </a>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
 
-                <button type="submit" class="btn btn-primary">Lưu</button>
-                <a href="{{ route('teacher.schedule') }}" class="btn btn-secondary ms-2">Hủy</a>
+
             </form>
         </div>
     </div>

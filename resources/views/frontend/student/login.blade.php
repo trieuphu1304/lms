@@ -8,7 +8,7 @@
         <div class="container">
             <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
                 <div class="section-heading">
-                    <h2 class="section__title text-white">Login</h2>
+                    <h2 class="section__title text-white">ĐĂNG NHẬP</h2>
                 </div>
                 <ul
                     class="generic-list-item generic-list-item-white generic-list-item-arrow d-flex flex-wrap align-items-center">

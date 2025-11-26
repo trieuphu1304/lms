@@ -20,10 +20,6 @@
         <div class="card border-primary mb-4">
             <div class="card-header">Thông tin bài giảng</div>
             <div class="card-body">
-                <div class="mb-3">
-                    <label class="form-label">Tiêu đề</label>
-                    <input type="text" name="title" class="form-control" value="{{ $lesson->title }}" required>
-                </div>
 
                 <div class="mb-3">
                     <label class="form-label">Khóa học</label>
@@ -48,18 +44,24 @@
                     </select>
                 </div>
 
+
                 <div class="mb-3">
-                    <label class="form-label">Nội dung</label>
+                    <label class="form-label">Tên bài giảng</label>
+                    <input type="text" name="title" class="form-control" value="{{ $lesson->title }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Mô tả</label>
                     <textarea name="content" class="form-control" rows="4" required>{{ $lesson->content }}</textarea>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Link Video</label>
+                    <label class="form-label">Video</label>
                     <input type="url" name="video_url" class="form-control" value="{{ $lesson->video_url }}">
                 </div>
 
                 <div class="form-group">
-                    <label for="document_file">Tài liệu (Word/PDF)</label>
+                    <label for="document_file">Tài liệu</label>
                     <input type="file" name="document_file" class="form-control" accept=".pdf,.doc,.docx">
                 </div>
             </div>

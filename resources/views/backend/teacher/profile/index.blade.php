@@ -47,12 +47,23 @@
                     <tr>
                         <th>Quyền:</th>
                         <td>
+                            @php
+                                $roleMap = [
+                                    'teacher' => 'Giáo viên',
+                                    'student' => 'Học viên',
+                                    'admin' => 'Quản trị viên',
+                                ];
+                            @endphp
+
                             @if (method_exists($user, 'getRoleNames'))
-                                {{ implode(', ', $user->getRoleNames()->toArray()) }}
+                                @foreach ($user->getRoleNames() as $role)
+                                    {{ $roleMap[$role] ?? $role }}
+                                @endforeach
                             @else
-                                {{ $user->role ?? '---' }}
+                                {{ $roleMap[$user->role] ?? ($user->role ?? '---') }}
                             @endif
                         </td>
+
                     </tr>
                 </table>
             </div>

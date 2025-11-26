@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Backend\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Quiz;
-use App\Models\Lesson;
+use App\Models\Course;
 
 class QuizController extends Controller
 {
     // Hiển thị danh sách bài kiểm tra
     public function index()
     {
+
         $quizzes = Quiz::with('lesson')->get();
         $template = 'backend.admin.quiz.index';
         return view('backend.admin.master', compact('template', 'quizzes'));

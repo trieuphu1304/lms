@@ -1,7 +1,7 @@
 <div class="page-content">
     <div class="container">
         <div class="card shadow-lg mt-4">
-            <div class="card-header bg-success text-white d-flex align-items-center">
+            <div class="card-header bg-primary text-white d-flex align-items-center">
                 <i class="bx bx-book-add fs-4 me-2"></i>
                 <h4 class="mb-0">Thêm khóa học mới</h4>
             </div>

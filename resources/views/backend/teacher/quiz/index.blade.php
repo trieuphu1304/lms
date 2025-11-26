@@ -26,8 +26,8 @@
         <thead class="table-primary">
             <tr>
                 <th>#</th>
-                <th>Tiêu đề</th>
-                <th>Thao tác</th>
+                <th>Tên bài kiểm tra</th>
+                <th>Hành động</th>
             </tr>
         </thead>
         <tbody>

@@ -1,9 +1,7 @@
 <div class="content container-fluid">
     <div class="page-header d-flex justify-content-between align-items-center mb-3">
         <h3 class="page-title text-primary mb-0">Thêm câu hỏi mới</h3>
-        <a href="{{ route('teacher.question', $quiz->id) }}" class="btn btn-outline-secondary">
-            <i class="bx bx-arrow-back"></i> Quay lại
-        </a>
+
     </div>
 
     @if ($errors->any())
@@ -44,9 +42,15 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary">
-                    <i class="bx bx-save"></i> Lưu câu hỏi
-                </button>
+                <div class="text-end">
+                    <a href="{{ route('teacher.question', $quiz->id) }}" class="btn btn-outline-secondary">
+                        <i class="bx bx-arrow-back"></i> Quay lại
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bx bx-save"></i> Lưu câu hỏi
+                    </button>
+                </div>
+
             </form>
         </div>
     </div>

@@ -33,7 +33,7 @@
                         <th>Email</th>
                         <th>Khóa học</th>
                         <th>Ngày gửi</th>
-                        <th>Đã đọc</th>
+                        <th>Trạng thái</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>

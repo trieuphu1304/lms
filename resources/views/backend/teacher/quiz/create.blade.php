@@ -2,9 +2,6 @@
 
     <div class="page-header d-flex justify-content-between align-items-center mb-3">
         <h3 class="page-title text-primary">Tạo bài kiểm tra mới</h3>
-        <a href="{{ route('teacher.lesson.quizzes', $lesson->id) }}" class="btn btn-outline-secondary">
-            <i class="bx bx-arrow-back"></i> Quay lại
-        </a>
     </div>
 
     @if ($errors->any())
@@ -37,9 +34,15 @@
                         required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">
-                    <i class="bx bx-save"></i> Tạo mới
-                </button>
+                <div class="text-end">
+                    <a href="{{ route('teacher.lesson.quizzes', $lesson->id) }}" class="btn btn-outline-secondary">
+                        <i class="bx bx-arrow-back"></i> Quay lại
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bx bx-save"></i> Tạo mới
+                    </button>
+                </div>
+
             </form>
 
         </div>

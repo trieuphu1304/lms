@@ -8,9 +8,6 @@
                 <option value="recent" {{ request('sort') == 'recent' ? 'selected' : '' }}>Gần đây</option>
                 <option value="az" {{ request('sort') == 'az' ? 'selected' : '' }}>A-Z</option>
                 <option value="za" {{ request('sort') == 'za' ? 'selected' : '' }}>Z-A</option>
-                <option value="progress_asc" {{ request('sort') == 'progress_asc' ? 'selected' : '' }}>0% - 100%
-                </option>
-                <option value="progress_desc" {{ request('sort') == 'progress_desc' ? 'selected' : '' }}>100% - 0%
                 </option>
             </select>
         </div>

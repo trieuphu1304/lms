@@ -129,7 +129,7 @@
                                 </div>
                             </div><!-- end input-box -->
                             <div class="input-box">
-                                <label class="label-text">Tựa đề </label>
+                                <label class="label-text">Tiêu đề </label>
                                 <div class="form-group">
                                     <input id="subject" class="form-control form--control" type="text"
                                         name="subject" placeholder="Nhập tựa đề của bạn" required>
@@ -145,7 +145,7 @@
                                 </div>
                             </div><!-- end input-box -->
                             <div class="input-box">
-                                <label class="label-text">Message</label>
+                                <label class="label-text">Lời nhắn</label>
                                 <div class="form-group">
                                     <textarea id="message" class="form-control form--control pl-4" name="message" rows="5"
                                         placeholder="Nhập tin nhắn" required></textarea>

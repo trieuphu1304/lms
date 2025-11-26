@@ -2,9 +2,6 @@
 
     <div class="page-header d-flex justify-content-between align-items-center mb-3">
         <h3 class="page-title text-primary">Chỉnh sửa bài kiểm tra</h3>
-        <a href="{{ route('teacher.lesson.quizzes', $quiz->lesson_id) }}" class="btn btn-outline-secondary">
-            <i class="bx bx-arrow-back"></i> Quay lại
-        </a>
     </div>
 
     @if ($errors->any())
@@ -41,10 +38,14 @@
                     <input type="text" name="title" id="title" value="{{ old('title', $quiz->title) }}"
                         class="form-control" required>
                 </div>
-
-                <button type="submit" class="btn btn-primary">
-                    <i class="bx bx-save"></i> Cập nhật
-                </button>
+                <div class="text-end">
+                    <a href="{{ route('teacher.lesson.quizzes', $quiz->lesson_id) }}" class="btn btn-outline-secondary">
+                        <i class="bx bx-arrow-back"></i> Quay lại
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bx bx-save"></i> Cập nhật
+                    </button>
+                </div>
             </form>
 
         </div>
