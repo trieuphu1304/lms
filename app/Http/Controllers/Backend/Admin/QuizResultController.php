@@ -33,12 +33,29 @@ class QuizResultController extends Controller
         return view('backend.admin.master', compact('template', 'results', 'search'));
     }
 
-    public function show($id)
-    {
-        $result = QuizResult::with(['student', 'quiz.lesson.course'])->findOrFail($id);
-        $classAvgScore = QuizResult::where('quiz_id', $result->quiz_id)->avg('score');
+    public function show($quizId)
+{
+    // Lấy quiz kèm câu hỏi
+    $quiz = Quiz::with('questions')->findOrFail($quizId);
 
-        $template = 'backend.admin.quiz_result.detail';
-        return view('backend.admin.master', compact('template', 'result', 'classAvgScore'));
-    }
+    // Lấy danh sách kết quả kèm thông tin học viên
+    $results = QuizResult::where('quiz_id', $quizId)
+        ->with('student')
+        ->get();
+
+    // Tính điểm trung bình lớp (giữ dạng thập phân ví dụ: 6.6)
+    $classAvgScore = round(QuizResult::where('quiz_id', $quizId)->avg('score'), 1);
+
+    // Trả về view
+    $template = 'backend.admin.quiz_result.detail';
+
+    return view('backend.admin.master', compact(
+        'template',
+        'quiz',
+        'results',
+        'classAvgScore'
+    ));
+}
+
+
 }

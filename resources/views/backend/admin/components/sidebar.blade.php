@@ -60,10 +60,10 @@
             </ul>
         </li>
         <li>
-            <a href="{{ route('admin.feedback') }}">
+            <a href="{{ route('admin.review') }}">
                 <div class="parent-icon"><i class="fadeIn animated bx bx-message-error"></i>
                 </div>
-                <div class="menu-title">Quản lí phản hồi</div>
+                <div class="menu-title">Quản lí đánh giá</div>
             </a>
         </li>
     </ul>

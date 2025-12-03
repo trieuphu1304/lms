@@ -13,7 +13,6 @@ class QuestionController extends Controller
     // Hiển thị câu hỏi của bài kiểm tra
     public function index($quizId)
     {
-        $results = QuizResult::where('quiz_id', $quizId)->with('student')->get()->keyBy('student_id');
         $quiz = Quiz::with('questions')->findOrFail($quizId);
         $questions = $quiz->questions;
         $template = 'backend.admin.question.index';
@@ -27,33 +26,5 @@ class QuestionController extends Controller
         $quizId = $question->quiz_id;
         $question->delete();
         return redirect()->route('admin.question.index', $quizId)->with('success', 'Đã xóa câu');
-    }
-
-    public function studentStatus($quizId)
-    {
-        $quiz = Quiz::findOrFail($quizId);
-
-        // Lấy tất cả học sinh
-        $students = User::where('role', 'student')->get();
-
-        // Lấy kết quả làm bài của học sinh cho quiz này
-        $results = QuizResult::where('quiz_id', $quizId)->with('student')->get()->keyBy('student_id');
-
-        $studentsDone = [];
-        $studentsNotDone = [];
-        foreach ($students as $student) {
-            if ($results->has($student->id)) {
-                $studentsDone[] = [
-                    'student' => $student,
-                    'score' => $results[$student->id]->score,
-                    'submitted_at' => $results[$student->id]->created_at,
-                ];
-            } else {
-                $studentsNotDone[] = $student;
-            }
-        }
-
-        $template = 'backend.admin.question.student_status';
-        return view('backend.admin.master', compact('template', 'quiz', 'studentsDone', 'studentsNotDone', 'results'));
     }
 }

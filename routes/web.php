@@ -11,7 +11,7 @@ use App\Http\Controllers\Backend\Admin\LessonController;
 use App\Http\Controllers\Backend\Admin\QuizController;
 use App\Http\Controllers\Backend\Admin\QuestionController;
 use App\Http\Controllers\Backend\Admin\QuizResultController;
-use App\Http\Controllers\Backend\Admin\FeedbackController;
+use App\Http\Controllers\Backend\Admin\ReviewController;
 use App\Http\Controllers\Backend\Admin\ProfileController;
 use App\Http\Controllers\Backend\Admin\CategoryController;
 use App\Http\Controllers\Backend\Admin\SectionController;
@@ -40,7 +40,7 @@ use App\Http\Controllers\Frontend\Student\CourseStudentController;
 use App\Http\Controllers\Frontend\Student\AboutController;
 use App\Http\Controllers\Frontend\Student\ContactController;
 use App\Http\Controllers\Frontend\Student\CourseDetailController;
-use App\Http\Controllers\Frontend\Student\ReviewController;
+use App\Http\Controllers\Frontend\Student\ReviewController as StudentReviewController;
 use App\Http\Controllers\Frontend\Student\EnrollmentController;
 use App\Http\Controllers\Frontend\Student\LessonController as LessonStudentController;
 use App\Http\Controllers\Frontend\Student\ProfileController as StudentProfileController;
@@ -131,16 +131,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         ->name('admin.question');
     Route::delete('/admin/question/delete/{id}', [QuestionController::class, 'delete'])
         ->name('admin.question.delete');
-
+    
     // Quản lí kết quả
     Route::get('/quiz-results', [QuizResultController::class, 'listAll'])->name('admin.quiz_result.all');
-    Route::get('/quiz-results/detail/{id}', [QuizResultController::class, 'show'])->name('admin.quiz_result.detail');
+    Route::get('/admin/quiz/{quiz}/results', [QuizResultController::class, 'show'])->name('admin.quiz_result.detail');
 
     // Quản lí phản hồi
-    Route::get('/admin/feedback', [FeedbackController::class, 'index'])
-        ->name('admin.feedback');
-    Route::delete('/admin/feedback/delete/{id}', [FeedbackController::class, 'delete'])
-        ->name('admin.feedback.delete');
+    Route::get('/admin/review', [ReviewController::class, 'index'])
+        ->name('admin.review');
+    Route::delete('/admin/review/delete/{id}', [ReviewController::class, 'delete'])
+        ->name('admin.review.delete');
     
     // Quản lí thông tin
     Route::get('/admin/profile', [ProfileController::class, 'index'])
@@ -281,8 +281,8 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/course/{id}', [CourseDetailController::class, 'index'])->name('course.detail');
 
 // Đánh giá khóa học
-Route::post('/courses/{id}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-Route::get('/courses/{id}/reviews', [ReviewController::class, 'fetch'])->name('reviews.fetch');
+Route::post('/courses/{id}/reviews', [StudentReviewController::class, 'store'])->name('reviews.store');
+Route::get('/courses/{id}/reviews', [StudentReviewController::class, 'fetch'])->name('reviews.fetch');
 
 //Chi tiết bài học
 Route::get('/lessons/{id}', [LessonStudentController::class, 'show'])->name('lessons.show');
