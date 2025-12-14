@@ -84,4 +84,28 @@ class SectionController extends Controller
         Section::destroy($id);
         return redirect()->route('admin.section')->with('success', 'Chương đã được xóa thành công!');
     }
+
+    public function search(Request $request)
+    {
+        $query = Section::with('course');
+
+        if ($request->filled('section')) {
+            $query->where('title', 'like', '%' . $request->section . '%');
+        }
+
+        if ($request->filled('course')) {
+            $query->whereHas('course', function ($q) use ($request) {
+                $q->where('title', 'like', '%' . $request->course . '%');
+            });
+        }
+
+        $sections = $query->orderBy('id', 'desc')->paginate(10);
+
+        return response()->json([
+            'sections' => $sections->items(),
+            'total' => $sections->total(),
+            'current_page' => $sections->current_page(),
+            'last_page' => $sections->last_page(),
+        ]);
+    }
 }

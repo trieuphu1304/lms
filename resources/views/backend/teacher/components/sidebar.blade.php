@@ -50,7 +50,7 @@
 
                 <li>
                     <a href="{{ route('teacher.chat.index') }}">
-                        <i class="fas fa-calendar-day"></i>
+                        <i class="fas fa-comments   "></i>
                         <span> Chat với học viên</span>
                     </a>
                 </li>

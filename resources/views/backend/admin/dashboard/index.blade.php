@@ -102,23 +102,24 @@
                 <div class="row row-cols-1 row-cols-md-3 row-cols-xl-3 g-0 row-group text-center border-top">
                     <div class="col">
                         <div class="p-3">
-                            <h5 class="mb-0">12.5K</h5>
+                            <h5 class="mb-0">{{ number_format($totalStudents) }}</h5>
                             <small class="mb-0">Tổng Học Viên <span> <i class="bx bx-up-arrow-alt align-middle"></i>
-                                    3.2%</span></small>
+                                    {{-- change percent if you want --}}</span></small>
                         </div>
                     </div>
                     <div class="col">
                         <div class="p-3">
-                            <h5 class="mb-0">08:15</h5>
-                            <small class="mb-0">Thời gian học trung bình <span> <i
-                                        class="bx bx-up-arrow-alt align-middle"></i> 10.6%</span></small>
+                            <h5 class="mb-0">{{ $avgCompletion }}%</h5>
+                            <small class="mb-0">Tỷ lệ hoàn thành trung bình <span> <i
+                                        class="bx bx-up-arrow-alt align-middle"></i></span></small>
                         </div>
                     </div>
                     <div class="col">
                         <div class="p-3">
-                            <h5 class="mb-0">120</h5>
-                            <small class="mb-0">Lượt học/ngày <span> <i class="bx bx-up-arrow-alt align-middle"></i>
-                                    6.4%</span></small>
+                            <h5 class="mb-0">{{ number_format($activeStudents) }}</h5>
+                            <small class="mb-0">Học viên hoạt động (30d) <span> <i
+                                        class="bx bx-up-arrow-alt align-middle"></i>
+                                </span></small>
                         </div>
                     </div>
                 </div>
@@ -150,19 +151,16 @@
                     </div>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li
-                        class="list-group-item d-flex bg-transparent justify-content-between align-items-center border-top">
-                        Lập trình Laravel <span class="badge bg-success rounded-pill">45</span>
-                    </li>
-                    <li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">
-                        Tiếng Anh giao tiếp <span class="badge bg-danger rounded-pill">30</span>
-                    </li>
-                    <li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">
-                        Toán 12 <span class="badge bg-primary rounded-pill">60</span>
-                    </li>
-                    <li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">
-                        Thiết kế Canva <span class="badge bg-warning text-dark rounded-pill">20</span>
-                    </li>
+                    @foreach ($topCourses as $item)
+                        <li
+                            class="list-group-item d-flex bg-transparent justify-content-between align-items-center border-top">
+                            {{ $item['title'] }} <span
+                                class="badge bg-success rounded-pill">{{ $item['total'] }}</span>
+                        </li>
+                    @endforeach
+                    @if (empty($topCourses))
+                        <li class="list-group-item">Không có dữ liệu</li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -171,3 +169,62 @@
 
 
 </div>
+
+@push('scripts')
+    <script>
+        const months = @json($months ?? []);
+        const newStudents = @json($newStudents ?? []);
+        const completedLessons = @json($completedLessons ?? []);
+
+        // Chart 1: newStudents & completedLessons
+        (function() {
+            const ctx = document.getElementById('chart1').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: 'Học viên mới',
+                        data: newStudents,
+                        borderColor: '#14abef',
+                        backgroundColor: 'rgba(20,171,239,0.1)',
+                        fill: true,
+                    }, {
+                        label: 'Bài học hoàn thành',
+                        data: completedLessons,
+                        borderColor: '#ffc107',
+                        backgroundColor: 'rgba(255,193,7,0.08)',
+                        fill: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        })();
+
+        // Chart 2: top courses (simple bar)
+        (function() {
+            const top = @json($topCourses ?? []);
+            const labels = top.map(i => i.title);
+            const data = top.map(i => i.total);
+            const ctx2 = document.getElementById('chart2').getContext('2d');
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Số học viên',
+                        data: data,
+                        backgroundColor: ['#28a745', '#dc3545', '#0d6efd', '#ffc107']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        })();
+    </script>
+@endpush

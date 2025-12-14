@@ -7373,7 +7373,7 @@ div.datedropper .picker .pick-lg-b li {
 
 /*===== main-menu ======*/
 .main-menu {
-  margin-right: 18px;
+  margin-right: -80px;
 }
 
 .main-menu>ul>li {

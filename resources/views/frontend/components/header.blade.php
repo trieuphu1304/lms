@@ -38,8 +38,8 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2">
                         <div class="logo-box">
-                            <a href="index.html" class="logo"><img src="{{ asset('frontend/images/logo.png') }}"
-                                    alt="logo"></a>
+                            <a href="{{ route('student.index') }}" class="logo"><img
+                                    src="{{ asset('frontend/images/logo.png') }}" alt="logo"></a>
                             <div class="user-btn-action">
                                 <div class="search-menu-toggle icon-element icon-element-sm shadow-sm mr-2"
                                     data-toggle="tooltip" data-placement="top" title="Tìm kiếm">
@@ -100,6 +100,7 @@
                                             <li><a href="{{ route('student.index') }}">Trang chủ</a></li>
                                             <li><a href="{{ route('courses.index') }}">Khóa học</a></li>
                                             <li><a href="{{ route('student.courses') }}">Khóa học của tôi</a></li>
+                                            <li><a href="{{ route('student.schedules') }}">Lịch trình</a></li>
                                             <li><a href="{{ route('chat.index') }}">Chat với giáo viên</a></li>
                                             </li>
                                             <li class="dropdown position-relative">

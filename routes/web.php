@@ -47,6 +47,7 @@ use App\Http\Controllers\Frontend\Student\ProfileController as StudentProfileCon
 use App\Http\Controllers\Frontend\Student\QuizController as StudentQuizController;
 use App\Http\Controllers\Frontend\Student\MyCourseController;
 use App\Http\Controllers\Frontend\Student\ChatController;
+use App\Http\Controllers\Frontend\Student\ScheduleController as StudentScheduleController;
 
 // ------------ Login Routes ------------
 Route::get('/admin/login', [AuthSessionController::class, 'showAdminLogin'])->name('admin.login');
@@ -93,7 +94,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     
     //Quản lí chương trình học
     Route::get('/admin/sections', [SectionController::class, 'index'])->name('admin.section');
-
+    Route::get('/admin/sections/search', [SectionController::class, 'search'])->name('admin.section.search');
     Route::get('/admin/sections/edit/{id}', [SectionController::class, 'edit'])->name('admin.section.edit');
     Route::post('/admin/sections/update/{id}', [SectionController::class, 'update'])->name('admin.section.update');
     Route::delete('/admin/sections/delete/{id}', [SectionController::class, 'delete'])->name('admin.section.delete');
@@ -153,6 +154,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         ->name('admin.profile.password.change');
     Route::post('/admin/profile/password', [ProfileController::class, 'updatePassword'])
         ->name('admin.profile.password');  
+
+    // Admin notifications (header actions)
+    Route::post('/admin/notifications/mark-read', [\App\Http\Controllers\Backend\Admin\NotificationController::class, 'markRead'])->name('admin.notifications.mark_read');
+    Route::delete('/admin/notifications', [\App\Http\Controllers\Backend\Admin\NotificationController::class, 'destroy'])->name('admin.notifications.clear');
 
 
 });
@@ -308,6 +313,10 @@ Route::post('/change-password', [StudentProfileController::class, 'updatePasswor
 
 //Khóa học của tôi
 Route::get('/my-courses', [MyCourseController::class, 'index'])->name('student.courses');
+
+//Lịch trình
+Route::get('/schedules', [StudentScheduleController::class, 'index'])->name('student.schedules');
+Route::get('/schedules/{courseId}', [StudentScheduleController::class, 'getByCategory'])->name('student.schedules.course');
 
 //Chat
 Route::get('/chat', [ChatController::class, 'index'])->name('chat.index'); // Danh sách khóa học

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\Student;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Notification;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,18 @@ class EnrollmentController extends Controller
             'is_read' => false,
         ]);
 
+        // Tạo thông báo cho tất cả admin
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            Notification::create([
+                'user_id' => $admin->id,
+                'actor_name' => Auth::user()->name,
+                'actor_id' => $user->id,
+                'title' => 'Học viên ' . Auth::user()->name . ' vừa đăng ký khóa học "' . $course->title . '"',
+                'message' => '',
+                'is_read' => false,
+            ]);
+        }
 
         return redirect()->route('course.detail', ['id' => $course->id])->with('success', 'Đăng ký khóa học thành công!');
 

@@ -52,6 +52,18 @@ class LessonController extends Controller
             'document_file' => 'nullable|mimes:pdf,doc,docx|max:10240', // 10MB
         ]);
 
+        // Kiểm tra phải chọn HOẶC video HOẶC tài liệu, không được cả hai và không được bỏ trống cả hai
+        $hasVideo = !empty($request->video_url);
+        $hasDocument = $request->hasFile('document_file');
+
+        if (!$hasVideo && !$hasDocument) {
+            return redirect()->back()->withInput()->withErrors(['media' => 'Vui lòng chọn video HOẶC tài liệu.']);
+        }
+
+        if ($hasVideo && $hasDocument) {
+            return redirect()->back()->withInput()->withErrors(['media' => 'Chỉ được chọn video HOẶC tài liệu, không được cả hai.']);
+        }
+
         $filePath = null;
 
         if ($request->hasFile('document_file')) {
@@ -60,10 +72,8 @@ class LessonController extends Controller
             $extension = $file->getClientOriginalExtension();
             $timestamp = now()->format('Ymd_His');
 
-            // Tạo tên file mới: DeTai_20251102_203512.docx
             $fileName = $originalName . '_' . $timestamp . '.' . $extension;
 
-            // Lưu vào thư mục storage/app/public/lessons
             $filePath = $file->storeAs('lessons', $fileName, 'public');
             $filePath = 'storage/' . $filePath;
         }
@@ -114,6 +124,19 @@ class LessonController extends Controller
         $lesson = Lesson::with('course')->findOrFail($id);
         if ($lesson->course->teacher_id != Auth::id()) {
             abort(403, 'Bạn không có quyền cập nhật bài giảng này.');
+        }
+
+        // Kiểm tra phải chọn HOẶC video HOẶC tài liệu
+        $hasVideo = !empty($request->video_url);
+        $hasDocument = $request->hasFile('document_file');
+        $keepExistingDocument = !$request->hasFile('document_file') && !empty($lesson->document_url);
+
+        if (!$hasVideo && !$hasDocument && !$keepExistingDocument) {
+            return redirect()->back()->withInput()->withErrors(['media' => 'Vui lòng chọn video HOẶC tài liệu.']);
+        }
+
+        if ($hasVideo && ($hasDocument || $keepExistingDocument)) {
+            return redirect()->back()->withInput()->withErrors(['media' => 'Chỉ được chọn video HOẶC tài liệu, không được cả hai.']);
         }
 
         $filePath = $lesson->document_url;

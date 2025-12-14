@@ -223,7 +223,10 @@
                     <div class="feedback-wrap">
                         <div class="media media-card align-items-center">
                             <div class="review-rating-summary">
-                                <span class="stats-average__count">{{ $averageRating }}</span>
+                                <span class="stats-average__count">
+                                    {{ number_format($averageRating, 1, ',', '.') }}
+                                </span>
+
                                 <div class="rating-wrap pt-1">
                                     <div class="review-stars">
                                         @for ($i = 1; $i <= 5; $i++)

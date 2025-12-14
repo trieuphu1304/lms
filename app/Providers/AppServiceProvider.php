@@ -54,6 +54,30 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
+        // Gửi danh sách thông báo chưa đọc (học viên đăng ký) tới header admin
+        View::composer('backend.admin.components.header', function ($view) {
+            if (Auth::check()) {
+                $userId = Auth::id();
+                $adminNotifications = Notification::where('user_id', $userId)
+                    ->where('is_read', false)
+                    ->with('actor')
+                    ->latest()
+                    ->take(5)
+                    ->get();
+                $adminUnreadCount = Notification::where('user_id', $userId)
+                    ->where('is_read', false)
+                    ->count();
+            } else {
+                $adminNotifications = collect();
+                $adminUnreadCount = 0;
+            }
+
+            $view->with([
+                'adminNotifications' => $adminNotifications,
+                'adminUnreadCount' => $adminUnreadCount,
+            ]);
+        });
+
 
         // Truyền $category vào header
         View::composer('frontend.components.header', function ($view) {

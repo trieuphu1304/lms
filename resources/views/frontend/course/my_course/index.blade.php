@@ -4,8 +4,11 @@
 <section class="breadcrumb-area py-5 bg-white pattern-bg">
     <div class="container">
         <div class="breadcrumb-content">
-            <div class="section-heading">
-                <h2 class="section__title">Khóa học của tôi</h2>
+            <div class="section-heading d-flex justify-content-between align-items-center">
+                <h2 class="section__title mb-0">Khóa học của tôi</h2>
+                <a href="{{ route('student.schedules') }}" class="btn btn-sm btn-primary">
+                    <i class="la la-calendar"></i> Xem lịch trình
+                </a>
             </div><!-- end section-heading -->
             <ul class="nav nav-tabs generic-tab pt-30px" id="myTab" role="tablist">
                 <li class="nav-item">

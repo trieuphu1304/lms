@@ -58,7 +58,7 @@
         </table>
 
         <div class="d-flex justify-content-center mt-3">
-            {{ $results->appends(['search' => $search])->links() }}
+            {{ $results->appends(['search' => $search, 'student' => $student ?? '', 'quiz' => $quiz ?? '', 'course' => $course ?? ''])->links() }}
         </div>
 
 
