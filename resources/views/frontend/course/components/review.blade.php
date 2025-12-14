@@ -1,7 +1,9 @@
 @foreach ($reviews as $review)
     <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
         <div class="media-img mr-4 rounded-full">
-            <img class="rounded-full lazy" src="{{ asset('images/default-avatar.png') }}" alt="User image">
+            <img class="rounded-full lazy" src="{{ asset('images/img-loading.png') }}"
+                data-src="{{ $review->student && $review->student->avatar ? asset('storage/' . $review->student->avatar) : asset('images/default-avatar.png') }}"
+                alt="User image">
         </div>
         <div class="media-body">
             <div class="d-flex flex-wrap align-items-center justify-content-between pb-1">

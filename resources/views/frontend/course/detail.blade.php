@@ -420,7 +420,21 @@
                                 fetch(`{{ route('reviews.fetch', $course->id) }}`)
                                     .then(res => res.text())
                                     .then(html => {
-                                        document.getElementById('reviewList').innerHTML = html;
+                                        const reviewList = document.getElementById('reviewList');
+                                        reviewList.innerHTML = html;
+
+                                        // Load ảnh từ data-src
+                                        reviewList.querySelectorAll('img.lazy').forEach(img => {
+                                            if (img.dataset.src) {
+                                                img.src = img.dataset.src;
+                                                img.classList.remove('lazy');
+                                            }
+                                        });
+
+                                        // Nếu có Lazyload library thì reinit
+                                        if (typeof ll !== 'undefined') {
+                                            ll.update();
+                                        }
                                     });
                             })
                             .catch(async error => {
